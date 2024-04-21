@@ -22,10 +22,6 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/Contador', function () {
-    return view('contador');
-});
-
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); // Cambio en la ruta de login
 
 // Rutas para las vistas de los distintos roles
