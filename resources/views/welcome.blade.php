@@ -70,8 +70,7 @@
         <ul>
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Productos</a></li>
-            <li><a href="/login">Iniciar Sesion </a></li>
-        </ul>
+            <a href="/login"><button>Iniciar Sesion</button></a>        </ul>
     </nav>
 
     <section class="highlighted-products">
