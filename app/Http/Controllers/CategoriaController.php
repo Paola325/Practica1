@@ -17,4 +17,5 @@ class CategoriaController extends Controller
             return view('welcome', compact('categorias'));
         }
     }
+    
 }

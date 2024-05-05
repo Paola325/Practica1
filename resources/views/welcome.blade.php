@@ -101,11 +101,12 @@
                 <p class="titulo">Categorías</p>
                 <ul class="categorias-list"> 
                     @forelse ($categorias as $categoria)
-                        <li>{{ $categoria->nombre }}</li>
+                        <li><a href="/productos/{{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
                     @empty
                         <li>No hay categorías disponibles</li>
                     @endforelse
                 </ul>
+                
             </li>
         </ul>
         <a href="/login">Iniciar Sesión</a>

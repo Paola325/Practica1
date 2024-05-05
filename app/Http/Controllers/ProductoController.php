@@ -13,5 +13,10 @@ class ProductoController extends Controller
         return view('producto.index', compact('productos'));
     }
 
-
+    
+    public function productCate($categoriaId) {
+        $productos = Producto::where('categoria_id', $categoriaId)->get();
+        return view('producto.mostrarCategory', compact('productos'));
+    }
+    
 }
