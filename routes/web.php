@@ -43,3 +43,7 @@ Route::view('/default', 'default')->name('default');
 
 Route::get('/', [CategoriaController::class, 'index']);
 Route::get('/producto', [ProductoController::class, 'index'])->name('productos.index');
+Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
+
+
+
