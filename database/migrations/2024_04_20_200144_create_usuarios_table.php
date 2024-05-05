@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use PhpParser\Node\Expr\Cast\String_;
 
 class CreateUsuariosTable extends Migration
 {
@@ -16,9 +15,12 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->string('role');
+            $table->string('nombre');
+            $table->string('apellido_paterno');
+            $table->string('apellido_materno');
             $table->string('email');
             $table->string('password');
-            $table->string('role');
             $table->timestamps();
         });
     }
@@ -26,9 +28,9 @@ class CreateUsuariosTable extends Migration
     /**
      * Reverse the migrations.
      *
-     * @return void
+     *@return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('usuarios');
     }

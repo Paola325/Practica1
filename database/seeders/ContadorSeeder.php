@@ -14,9 +14,12 @@ class ContadorSeeder extends Seeder
     public function run()
     {
         Usuario::create([
-            'email' => 'contador@gmail.com',
-            'password' => bcrypt('contador@gmail.com'),
-            'role' => 'contador',
-        ]);
+        'role' => 'contador',
+        'email' => 'contador@gmail.com',
+        'apellido_paterno' => 'Perez',
+        'apellido_materno' => 'Perez',
+        'nombre' => 'Emiliano',
+        'password' => bcrypt('contador@gmail.com'),
+    ]);
     }
 }
