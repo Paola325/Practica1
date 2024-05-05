@@ -10,7 +10,7 @@
     <h1>Lista de Categorías</h1>
     <table>
         <thead>
-            <tr>
+            <tr> 
                 <th>Nombre</th>
                 <th>Acciones</th>
             </tr>
