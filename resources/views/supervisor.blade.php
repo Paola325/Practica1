@@ -31,7 +31,7 @@
                     </form>
                 </td>
                 <td>
-                    <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos</button>
+                    <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos Consignados</button>
                     @empty
                 </td>
             @endforelse

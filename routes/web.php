@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\RegistroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/Registro', function () {
+    return view('Registro');
+});
+
 Route::get('/producto', function () {
     return view('producto.index');
 });
@@ -42,7 +47,9 @@ Route::get('/categorias/editarCategoria', function () {
 
 
 
-Route::post('/login', [LoginController::class, 'valida'])->name('login'); // Cambio en la ruta de login
+Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
+// Cambio en la ruta de login
+
 
 // Rutas para las vistas de los distintos roles
 Route::view('/cliente', 'cliente')->name('cliente');
@@ -58,40 +65,31 @@ Route::view('/default', 'default')->name('default');
 
 Route::get('/', [CategoriaController::class, 'index']);
 
+//Ruta para el proceso de mostrar las categorias
 Route::get('/supervisor', [CategoriaController::class, 'indexSupervisor'])->name('supervisor');
 
 
-
-
-//no tocar
+//Rutas para el proceso de agregar Categorias
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
-//no tocar
 Route::post('supervisor', [CategoriaController::class, 'guardarCategoria'])->name('supervisor');
 
 
-
-
-
-
-//no tocar
+//Rutas para el proceso de actualizar Categorias
 Route::get('/categorias/editarCategoria/{id}', [CategoriaController::class, 'editCategoria'])->name('editarCategoria.actualizarCategoria');
-
-//no tocar
 Route::put('supervisor', [CategoriaController::class, 'actualizarCategoria'])->name('supervisor');
 
+
+//Ruta para el proceso de eliminar Categorias
 Route::delete('/elimicarCategoria/{id}', [CategoriaController::class, 'elimicarCategoria'])->name('categorias.elimicarCategoria');
 
 
+//Ruta para el proceso de registro de usuarios
+Route::get('/Registro', [RegistroController::class, 'ir'])->name('Registro');
+Route::post('/welcome', [RegistroController::class, 'registrarUsuario'])->name('welcome');
 
 
 
-
-
-
-
-
-
-//no tocar
+//Rutas para mostrar los productos consignados y no consignados, tambien muestra las categorias
 Route::get('/producto', [ProductoController::class, 'index'])->name('index');
-
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
+Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');
