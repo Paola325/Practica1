@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody> 
-                <!-- Productos no consignados -->
+                <!-- Aqui estan los productos no consignados -->
 
                 @foreach($productos as $producto)
                     @if ($producto->estado === 'propuesto')
