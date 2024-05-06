@@ -35,7 +35,9 @@
                     <th>Cantidad</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody> 
+                <!-- Productos no consignados -->
+
                 @foreach($productos as $producto)
                     @if ($producto->estado === 'propuesto')
                         <tr>
