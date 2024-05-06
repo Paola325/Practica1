@@ -59,11 +59,12 @@
 <h1>Tabla de Categorías</h1> 
 <h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
         <table class="">
-                <thead>                 
-                        <tr>
-                            <th>Nombre</th>
-                            <th colspan="4">Acciones</th>
-                        </tr>
+                <thead>
+                
+                    <tr>
+                        <th>Nombre</th>
+                        <th colspan="4">Acciones</th>
+                    </tr>
                 </thead>
                     <tbody>
                         @forelse ($categorias as $categoria)
@@ -117,6 +118,6 @@
                     @endforelse
                 </tbody>
             </table>
->>>>>>> a7b9eec111c141653248d4c9578ac0ded21aa99a
+
 </body>
 </html>
