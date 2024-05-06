@@ -15,34 +15,35 @@
         }
 
         .table-container {
-            width: 45%;
-            background-color: #459A1E;
-            padding: 20px;
+            width: 35%;
+
+            padding: 30px;
         }
 
         .table-container-users {
-            width: 45%;
-            background-color: #AC1C1E;
+            width: 35%;
             padding: 20px;
         }
 
         table {
             width: 50%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
-            padding: 1px;
+            padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #fff;
+            border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: #fff;
+            background-color: #f2f2f2;
+            color: #000;
         }
 
         td {
-            background-color: #f2f2f2;
+            background-color: #fff;
         }
 
         button {
@@ -56,8 +57,74 @@
 >>>>>>> 026409034bffb49ef1baca46874636d73e825204
 </head>
 <body>
+<<<<<<< HEAD
     <h1>Panel de Supervisión</h1>
     <p>Estadísticas y métricas importantes para el supervisor.</p>
     <!-- Aquí se incluirían más elementos HTML según las funcionalidades específicas -->
+=======
+<h1>Bienvenido supervisor</h1>
+<h1>Tabla de Categorías</h1> 
+<h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
+        <table class="">
+                 <thead>
+                 
+                        <tr>
+                            <th>Nombre</th>
+                            <th colspan="4">Acciones</th>
+                        </tr>
+                </thead>
+                    <tbody>
+                        @forelse ($categorias as $categoria)
+                        <tr>
+                            <td>{{ $categoria->nombre }}</td>
+                            <td>
+                            <button onclick="location.href='/categorias/editarCategoria/{{ $categoria->id }}'">Actualizar</button>
+                            </td>
+                            <td>
+                                <form id="deleteForm" action="{{ route('categorias.elimicarCategoria', $categoria->id) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <input type="submit" value="Borrar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">
+                                </form>
+                            </td>
+                            <td>
+                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
+                            </td>
+                            <td>
+                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos no consignados</button>
+                                @empty
+                            </td>
+                        @endforelse
+                    </tbody>
+            </table>
+            <h1 >Tabla de Usuarios</h1>
+            <h1><button onclick="location.href = '/usuarios/agregarUsuario'">Registrar usuario</button></h1>
+
+            <table class="">
+            
+                <thead>
+                    <tr>
+                        <th>Rol</th>
+                        <th>Nombre</th>
+                        <th>Apellido 1</th>
+                        <th>Apellido 2</th>
+                        <th>Correo</th>
+                        <th>Contraseña</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($usuario as $usuario)
+                    <tr>
+                        <td>{{ $usuario->role }}</td>
+                        <td>{{ $usuario->nombre }}</td>
+                        <td>{{ $usuario->apellido_paterno }}</td>
+                        <td>{{ $usuario->apellido_materno }}</td>
+                        <td>{{ $usuario->email }}</td>
+                        <td>{{ $usuario->password }}</td>
+                        @empty
+                    @endforelse
+                </tbody>
+            </table>
+>>>>>>> a7b9eec111c141653248d4c9578ac0ded21aa99a
 </body>
 </html>
