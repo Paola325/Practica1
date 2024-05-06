@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorias;
-use App\Models\Usuarios;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoriaRequest;
+use App\Http\Requests\UpdateCategoriaRequest;
 
 class CategoriaController extends Controller
 {
@@ -20,7 +21,7 @@ class CategoriaController extends Controller
         }
     }
     //CRUD del supervisor
-    public function indexSupervisor(Request $request)
+    public function indexSupervisor(Request $request) //Ver las categorias
     {
         $categorias = Categorias::all();
 
@@ -31,10 +32,57 @@ class CategoriaController extends Controller
         }
     }
 
-        public function crearCategoria(StoreCategoriaRequest $categorias)
+        public function crearCategoria()
         {
                 return view('categorias.agregarCategoria');      
         }
 
+        public function guardarCategoria(StoreCategoriaRequest $request)
+        {
+            // Crear una nueva categoriao
+            $categorias = new Categorias;
+            $categorias->fill($request->all());
+            $categorias->save();
     
+            if( $request->expectsJson() ){
+                return response()->json($categorias->toArray(), 201, ["Cache-Control"=>"no-cache"]);
+            }else{
+                return redirect(route('supervisor'));
+            }
+        }
+
+
+
+
+        public function editCategoria(Request $request)
+        {
+            $id = $request->id;
+            $categorias = Categorias::find($id);
+            return view('categorias.editarCategoria', compact('categorias'));      
+        }
+
+        public function actualizarCategoria(UpdateCategoriaRequest $request, Categorias $categorias)
+        {
+            $id = $request->id;
+            $categorias = Categorias::find($id);
+            $categorias->fill($request->all());
+            $categorias->save();
+        
+            if ($request->expectsJson()) {
+                return response()->json($categoria->toArray(), 200, ["Cache-Control" => "no-cache"]);
+            } else {
+                return redirect(route('supervisor'));
+            }
+        }
+
+        public function elimicarCategoria(Categorias $categorias, $id, Producto $producto)
+        {
+            $categoria = Categorias::find($id);
+            Producto::where('categoria_id', $categoria->id)->delete();
+            $categoria->delete();
+            return redirect(route('supervisor'));
+        }
+
+        
+        
 }
