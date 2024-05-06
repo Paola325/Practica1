@@ -94,3 +94,5 @@ Route::delete('/elimicarCategoria/{id}', [CategoriaController::class, 'elimicarC
 Route::get('/producto', [ProductoController::class, 'index'])->name('index');
 
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
+
+Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');

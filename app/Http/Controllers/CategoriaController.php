@@ -69,7 +69,7 @@ class CategoriaController extends Controller
             $categorias->save();
         
             if ($request->expectsJson()) {
-                return response()->json($categoria->toArray(), 200, ["Cache-Control" => "no-cache"]);
+                return response()->json($categorias->toArray(), 200, ["Cache-Control" => "no-cache"]);
             } else {
                 return redirect(route('supervisor'));
             }

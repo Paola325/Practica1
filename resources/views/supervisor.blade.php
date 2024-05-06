@@ -37,5 +37,9 @@
             @endforelse
         </tbody>
     </table>
+
+    <h1>Productos no consignados</h1>
+    <button onclick="location.href='/noconsignados'">Ver</button>
+
 </body>
 </html>
