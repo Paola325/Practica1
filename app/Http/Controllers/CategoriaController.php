@@ -36,18 +36,5 @@ class CategoriaController extends Controller
                 return view('categorias.agregarCategoria');      
         }
 
-        public function guardarCategoria(StoreCategoriaRequest $categorias)
-        {
-            // Crear una nueva categoriao
-            $categorias = new Categorias();
-            $categorias = fill($request->all());
-            $categorias->save();
-    
-            if( $request->expectsJson() ){
-                return response()->json($categorias->toArray(), 201, ["Cache-Control"=>"no-cache"]);
-            }else{
-                return redirect(route('supervisor'));
-            }
-        }
     
 }
