@@ -107,6 +107,9 @@ Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name
 Route::get('/producto', [ProductoController::class, 'index'])->name('index');
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
 Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');
+Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
+
+
 
 //Ruta para el proceso de mostrar las categorias en la vista Encargado
 Route::get('/encargado', [CategoriaController::class, 'indexEncargado'])->name('encargado');

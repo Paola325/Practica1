@@ -35,14 +35,18 @@
 <body>
     <div class="productos-container">
         @foreach ($productos as $producto)
-            @if ($producto->estado === 'consignado')
-                <div class="producto">
-                    <h2>{{ $producto->nombre }}</h2>
-                    <p>{{ $producto->descripcion }}</p>
-                    <p>Cantidad: {{ $producto->cantidad }}</p>
-                </div>
-            @endif
-        @endforeach
+    @if ($producto->estado === 'consignado')
+        <div class="producto">
+            <h2>{{ $producto->nombre }}</h2>
+            <p>{{ $producto->descripcion }}</p>
+            <p>Cantidad: {{ $producto->cantidad }}</p>
+            
+            <a href="">Comentario</a>
+            <button>Comprar</button>
+        </div>
+    @endif
+@endforeach
+
     </div>    
 </body>
 </html>

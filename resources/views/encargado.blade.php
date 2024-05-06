@@ -59,7 +59,7 @@
 
         <table class="table-container">
                 <thead>
-                 
+                
                     <tr>
                         <th>Nombre</th>
                         <th colspan="3">Acciones</th>
