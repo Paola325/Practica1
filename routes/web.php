@@ -68,6 +68,7 @@ Route::view('/default', 'default')->name('default');
 
 
 Route::get('/', [CategoriaController::class, 'index']);
+Route::get('/cliente', [CategoriaController::class, 'indexCliente']);
 
 //Ruta para el proceso de mostrar las categorias
 Route::get('/supervisor', [CategoriaController::class, 'indexSupervisor'])->name('supervisor');
