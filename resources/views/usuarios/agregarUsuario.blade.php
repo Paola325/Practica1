@@ -6,13 +6,18 @@
     <title>Registro de Sesión</title>
 </head>
 <body>
-    <h1>Registro de Sesión</h1>
-    <form method="POST" action="{{ route('Registro') }}">
+    <h1>Registro de usuario</h1>
+    <form method="POST" action="{{ route('supervisor') }}">
         @csrf
+        <div>
+            <label for="role">Rol:</label><br>
+            <input type="text" id="role" name="role" value="{{ old('role') }}" required><br>
+        </div>
+
 
         <div>
             <label for="nombre">Nombre:</label><br>
-            <input type="text" id="nombre" name="nombre" required ><br>
+            <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" required ><br>
         </div>
 
         <div>
@@ -41,9 +46,8 @@
         </div>
 
         <div>
-        <br><br><a href="/Registro"><button>Registrarse</button></a></br></br>
+        <br><br><a href="/supervisor"><button>Registrarse</button></a></br></br>
         </div>
     </form>
-    <a href="/login"><button>Iniciar Sesion</button></a>
 </body>
 </html>

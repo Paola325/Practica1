@@ -45,6 +45,10 @@ Route::get('/categorias/editarCategoria', function () {
     return view('categorias.editarCategoria');
 });
 
+Route::get('/usuarios/agregarUsuario', function () {
+    return view('usuarios.agregarUsuario');
+});
+
 
 
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
@@ -83,11 +87,17 @@ Route::put('supervisor', [CategoriaController::class, 'actualizarCategoria'])->n
 Route::delete('/elimicarCategoria/{id}', [CategoriaController::class, 'elimicarCategoria'])->name('categorias.elimicarCategoria');
 
 
-//Ruta para el proceso de registro de usuarios
+//Ruta para el proceso de registro de usuarios desde la vista welcome
 Route::get('/Registro', [RegistroController::class, 'ir'])->name('Registro');
-Route::post('/welcome', [RegistroController::class, 'registrarUsuario'])->name('welcome');
+Route::post('/Registro', [RegistroController::class, 'registrarUsuario'])->name('/Registro');
 
 
+//Ruta para el proceso de mostrar las usuarios
+Route::get('/supervisor/usuarios', [RegistroController::class, 'verUsuarios'])->name('supervisor.usuarios');
+
+//Ruta para el proceso de registro de usuarios desde la vista supervisor
+Route::get('/usuarios/agregarUsuario', [RegistroController::class, 'IrRegistro'])->name('usuarios.agregarUsuario');
+Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name('/supervisor');
 
 //Rutas para mostrar los productos consignados y no consignados, tambien muestra las categorias
 Route::get('/producto', [ProductoController::class, 'index'])->name('index');

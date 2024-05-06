@@ -22,7 +22,12 @@ class StoreRegistroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'role' => 'required|string', // Agregar la regla de validación para el campo role
+            'nombre' => 'required|string',
+            'email' => 'required|string|email',
+            'apellido_paterno' => 'required|string',
+            'apellido_materno' => 'string|nullable',
+            'password' => 'required|string|min:8|confirmed',
         ];
     }
 }

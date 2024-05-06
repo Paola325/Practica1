@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorias;
 use App\Models\Producto;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
@@ -23,12 +24,13 @@ class CategoriaController extends Controller
     //CRUD del supervisor
     public function indexSupervisor(Request $request) //Ver las categorias
     {
+        $usuario = Usuario::all();
         $categorias = Categorias::all();
 
         if ($request->expectsJson()) {
-            return response()->json($categorias);
+            return response()->json($usuario);
         } else {
-            return view('supervisor', compact('categorias'));
+            return view('supervisor', compact('usuario', 'categorias'));
         }
     }
 
