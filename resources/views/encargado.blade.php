@@ -73,6 +73,9 @@
                                 <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
                             </td>
                             <td>
+                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos por consignar</button>
+                            </td>
+                            <td>
                                 <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos no consignados</button>
                                 @empty
                             </td>
