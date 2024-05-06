@@ -41,5 +41,8 @@
     <h1>Productos no consignados</h1>
     <button onclick="location.href='/noconsignados'">Ver</button>
 
+    <h1>Usuarios registrados</h1>
+    <button onclick="location.href='/usuario'">Ver</button>
+
 </body>
 </html>
