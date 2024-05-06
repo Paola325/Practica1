@@ -59,7 +59,6 @@
                         <tr>
                             <th>Nombre</th>
                             <th colspan="3">Acciones</th>
-
                             <th><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></th></th>
                         </tr>
                 </thead>
