@@ -19,4 +19,9 @@ class ProductoController extends Controller
         return view('producto.mostrarCategory', compact('productos'));
     }
     
+    public function noConsignados()
+    {
+        $productos = Producto::all();
+        return view('producto.noConsignado', compact('productos'));
+    }
 }

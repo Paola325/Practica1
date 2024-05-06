@@ -70,7 +70,6 @@ Route::view('/vendedor', 'vendedor')->name('vendedor');
 // Ruta por defecto en caso de que no se encuentre un rol específico para el usuario
 Route::view('/default', 'default')->name('default');
 
-
 Route::get('/', [CategoriaController::class, 'index']);
 Route::get('/cliente', [CategoriaController::class, 'indexCliente']);
 

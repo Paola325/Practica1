@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+    <title>Página Principal del Supervisor</title>
+=======
     <title>Bienvenido Supervisor</title>
     <style>
         .container {
@@ -51,8 +54,14 @@
             cursor: pointer;
         }
     </style>
+>>>>>>> 026409034bffb49ef1baca46874636d73e825204
 </head>
 <body>
+<<<<<<< HEAD
+    <h1>Panel de Supervisión</h1>
+    <p>Estadísticas y métricas importantes para el supervisor.</p>
+    <!-- Aquí se incluirían más elementos HTML según las funcionalidades específicas -->
+=======
 <h1>Bienvenido supervisor</h1>
 <h1>Tabla de Categorías</h1> 
 <h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
@@ -116,5 +125,6 @@
                     @endforelse
                 </tbody>
             </table>
+>>>>>>> a7b9eec111c141653248d4c9578ac0ded21aa99a
 </body>
 </html>
