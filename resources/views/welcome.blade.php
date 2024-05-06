@@ -113,5 +113,6 @@
         <li><a href="/Registro">Registrarse</a></li>
         </ul>
     </nav>
+    <h1>Tienda en Línea</h1>
 </body>
 </html>
