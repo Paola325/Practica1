@@ -108,7 +108,10 @@
                 </ul>
             </li>
         </ul>
-        <a href="/login">Iniciar Sesión</a>
+        <ul>
+        <li><a href="/login">Iniciar Sesión</a></li>
+        <li><a href="/Registro">Registrarse</a></li>
+        </ul>
     </nav>
 </body>
 </html>

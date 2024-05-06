@@ -6,43 +6,8 @@
     <title>Página Principal del Supervisor</title>
 </head>
 <body>
-<h1>Bienvenido supervisor</h1>
-    <h1>Lista de Categorías</h1>
-    <table>
-        <thead>
-            <tr> 
-                <th>Nombre</th>
-                <th>Acciones</th>
-                <th><button onclick="location.href = '/categorias/agregarCategoria'">Agregar</button></th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($categorias as $categoria)
-            <tr>
-                <td>{{ $categoria->nombre }}</td>
-                <td>
-                <button onclick="location.href='/categorias/editarCategoria/{{ $categoria->id }}'">Actualizar</button>
-                </td>
-                <td>
-                    <form id="deleteForm" action="{{ route('categorias.elimicarCategoria', $categoria->id) }}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <input type="submit" value="Borrar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">
-                    </form>
-                </td>
-                <td>
-                    <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos</button>
-                    @empty
-                </td>
-            @endforelse
-        </tbody>
-    </table>
-
-    <h1>Productos no consignados</h1>
-    <button onclick="location.href='/noconsignados'">Ver</button>
-
-    <h1>Usuarios registrados</h1>
-    <button onclick="location.href='/usuario'">Ver</button>
-
+    <h1>Panel de Supervisión</h1>
+    <p>Estadísticas y métricas importantes para el supervisor.</p>
+    <!-- Aquí se incluirían más elementos HTML según las funcionalidades específicas -->
 </body>
 </html>
