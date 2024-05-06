@@ -6,7 +6,7 @@
     <title>Productos por Categoría</title>
 </head>
 <body>
-    <h1>Productos por Categoría</h1>
+    <h1>Productos</h1>
     
     @if($productos->isEmpty())
         <p>No hay productos disponibles en esta categoría.</p>

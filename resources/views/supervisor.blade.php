@@ -13,6 +13,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Acciones</th>
+                <th><button onclick="location.href = '/categorias/agregarCategoria'">Agregar</button></th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,18 +21,21 @@
             <tr>
                 <td>{{ $categoria->nombre }}</td>
                 <td>
-                <button onclick="actualizarCategoria({{ $categoria->id }})">Actualizar</button>
-                <button onclick="eliminarCategoria({{ $categoria->id }})">Eliminar</button>
+                <button onclick="location.href='/categorias/editarCategoria/{{ $categoria->id }}'">Actualizar</button>
                 </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="2">No hay categorías disponibles</td>
-            </tr>
+                <td>
+                    <form id="deleteForm" action="{{ route('categorias.elimicarCategoria', $categoria->id) }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" value="Borrar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">
+                    </form>
+                </td>
+                <td>
+                    <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos</button>
+                    @empty
+                </td>
             @endforelse
         </tbody>
     </table>
-    <button onclick="location.href = '/categorias/agregarCategoria'">Agregar</button>
-
 </body>
 </html>

@@ -29,11 +29,15 @@ Route::get('/producto', function () {
 });
 
 Route::get('/supervisor', function () {
-    return view('supervisor');
+    return view('Supervisor');
 });
 
 Route::get('/categorias/agregarCategoria', function () {
     return view('categorias.agregarCategoria');
+});
+
+Route::get('/categorias/editarCategoria', function () {
+    return view('categorias.editarCategoria');
 });
 
 
@@ -54,12 +58,40 @@ Route::view('/default', 'default')->name('default');
 
 Route::get('/', [CategoriaController::class, 'index']);
 
-Route::get('/supervisor', [CategoriaController::class, 'indexSupervisor']);
+Route::get('/supervisor', [CategoriaController::class, 'indexSupervisor'])->name('supervisor');
 
-Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria']);
 
-Route::post('/supervisor', [CategoriaController::class, 'guardarCategoria'])->name('vendedor');
 
+
+//no tocar
+Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
+//no tocar
+Route::post('supervisor', [CategoriaController::class, 'guardarCategoria'])->name('supervisor');
+
+
+
+
+
+
+//no tocar
+Route::get('/categorias/editarCategoria/{id}', [CategoriaController::class, 'editCategoria'])->name('editarCategoria.actualizarCategoria');
+
+//no tocar
+Route::put('supervisor', [CategoriaController::class, 'actualizarCategoria'])->name('supervisor');
+
+Route::delete('/elimicarCategoria/{id}', [CategoriaController::class, 'elimicarCategoria'])->name('categorias.elimicarCategoria');
+
+
+
+
+
+
+
+
+
+
+
+//no tocar
 Route::get('/producto', [ProductoController::class, 'index'])->name('index');
 
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
