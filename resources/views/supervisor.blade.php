@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal del Supervisor</title>
+    <title>Bienvenido Supervisor</title>
     <style>
         .container {
             display: flex;
