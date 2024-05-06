@@ -49,6 +49,10 @@ Route::get('/usuarios/agregarUsuario', function () {
     return view('usuarios.agregarUsuario');
 });
 
+Route::get('/usuarios/editarUsuario', function () {
+    return view('usuarios.editarUsuario');
+});
+
 
 
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
@@ -104,3 +108,10 @@ Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name
 Route::get('/producto', [ProductoController::class, 'index'])->name('index');
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
 Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');
+
+//Ruta para el proceso de mostrar las categorias en la vista Encargado
+Route::get('/encargado', [CategoriaController::class, 'indexEncargado'])->name('encargado');
+
+//Rutas para el proceso de actualizar contraseña(encargado,cleinte,contador) de la vista Encargado
+Route::get('/usuarios/editarUsuario/{id}', [RegistroController::class, 'editarContra'])->name('usuarios.editarUsuario');
+Route::put('/encargado', [RegistroController::class, 'actualizarContra'])->name('encargado');

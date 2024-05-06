@@ -97,6 +97,19 @@ class CategoriaController extends Controller
             return redirect(route('supervisor'));
         }
 
-        
+        //Ver las categorias y productos en la vista Encargado
+        public function indexEncargado(Request $request) //Ver las categorias
+        {
+            $usuario = Usuario::all();
+            $categorias = Categorias::all();
+    
+            if ($request->expectsJson()) {
+                return response()->json($usuario);
+            } else {
+                return view('encargado', compact('usuario', 'categorias'));
+            }
+        }
+
+
         
 }

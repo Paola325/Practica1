@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Categorias;
 use App\Http\Requests\StoreRegistroRequest;
+use App\Http\Requests\UpdateUsuarioRequest;
 
 class RegistroController extends Controller
 {
@@ -76,5 +77,27 @@ class RegistroController extends Controller
 
         return redirect(route('supervisor'));
     }
+
+    //Cambio de contraseña del Usarios desde la vista de Encargado
+    public function editarContra(Request $request)
+        {
+            $id = $request->id;
+            $usuario = Usuario::find($id);
+            return view('usuarios.editarUsuario', compact('usuario'));      
+        }
+
+        public function actualizarContra(UpdateUsuarioRequest $request, Usuario $usuario)
+        {
+            $id = $request->id;
+            $usuario = Usuario::find($id);
+            $usuario->fill($request->all());
+            $usuario->save();
+        
+            if ($request->expectsJson()) {
+                return response()->json($usuario->toArray(), 200, ["Cache-Control" => "no-cache"]);
+            } else {
+                return redirect(route('encargado'));
+            }
+        }
     
 }

@@ -12,34 +12,35 @@
         }
 
         .table-container {
-            width: 45%;
-            background-color: #459A1E;
-            padding: 20px;
+            width: 35%;
+
+            padding: 30px;
         }
 
         .table-container-users {
-            width: 45%;
-            background-color: #AC1C1E;
+            width: 35%;
             padding: 20px;
         }
 
         table {
             width: 50%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
-            padding: 1px;
+            padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #fff;
+            border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: #fff;
+            background-color: #f2f2f2;
+            color: #000;
         }
 
         td {
-            background-color: #f2f2f2;
+            background-color: #fff;
         }
 
         button {
@@ -53,13 +54,14 @@
 </head>
 <body>
 <h1>Bienvenido supervisor</h1>
+<h1>Tabla de Categorías</h1> 
+<h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
         <table class="">
                  <thead>
-                 <h1 >Tabla de Categorías</h1> 
+                 
                         <tr>
                             <th>Nombre</th>
-                            <th colspan="3">Acciones</th>
-                            <th><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></th></th>
+                            <th colspan="4">Acciones</th>
                         </tr>
                 </thead>
                     <tbody>
@@ -86,9 +88,11 @@
                         @endforelse
                     </tbody>
             </table>
+            <h1 >Tabla de Usuarios</h1>
+            <h1><button onclick="location.href = '/usuarios/agregarUsuario'">Registrar usuario</button></h1>
 
             <table class="">
-            <h1 >Tabla de Usuarios</h1>
+            
                 <thead>
                     <tr>
                         <th>Rol</th>
@@ -97,7 +101,6 @@
                         <th>Apellido 2</th>
                         <th>Correo</th>
                         <th>Contraseña</th>
-                        <th><button onclick="location.href = '/usuarios/agregarUsuario'">Registrar usuario</button></th></th>
                     </tr>
                 </thead>
                 <tbody>
