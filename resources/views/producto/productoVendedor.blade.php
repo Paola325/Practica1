@@ -27,7 +27,19 @@
             background-color: #e6e6e6; /* Color de fondo blanco */
         }
 
+        .producto2 {
+            border: 1px solid #929292;
+            border-radius: 5px;
+            padding: 10px;
+            width:40%; /* Ancho de cada producto, calculado para tres productos por fila con el espacio entre ellos */
+            background-color: #e6e6e6; /* Color de fondo blanco */
+        }
+
         .producto h2 {
+            margin-top: 0;
+        }
+
+        .producto2 h2 {
             margin-top: 0;
         }
         .nombre{
@@ -46,19 +58,27 @@
     </style>
 </head>
 <body>
-<a href="/cliente"><button class= "nombre">Regresar</button></a>
+<a href="/vendedor"><button class= "nombre">Regresar</button></a>
     <div class="productos-container">
         @foreach ($productos as $producto)
-            @if ($producto->estado === 'consignado')
-                <div class="producto">
-                    <h2>{{ $producto->nombre }}</h2>
-                    <p>{{ $producto->descripcion }}</p>
-                    <p>Cantidad: {{ $producto->cantidad }}</p>
-
-                    <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
-
-                    <a href="#">Comprar</a>
-                </div>
+          @if ($producto->propietario_id && $producto->propietario_id == $vendedor_id)
+                  @if ($producto->estado === 'propuesto')
+                  <div class="producto2">
+                            <h2>{{ $producto->nombre }}</h2>
+                            <p>{{ $producto->descripcion }}</p>
+                            <p>Estado: {{ $producto->estado }}</p>
+                            <p>{{ $producto->cantidad }}</p>
+                            <a href="#">Verificar solicitud</a>
+                    </div>   
+                    @else
+                    <div class="producto">
+                        <h2>{{ $producto->nombre }}</h2>
+                        <p>{{ $producto->descripcion }}</p>
+                        <p>Estado: {{ $producto->estado }}</p>
+                        <p>Cantidad: {{ $producto->cantidad }}</p>
+                        <a href="{{ route('comentarios.ver', ['id_producto' => $producto->id]) }}">Responder comentarios</a>
+                    </div>
+                @endif
             @endif
         @endforeach
 

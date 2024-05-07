@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-<a href="/cliente"><button class= "nombre">Regresar</button></a>
+<a href="/vendedor"><button class= "nombre">Regresar</button></a>
     <div class="productos-container">
         @foreach ($productos as $producto)
             @if ($producto->estado === 'consignado')
@@ -55,7 +55,7 @@
                     <p>{{ $producto->descripcion }}</p>
                     <p>Cantidad: {{ $producto->cantidad }}</p>
 
-                    <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
+                    <a href="{{ route('comentarios.ver', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
 
                     <a href="#">Comprar</a>
                 </div>

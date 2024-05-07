@@ -55,7 +55,7 @@
 </head>
 <body>
 
-<h1>Bienvenido supervisor</h1>
+<h1>Bienvenido supervisor {{ Auth::user()->nombre }}</h1>
 <h1>Tabla de Categorías</h1> 
 <h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
         <table class="">
@@ -103,6 +103,7 @@
                         <th>Apellido 2</th>
                         <th>Correo</th>
                         <th>Contraseña</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,6 +115,7 @@
                         <td>{{ $usuario->apellido_materno }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->password }}</td>
+                        <td><button onclick="location.href='/usuarios/actualizarUsuario/{{ $usuario->id }}'">Actualizar usuario</button></td>
                         @empty
                     @endforelse
                 </tbody>

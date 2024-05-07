@@ -17,36 +17,32 @@ class ComentarioController extends Controller
 
         return view('producto.comentario', compact('comentarios', 'productos'));
     }
-    
-    public function guardarComentario(StoreCategoriaRequest $request)
-        {
-            // Crear una nueva categoriao
-            $comentarios = new Comentario();
-            $comentarios->fill($request->all());
-            $comentarios->save();
-    
-            if( $request->expectsJson() ){
-                return response()->json($comentarios->toArray(), 201, ["Cache-Control"=>"no-cache"]);
-            }else{
-                return redirect(route('producto.comentario'));
-            }
-        }
+
+    public function verComentarios($id_producto)
+    {
+        $comentarios = Comentario::where('producto_id', $id_producto)->get();
+        $productos = Producto::find($id_producto);
+
+        return view('producto.responderComentario', compact('comentarios', 'productos'));
+    }
 
     public function guardar(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'producto_id' => 'required|exists:productos,id',
-            'comentario' => 'required|string|max:255',
+            'id_producto' => 'required|integer',
+            'texto' => 'required|string',
+            'tipo' => 'required|string',
         ]);
 
-        // Crear y guardar el comentario en la base de datos
-        Comentario::create([
-            'producto_id' => $request->id_producto,
-            'comentario' => $request->comentario,
-        ]);
+        // Crear un nuevo comentario
+        $comentario = new Comentario();
+        $comentario->producto_id = $request->id_producto;
+        $comentario->texto = $request->texto;
+        $comentario->tipo = $request->tipo;
+        $comentario->save();
 
-        // Redirigir de vuelta a la página de productos
-        return redirect('/producto')->with('success', 'Comentario enviado correctamente.');
+        return back();
     }
+
 }

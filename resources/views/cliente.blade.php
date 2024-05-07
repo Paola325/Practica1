@@ -117,7 +117,7 @@
     <nav>
         <ul>
             <li><a href="#">Inicio</a></li>
-            <li><a href="/producto">Productos</a></li>
+            <li><a href="/index">Productos</a></li>
             <li class="categories"> <!-- Agrega la clase "categories" para el menú desplegable -->
                 <p class="titulo">Categorías</p>
                 <ul class="categorias-list"> 
@@ -130,12 +130,10 @@
             </li>
         </ul>
         <ul>
-        <li><a href="/login">Iniciar Sesión</a></li>
-        <li><a href="/Registro">Registrarse</a></li>
+        <li><a href="/">Cerrar sesion</a></li>
         </ul>
     </nav>
-    <h1>Bienvenido Cliente</h1>
-
+    <h1>Bienvenido cliente {{ Auth::user()->nombre }}</h1>
     <div class="productos-container">
         @forelse ($productos as $producto)
             @if ($producto->estado === 'consignado')

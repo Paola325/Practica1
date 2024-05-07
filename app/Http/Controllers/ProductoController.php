@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categorias;
 use App\Models\Comentario;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
@@ -17,6 +19,13 @@ class ProductoController extends Controller
         return view('producto.index', compact('productos','comentario'));
     }
 
+    public function productoVer()
+    {
+        $productos = Producto::all();
+        $comentario = Comentario::all();
+
+        return view('producto.productos', compact('productos','comentario'));
+    }
     
     public function productCate($categoriaId) {
         $productos = Producto::where('categoria_id', $categoriaId)->get();
@@ -40,4 +49,14 @@ class ProductoController extends Controller
                 return view('cliente', compact('productos', 'categorias'));
             }
         }
+
+
+        public function verProductosVendedor(Request $request)
+        {
+            $vendedor_id = Auth::id();
+            $productos = Producto::where('propietario_id', $vendedor_id)->get();
+            $comentario = Comentario::all();
+            return view('producto.productoVendedor', compact('productos','comentario', 'vendedor_id'));      
+        }
 }
+

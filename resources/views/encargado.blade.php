@@ -53,7 +53,7 @@
     </style>
 </head>
 <body>
-<h1>Bienvenido Encargado</h1>
+<h1>Bienvenido Encargado {{ Auth::user()->nombre }}</h1>
 <h1 >Tabla de Categorías</h1> 
 <h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
 

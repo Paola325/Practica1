@@ -55,6 +55,14 @@ Route::get('/usuarios/editarUsuario', function () {
     return view('usuarios.editarUsuario');
 });
 
+Route::get('/usuarios/actualizarUsuario', function () {
+    return view('usuarios.actualizarUsuario');
+});
+
+Route::get('/producto/productoVendedor', function () {
+    return view('producto.productoVendedor');
+});
+
 
 
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
@@ -63,7 +71,7 @@ Route::post('/login', [LoginController::class, 'valida'])->name('login');
 
 // Rutas para las vistas de los distintos roles
 Route::view('/cliente', 'cliente')->name('cliente');
-Route::view('/Contador', 'contador')->name('contador');
+Route::view('/contador', 'contador')->name('contador');
 Route::view('/encargado', 'encargado')->name('encargado');
 Route::view('/supervisor', 'supervisor')->name('supervisor');
 Route::view('/vendedor', 'vendedor')->name('vendedor');
@@ -105,12 +113,15 @@ Route::get('/supervisor/usuarios', [RegistroController::class, 'verUsuarios'])->
 Route::get('/usuarios/agregarUsuario', [RegistroController::class, 'IrRegistro'])->name('usuarios.agregarUsuario');
 Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name('/supervisor');
 
+//Ruta para el proceso de actuliazar los datos de los usuarios desde la view supervisor
+Route::get('/usuarios/actualizarUsuario/{id}', [RegistroController::class, 'editarUser'])->name('usuarios.actualizarUsuario');
+Route::put('/supervisor', [RegistroController::class, 'actualizarUser'])->name('supervisor');
+
 //Rutas para mostrar los productos consignados y no consignados, tambien muestra las categorias
-Route::get('/producto', [ProductoController::class, 'index'])->name('index');
+Route::get('/index', [ProductoController::class, 'index'])->name('index');
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
 Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');
 Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
-
 
 
 //Ruta para el proceso de mostrar las categorias en la vista Encargado
@@ -121,11 +132,14 @@ Route::get('/usuarios/editarUsuario/{id}', [RegistroController::class, 'editarCo
 Route::put('/encargado', [RegistroController::class, 'actualizarContra'])->name('encargado');
 
 
-
 //Rutas para los comentarios
-//Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
+Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
 Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar'])->name('comentarios.show');
-Route::post('/comentario', [ComentarioController::class, 'guardarComentario'])->name('comentario');
 
 
+//Ruta paran el proceso de mostrar los productos perteneciente a su respectivo vendedor
+Route::get('/producto/productoVendedor', [ProductoController::class, 'verProductosVendedor'])->name('producto.productoVendedor');
+Route::get('/comentario/{id_producto}', [ComentarioController::class, 'verComentarios'])->name('comentarios.ver');
 
+//Ruta paran el proceso de mostrar comprar como si fuera cliete
+Route::get('/productos', [ProductoController::class, 'productoVer'])->name('productos');
