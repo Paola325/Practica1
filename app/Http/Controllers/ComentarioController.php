@@ -17,20 +17,6 @@ class ComentarioController extends Controller
 
         return view('producto.comentario', compact('comentarios', 'productos'));
     }
-    
-    public function guardarComentario(StoreCategoriaRequest $request)
-        {
-            // Crear una nueva categoriao
-            $comentarios = new Comentario();
-            $comentarios->fill($request->all());
-            $comentarios->save();
-    
-            if( $request->expectsJson() ){
-                return response()->json($comentarios->toArray(), 201, ["Cache-Control"=>"no-cache"]);
-            }else{
-                return redirect(route('producto.comentario'));
-            }
-        }
 
     public function guardar(Request $request)
     {
