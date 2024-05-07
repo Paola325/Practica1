@@ -21,6 +21,15 @@ class SupervisorSeeder extends Seeder
             'apellido_materno' => 'García',
             'nombre' => 'María',
             'password' => bcrypt('supervisor@gmail.com'),
-]);
+        ]);
+
+        Usuario::create([
+            'role' => 'supervisor',
+            'email' => 'supervisor2@gmail.com',
+            'apellido_paterno' => 'Pérez',
+            'apellido_materno' => 'López',
+            'nombre' => 'Ana',
+            'password' => bcrypt('supervisor2@gmail.com'),
+        ]);
     }
 }

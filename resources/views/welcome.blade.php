@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda en Línea</title>
     <style>
+        /* Estilos CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,17 +16,26 @@
             background-color: #333;
             color: #fff;
             padding: 10px;
+            display: flex; /* Alinear elementos del nav en línea */
+            justify-content: space-between; /* Espaciar elementos del nav */
+            align-items: center; 
         }
 
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
+            display: flex; /* Alinear elementos de la lista en línea */
+            align-items: center; /* Centrar verticalmente los elementos de la lista */
         }
 
         nav ul li {
-            display: inline;
             margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff; /* Cambiar el color del texto a blanco */
+            text-decoration: none; /* Quitar el subrayado */
         }
 
         .highlighted-products {
@@ -52,16 +62,33 @@
         }
 
         .categories {
-            padding: 20px;
-            background-color: #eee;
+            position: relative; /* Posición relativa para que la lista de categorías sea absoluta con respecto a este elemento */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
         }
 
-        .category {
-            display: inline-block;
-            margin-right: 10px;
-            padding: 5px 10px;
-            background-color: #ccc;
-            border-radius: 5px;
+        .categorias-list {
+            display: none; /* Oculta la lista de categorías por defecto */
+            position: absolute; /* Posición absoluta para superponer la lista de categorías sobre otros elementos */
+            top: calc(100% + 5px); /* Coloca la lista justo debajo del título */
+            left: 0; /* Alinea la lista con el borde izquierdo del título */
+            background-color: #363636; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            padding: 10px;
+            z-index: 1; /* Asegura que la lista de categorías esté por encima de otros elementos */
+        }
+
+        .categories:hover .categorias-list,
+        .categorias-list:hover {
+            display: block; /* Muestra la lista de categorías al pasar el ratón por encima del título o la lista misma */
+        }
+        .titulo{
+            color: #fff;
+            font-size: 16px;
+            margin-right: 20px; /* Añade margen para separar las categorías del botón de inicio de sesión */
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -69,37 +96,23 @@
     <nav>
         <ul>
             <li><a href="#">Inicio</a></li>
-            <li><a href="#">Productos</a></li>
-            <a href="/login"><button>Iniciar Sesion</button></a>        </ul>
+            <li><a href="/producto">Productos</a></li>
+            <li class="categories"> <!-- Agrega la clase "categories" para el menú desplegable -->
+                <p class="titulo">Categorías</p>
+                <ul class="categorias-list"> 
+                    @forelse ($categorias as $categoria)
+                        <li><a href="/productos/{{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
+                    @empty
+                        <li>No hay categorías disponibles</li>
+                    @endforelse
+                </ul>
+            </li>
+        </ul>
+        <ul>
+        <li><a href="/login">Iniciar Sesión</a></li>
+        <li><a href="/Registro">Registrarse</a></li>
+        </ul>
     </nav>
-
-    <section class="highlighted-products">
-        <h2>Productos Destacados</h2>
-        <div class="products-container">
-            <div class="product">
-                <img src="product1.jpg" alt="Product 1">
-                <h3>Producto 1</h3>
-                <p>Precio: $20</p>
-            </div>
-            <div class="product">
-                <img src="product2.jpg" alt="Product 2">
-                <h3>Producto 2</h3>
-                <p>Precio: $30</p>
-            </div>
-            <div class="product">
-                <img src="product3.jpg" alt="Product 3">
-                <h3>Producto 3</h3>
-                <p>Precio: $25</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="categories">
-        <h2>Categorías</h2>
-        <div class="category">Electrónicos</div>
-        <div class="category">Ropa</div>
-        <div class="category">Hogar y Jardín</div>
-    </section>
-
+    <h1>Tienda en Línea</h1>
 </body>
 </html>

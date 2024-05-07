@@ -1,46 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bienvenido Supervisor</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    .container {
-        text-align: center;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-    }
-    h1 {
-        color: #333;
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal del Supervisor</title>
+    <title>Bienvenido Supervisor</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
 
+        .table-container {
+            width: 35%;
 
+            padding: 30px;
+        }
 
-</style>
+        .table-container-users {
+            width: 35%;
+            padding: 20px;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #000;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #ccc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h1>Bienvenido Supervisor</h1>
-    <div class="button-container">
-        <button class="button">Asignar tareas</button>
-        <button class="button">Revisar informes</button>
-        <button class="button">Coordinar equipos</button>
-        <br><br><a href="/login"><button>Cerrar sesión</button></a></br></br>
-    </div>
-</div>
+
+<h1>Bienvenido supervisor</h1>
+<h1>Tabla de Categorías</h1> 
+<h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
+        <table class="">
+                <thead>
+                
+                    <tr>
+                        <th>Nombre</th>
+                        <th colspan="4">Acciones</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        @forelse ($categorias as $categoria)
+                        <tr>
+                            <td>{{ $categoria->nombre }}</td>
+                            <td>
+                            <button onclick="location.href='/categorias/editarCategoria/{{ $categoria->id }}'">Actualizar</button>
+                            </td>
+                            <td>
+                                <form id="deleteForm" action="{{ route('categorias.elimicarCategoria', $categoria->id) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <input type="submit" value="Borrar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">
+                                </form>
+                            </td>
+                            <td>
+                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
+                            </td>
+                            <td>
+                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos no consignados</button>
+                                @empty
+                            </td>
+                        @endforelse
+                    </tbody>
+            </table>
+            <h1 >Tabla de Usuarios</h1>
+            <h1><button onclick="location.href = '/usuarios/agregarUsuario'">Registrar usuario</button></h1>
+
+            <table class="">
+            
+                <thead>
+                    <tr>
+                        <th>Rol</th>
+                        <th>Nombre</th>
+                        <th>Apellido 1</th>
+                        <th>Apellido 2</th>
+                        <th>Correo</th>
+                        <th>Contraseña</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($usuario as $usuario)
+                    <tr>
+                        <td>{{ $usuario->role }}</td>
+                        <td>{{ $usuario->nombre }}</td>
+                        <td>{{ $usuario->apellido_paterno }}</td>
+                        <td>{{ $usuario->apellido_materno }}</td>
+                        <td>{{ $usuario->email }}</td>
+                        <td>{{ $usuario->password }}</td>
+                        @empty
+                    @endforelse
+                </tbody>
+            </table>
+
 </body>
 </html>
