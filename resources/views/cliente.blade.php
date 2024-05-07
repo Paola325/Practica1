@@ -91,25 +91,6 @@
             text-decoration: none;
         }
 
-        .productos-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px; /* Espacio entre los productos */
-        }
-
-        .producto {
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: calc(33.33% - 20px); /* Tres productos por fila */
-            margin-bottom: 20px; /* Espacio debajo de cada producto */
-        }
-
-        /* Estilos adicionales según necesidad */
-        .producto h2 {
-            margin-top: 0;
-        }
 
     </style>
 </head>
@@ -129,27 +110,8 @@
                 </ul>
             </li>
         </ul>
-        <ul>
-        <li><a href="/login">Iniciar Sesión</a></li>
-        <li><a href="/Registro">Registrarse</a></li>
-        </ul>
     </nav>
     <h1>Bienvenido Cliente</h1>
-
-    <div class="productos-container">
-        @forelse ($productos as $producto)
-            @if ($producto->estado === 'consignado')
-                <div class="producto">
-                    <h2>{{ $producto->nombre }}</h2>
-                    <p>{{ $producto->descripcion }}</p>
-                    <p>Cantidad: {{ $producto->cantidad }}</p>
-                </div>
-            @endif
-        @empty
-            <p>No hay productos consignados</p>
-        @endforelse
-    </div>
-    
     
 </body>
 </html>

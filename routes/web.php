@@ -123,9 +123,10 @@ Route::put('/encargado', [RegistroController::class, 'actualizarContra'])->name(
 
 
 //Rutas para los comentarios
-//Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
+Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
+//Route::post('/comentario', [ComentarioController::class, 'guardarComentario'])->name('comentario');
 Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar'])->name('comentarios.show');
-Route::post('/comentario', [ComentarioController::class, 'guardarComentario'])->name('comentario');
+
 
 
 

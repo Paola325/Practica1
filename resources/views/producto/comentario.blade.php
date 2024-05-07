@@ -70,17 +70,23 @@
         @else
             @foreach ($comentarios as $comentario)
                 <div class="comentario">
+                    @if ($comentario->tipo === 'pregunta')
+                        <p class="tipo">Pregunta:</p>
+                    @elseif ($comentario->tipo === 'respuesta')
+                        <p class="tipo">Respuesta:</p>
+                    @endif
                     <p class="texto">{{ $comentario->texto }}</p>
                 </div>
             @endforeach
         @endif
+
 
         </section>
         <!--Agregar comentario-->
         <form action="{{ route('comentario') }}" method="post">
             @csrf
             <input type="hidden" name="id_producto" value="{{ $productos->id }}">
-            <!-- Asegúrate de que el campo de texto tenga el nombre 'texto' -->
+            <!-- Cambiar 'text' a 'textarea' y asegurarse de que el atributo sea 'name' -->
             <textarea name="texto" placeholder="Escribe tu pregunta aquí" rows="4" cols="50"></textarea>
             <!-- Agregar campo oculto para el tipo con valor por defecto 'pregunta' -->
             <input type="hidden" name="tipo" value="pregunta">
