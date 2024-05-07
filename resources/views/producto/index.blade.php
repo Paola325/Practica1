@@ -42,15 +42,7 @@
                     <p>Cantidad: {{ $producto->cantidad }}</p>
 
                     <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
-                    
-                    <!-- Formulario para comentarios -->
-                    <form action="{{ route('comentario') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="id_producto" value="{{ $producto->id }}">
-                        <textarea name="comentario" placeholder="Escribe tu comentario aquí" rows="4" cols="50"></textarea>
-                        <button type="submit">Enviar comentario</button>
-                    </form>
-                    
+
                     <a href="#">Comprar</a>
                 </div>
             @endif

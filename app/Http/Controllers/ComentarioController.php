@@ -5,20 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comentario;
 use App\Models\Producto;
+use App\Http\Requests\StoreCategoriaRequest;
 
 class ComentarioController extends Controller
 {
 
     public function mostrar($id_producto)
     {
-        // Aquí obtienes los comentarios asociados al producto con el ID proporcionado
-        $productos = Producto::findOrFail($id_producto);
-        $comentarios = $productos->comentarios;
+        $comentarios = Comentario::where('producto_id', $id_producto)->get();
+        $productos = Producto::find($id_producto);
 
-        // Luego, devuelves una vista que muestre los comentarios
         return view('producto.comentario', compact('comentarios', 'productos'));
     }
     
+    public function guardarComentario(StoreCategoriaRequest $request)
+        {
+            // Crear una nueva categoriao
+            $comentarios = new Comentario();
+            $comentarios->fill($request->all());
+            $comentarios->save();
+    
+            if( $request->expectsJson() ){
+                return response()->json($comentarios->toArray(), 201, ["Cache-Control"=>"no-cache"]);
+            }else{
+                return redirect(route('producto.comentario'));
+            }
+        }
 
     public function guardar(Request $request)
     {
