@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categorias;
+use App\Models\Comentario;
 
 class ProductoController extends Controller
 {
     public function index()
     {
         $productos = Producto::all();
-        return view('producto.index', compact('productos'));
+        $comentario = Comentario::all();
+
+        return view('producto.index', compact('productos','comentario'));
     }
 
     
