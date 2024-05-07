@@ -63,6 +63,10 @@ Route::get('/producto/productoVendedor', function () {
     return view('producto.productoVendedor');
 });
 
+Route::get('/producto/mostrarCategory', function () {
+    return view('producto.mostrarCategory');
+});
+
 
 
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
@@ -117,10 +121,16 @@ Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name
 Route::get('/usuarios/actualizarUsuario/{id}', [RegistroController::class, 'editarUser'])->name('usuarios.actualizarUsuario');
 Route::put('/supervisor', [RegistroController::class, 'actualizarUser'])->name('supervisor');
 
-//Rutas para mostrar los productos consignados y no consignados, tambien muestra las categorias
+//Rutas para mostrar los productos consignados, por consignar y no consignados, tambien muestra las categorias
 Route::get('/index', [ProductoController::class, 'index'])->name('index');
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
-Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');
+Route::get('/porConsignar/{categoriaId}', [ProductoController::class, 'porValidar'])->name('porConsignar');
+//Ruta para el proceso de consignar producto
+Route::put('/productos/{categoriaId}', [RegistroController::class, 'aceptar'])->name('aceptar');
+//Ruta para el proceso de no consignar producto
+Route::put('/supervisor', [RegistroController::class, 'rechazar'])->name('supervisor');
+//Ruta para el proceso de ver los productos no consignados
+Route::get('/noconsignados/{categoriaId}', [ProductoController::class, 'noConsignados'])->name('noConsignados');
 Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
 
 

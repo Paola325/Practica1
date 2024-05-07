@@ -6,7 +6,7 @@
     <title>Productos por Categoría</title>
     <style>
         table {
-            width: 100%;
+            width: 50%;
             border-collapse: collapse;
         }
 
@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <h1>Productos Propuestos</h1>
+    <h1>Productos no consignados</h1>
     
     @if($productos->isEmpty())
         <p>No hay productos disponibles en esta categoría.</p>
@@ -32,7 +32,10 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Estado</th>
                     <th>Cantidad</th>
+                    <th>Motivo</th>
+                    
                 </tr>
             </thead>
             <tbody> 
@@ -43,12 +46,16 @@
                         <tr>
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->descripcion }}</td>
+                            <td>{{ $producto->estado }}</td>
                             <td>{{ $producto->cantidad }}</td>
+                            <td>{{ $producto->motivo }}</td>
                         </tr>
                     @endif
                 @endforeach
             </tbody>
         </table>
     @endif
+    <br>
+    <br><a href="/supervisor"><button class= "button2">Regresar</button></a>
 </body>
 </html>

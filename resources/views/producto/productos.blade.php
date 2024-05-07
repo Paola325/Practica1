@@ -53,6 +53,7 @@
                 <div class="producto">
                     <h2>{{ $producto->nombre }}</h2>
                     <p>{{ $producto->descripcion }}</p>
+                    <p>Estado: {{ $producto->estado }}</p>
                     <p>Cantidad: {{ $producto->cantidad }}</p>
 
                     <a href="{{ route('comentarios.ver', ['id_producto' => $producto->id]) }}">Ver comentarios</a>

@@ -24,7 +24,7 @@
         }
 
         table {
-            width: 50%;
+            width: 60%;
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -63,7 +63,7 @@
                 
                     <tr>
                         <th>Nombre</th>
-                        <th colspan="4">Acciones</th>
+                        <th colspan="5">Acciones</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -84,7 +84,10 @@
                                 <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
                             </td>
                             <td>
-                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos no consignados</button>
+                                <button onclick="location.href='/porConsignar/{{ $categoria->id }}'">Productos por consignar</button>
+                            </td>
+                            <td>
+                                <button onclick="location.href='noconsignados/{{ $categoria->id }}'">Productos no consignados</button>
                                 @empty
                             </td>
                         @endforelse
