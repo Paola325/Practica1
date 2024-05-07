@@ -6,26 +6,9 @@
     <title>Página Principal del Cliente</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="/producto">Productos</a></li>
-            <li class="categories"> <!-- Agrega la clase "categories" para el menú desplegable -->
-                <p class="titulo">Categorías</p>
-                <ul class="categorias-list"> 
-                    @forelse ($categorias as $categoria)
-                        <li><a href="/productos/{{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
-                    @empty
-                        <li>No hay categorías disponibles</li>
-                    @endforelse
-                </ul>
-            </li>
-        </ul>
-        <ul>
-        <li><a href="/">Cerrar sesion</a></li>
-        </ul>
-    </nav>
-    <h1>Bienvenido cliente</h1>
-    
+    <h1>Bienvenido Cliente</h1>
+    <p>Información sobre productos y servicios disponibles.</p>
+    <p>Historial de pedidos:</p>
+    <!-- Aquí se incluirían más elementos HTML según las funcionalidades específicas -->
 </body>
 </html>
