@@ -7,7 +7,9 @@
 </head>
 <body>
     <h1>Panel del Vendedor</h1>
-    <p>Lista de productos disponibles para la venta.</p>
-    <!-- Aquí se incluirían más elementos HTML según las funcionalidades específicas -->
+    <p>Sus productos</p>
+    
+    
+
 </body>
 </html>
