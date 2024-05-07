@@ -40,9 +40,16 @@
                     <h2>{{ $producto->nombre }}</h2>
                     <p>{{ $producto->descripcion }}</p>
                     <p>Cantidad: {{ $producto->cantidad }}</p>
+
+                    <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
+
+                    <a href="#">Comprar</a>
                 </div>
             @endif
         @endforeach
+
+
+
     </div>    
 </body>
 </html>

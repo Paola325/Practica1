@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\ComentarioController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +109,9 @@ Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name
 Route::get('/producto', [ProductoController::class, 'index'])->name('index');
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
 Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');
+Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
+
+
 
 //Ruta para el proceso de mostrar las categorias en la vista Encargado
 Route::get('/encargado', [CategoriaController::class, 'indexEncargado'])->name('encargado');
@@ -114,3 +119,13 @@ Route::get('/encargado', [CategoriaController::class, 'indexEncargado'])->name('
 //Rutas para el proceso de actualizar contraseña(encargado,cleinte,contador) de la vista Encargado
 Route::get('/usuarios/editarUsuario/{id}', [RegistroController::class, 'editarContra'])->name('usuarios.editarUsuario');
 Route::put('/encargado', [RegistroController::class, 'actualizarContra'])->name('encargado');
+
+
+
+//Rutas para los comentarios
+//Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
+Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar'])->name('comentarios.show');
+Route::post('/comentario', [ComentarioController::class, 'guardarComentario'])->name('comentario');
+
+
+
