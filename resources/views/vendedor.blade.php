@@ -98,8 +98,7 @@
     <h1 style= >Bienvenido vendedor {{ Auth::user()->nombre }}</h1>
     <div class="productos-container">
     </div>
-    <a href="/productos"><button>Ir a comprar</button></a>
-
-    <button onclick="location.href='/producto/productoVendedor'">Ver tus productos</button>
+    <a href="/producto/productos"><button>Ir a comprar</button></a>
+    <a href= '/producto/productoVendedor' ><button>Ver tus productos</button>
 </body>
 </html>

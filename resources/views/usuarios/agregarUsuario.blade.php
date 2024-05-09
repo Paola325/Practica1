@@ -27,7 +27,7 @@
 
         <div>
             <label for="apellido_materno">Apellido Materno:</label><br>
-            <input type="text" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno') }}"><br>
+            <input type="text" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno') }}" required><br>
         </div>
 
         <div>
@@ -46,7 +46,8 @@
         </div>
 
         <div>
-        <br><br><a href="/supervisor"><button>Registrarse</button></a></br></br>
+            <br>
+        <input type="submit" value="Agregar">
         </div>
     </form>
 </body>

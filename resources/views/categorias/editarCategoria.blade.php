@@ -6,12 +6,13 @@
     <title>Actualizar categoria</title>
 </head>
 <body>
-<form method="POST" action="{{ route('supervisor', ['id' => $categorias->id]) }}">
+<form method="POST" action="{{ route('categoria.actualizarCategoria', ['id' => $categorias->id]) }}">
     @csrf
     @method('PUT')
     <label for="nombre">Nombre de la categoría:</label><br>
     <input type="text" id="nombre" name="nombre" value="{{ $categorias->nombre}}" required><br><br>
-    <button type="submit">Actualizar</button>
+    <button type="submit">Guardar</button>
 </form>
-</body>
+<br><a href= '/supervisor'><button>Regresar</button></a>
+</body>     
 </html>

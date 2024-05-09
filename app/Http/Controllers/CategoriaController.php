@@ -21,7 +21,7 @@ class CategoriaController extends Controller
             return view('welcome', compact('categorias'));
         }
     }
-
+    
     public function indexCliente(Request $request)
     {
         $categorias = Categorias::all();
@@ -32,6 +32,7 @@ class CategoriaController extends Controller
             return view('cliente', compact('categorias'));
         }
     }
+    
 
     //CRUD del supervisor
     public function indexSupervisor(Request $request) //Ver las categorias
@@ -53,17 +54,19 @@ class CategoriaController extends Controller
 
         public function guardarCategoria(StoreCategoriaRequest $request)
         {
-            // Crear una nueva categoriao
+            $nombre = $request -> nombre;
             $categorias = new Categorias;
-            $categorias->fill($request->all());
+            $categorias->nombre = $nombre;
             $categorias->save();
     
             if( $request->expectsJson() ){
-                return response()->json($categorias->toArray(), 201, ["Cache-Control"=>"no-cache"]);
+                return response()->json($request->toArray(), 201, ["Cache-Control"=>"no-cache"]);
             }else{
-                return redirect(route('supervisor'));
+                return redirect(route('categorias.agregarCategoria'));
             }
         }
+
+
 
 
 
@@ -75,13 +78,13 @@ class CategoriaController extends Controller
             return view('categorias.editarCategoria', compact('categorias'));      
         }
 
-        public function actualizarCategoria(UpdateCategoriaRequest $request, Categorias $categorias)
+        public function actualizarCategoria(UpdateCategoriaRequest $request, Categorias $categoria)
         {
             $id = $request->id;
             $categorias = Categorias::find($id);
             $categorias->fill($request->all());
             $categorias->save();
-        
+
             if ($request->expectsJson()) {
                 return response()->json($categorias->toArray(), 200, ["Cache-Control" => "no-cache"]);
             } else {

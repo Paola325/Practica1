@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
-use App\Models\Categorias;
 use App\Http\Requests\StoreRegistroRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 
@@ -15,8 +14,10 @@ class RegistroController extends Controller
         return view('Registro');
     }
 
-    public function registrarUsuario(StoreRegistroRequest $request)
+    public function registrarUsuario(Request $request) //Registro desde la view Registro
     {
+
+        $role = $request -> role;
         $nombre = $request -> nombre;
         $email = $request -> email;
         $apellido_paterno = $request -> apellido_paterno;
@@ -26,18 +27,19 @@ class RegistroController extends Controller
         $passwordC = bcrypt ($password);
 
         $usuario = new Usuario();
+        $usuario->role =  'cliente';
         $usuario->nombre = $nombre;
         $usuario->email = $email;
         $usuario->apellido_paterno = $apellido_paterno;
         $usuario->apellido_materno = $apellido_materno;
         $usuario->password = $passwordC;
-        $usuario->role =  'cliente';
         $usuario->save();
 
         return redirect(route('Registro'));
     }
 
     //Usuarios desde el role Supervisor
+    /*
     public function verUsuarios(Request $request) //Ver las categorias
     {
         $usuario = Usuario::all();
@@ -49,13 +51,14 @@ class RegistroController extends Controller
             return view('supervisor', compact('usuario', 'categorias'));
         }
     }
+    */
 
     public function IrRegistro()
     {
         return view('usuarios.agregarUsuario');
     }
 
-    public function registerUsuario(StoreRegistroRequest $request)
+    public function registerUsuario(StoreRegistroRequest $request) //Registro desde la view supervisor
     {
         $role = $request -> role;
         $nombre = $request -> nombre;
@@ -78,19 +81,22 @@ class RegistroController extends Controller
         return redirect(route('supervisor'));
     }
 
-    //Cambio de contraseña del Usarios desde la vista de Encargado
-    public function editarContra(Request $request)
+    //Para ir al form de cambio de contraseña desde encargado
+        public function editarContra(Request $request)
         {
             $id = $request->id;
             $usuario = Usuario::find($id);
             return view('usuarios.editarUsuario', compact('usuario'));      
         }
 
+        //Cambio de la contraseña del Usarios desde la vista de Encargado
         public function actualizarContra(UpdateUsuarioRequest $request, Usuario $usuario)
         {
             $id = $request->id;
             $usuario = Usuario::find($id);
-            $usuario->fill($request->all());
+            $password = $request -> password;
+            $passwordC = bcrypt ($password);
+            $usuario->password = $passwordC;
             $usuario->save();
         
             if ($request->expectsJson()) {
@@ -100,6 +106,7 @@ class RegistroController extends Controller
             }
         }
 
+        //Te manda al form de cambio de contraseña desde la vista supervisor
         public function editarUser(Request $request)
         {
             $id = $request->id;
@@ -107,11 +114,27 @@ class RegistroController extends Controller
             return view('usuarios.actualizarUsuario', compact('usuario'));      
         }
 
+        //Actualiza los datos de los usuarios desde la vista supervisor
         public function actualizarUser(UpdateUsuarioRequest $request, Usuario $usuario)
         {
             $id = $request->id;
             $usuario = Usuario::find($id);
-            $usuario->fill($request->all());
+            $role = $request -> role;
+            $nombre = $request -> nombre;
+            $email = $request -> email;
+            $apellido_paterno = $request -> apellido_paterno;
+            $apellido_materno = $request -> apellido_materno;
+            $password = $request -> password;
+
+            $passwordC = bcrypt ($password);
+
+
+            $usuario->role = $role;
+            $usuario->nombre = $nombre;
+            $usuario->email = $email;
+            $usuario->apellido_paterno = $apellido_paterno;
+            $usuario->apellido_materno = $apellido_materno;
+            $usuario->password = $passwordC;
             $usuario->save();
         
             if ($request->expectsJson()) {

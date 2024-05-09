@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
-    public function index()
+    public function index() //Para la principal
     {
         $productos = Producto::all();
         $comentario = Comentario::all();
@@ -20,7 +20,15 @@ class ProductoController extends Controller
         return view('producto.index', compact('productos','comentario'));
     }
 
-    public function productoVer()
+    public function productoVer()//Para el cliente
+    {
+        $productos = Producto::all();
+        $comentario = Comentario::all();
+
+        return view('producto.vistaProducto', compact('productos','comentario'));
+    }
+
+    public function productoComprar()//Para el vendedor
     {
         $productos = Producto::all();
         $comentario = Comentario::all();
@@ -31,6 +39,11 @@ class ProductoController extends Controller
     public function productCate($categoriaId) {
         $productos = Producto::where('categoria_id', $categoriaId)->get();
         return view('producto.mostrarCategory', compact('productos'));
+    }
+
+    public function viewProducto($categoriaId) {
+        $productos = Producto::where('categoria_id', $categoriaId)->get();
+        return view('producto.vistaProducto', compact('productos'));
     }
 
     public function aceptar(UpdateProductoRequest $request, Producto $productos, $categoriaId ) {
@@ -87,7 +100,7 @@ class ProductoController extends Controller
             $vendedor_id = Auth::id();
             $productos = Producto::where('propietario_id', $vendedor_id)->get();
             $comentario = Comentario::all();
-            return view('producto.productoVendedor', compact('productos','comentario', 'vendedor_id'));      
+            return view('/producto/productoVendedor', compact('productos','comentario', 'vendedor_id'));      
         }
 }
 
