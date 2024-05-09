@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Agregar Nueva Categoría</h1>
-    <form method="POST" action="{{ route('supervisor') }}">
+    <form method="POST" action="{{ route('categorias.agregarCategoria') }}">
         @csrf
         <label for="nombre">Nombre de la categoría:</label><br>
         <input type="text" id="nombre" name="nombre" required><br><br>

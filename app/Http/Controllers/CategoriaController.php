@@ -54,20 +54,14 @@ class CategoriaController extends Controller
         public function guardarCategoria(StoreCategoriaRequest $request)
         {
             // Crear una nueva categoriao
+            $nombre = $request -> nombre;
             $categorias = new Categorias;
-            $categorias->fill($request->all());
+            $categorias->nombre = $nombre;
             $categorias->save();
-    
-            if( $request->expectsJson() ){
-                return response()->json($categorias->toArray(), 201, ["Cache-Control"=>"no-cache"]);
-            }else{
-                return redirect(route('supervisor'));
-            }
+
+            return redirect(route('categorias.agregarCategoria'));
         }
-
-
-
-
+        
         public function editCategoria(Request $request)
         {
             $id = $request->id;

@@ -93,12 +93,12 @@ Route::get('/supervisor', [CategoriaController::class, 'indexSupervisor'])->name
 
 //Rutas para el proceso de agregar Categorias
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
-Route::post('supervisor', [CategoriaController::class, 'guardarCategoria'])->name('supervisor');
+Route::post('/categorias/agregarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('/categoria');
 
 
 //Rutas para el proceso de actualizar Categorias
 Route::get('/categorias/editarCategoria/{id}', [CategoriaController::class, 'editCategoria'])->name('editarCategoria.actualizarCategoria');
-Route::put('supervisor', [CategoriaController::class, 'actualizarCategoria'])->name('supervisor');
+Route::put('/categorias', [CategoriaController::class, 'actualizarCategoria'])->name('categoria.actualizar');
 
 
 //Ruta para el proceso de eliminar Categorias
