@@ -46,12 +46,12 @@
 
         th {
             background-color: #f2f2f2;
->>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
+
         }
     </style>
 </head>
 <body>
-<<<<<<< HEAD
+
     <div class="productos-container">
         @foreach ($productos as $producto)
             @if ($producto->estado === 'consignado')
@@ -70,7 +70,7 @@
 
 
     </div>    
-=======
+
     <h1>Productos Consignados</h1>
     
     @if($productos->isEmpty())
@@ -103,6 +103,6 @@
     @endif
     <br>
     <br><a href="/supervisor"><button class= "button2">Regresar</button></a>
->>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
+
 </body>
 </html>
