@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             ContadorSeeder::class,
             EncargadoSeeder::class,
             SupervisorSeeder::class,
+            ProductoSeeder::class,
+            ComentarioSeeder::class,
         ]);        
     }
 }

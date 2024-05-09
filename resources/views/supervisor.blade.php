@@ -24,7 +24,7 @@
         }
 
         table {
-            width: 60%;
+            width: 30%;
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -54,47 +54,45 @@
     </style>
 </head>
 <body>
+    
 
 <h1>Bienvenido supervisor {{ Auth::user()->nombre }}</h1>
+<section>
 <h1>Tabla de Categorías</h1> 
-<h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
+<h1><a href='/categorias/agregarCategoria'><button>Agregar categoria</button></a></h1>
         <table class="">
                 <thead>
                 
                     <tr>
                         <th>Nombre</th>
-                        <th colspan="5">Acciones</th>
+                        <th colspan="3">Acciones</th>
                     </tr>
                 </thead>
                     <tbody>
-                        @forelse ($categorias as $categoria)
+                        @forelse ($categorias as $categorias)
                         <tr>
-                            <td>{{ $categoria->nombre }}</td>
+                            <td>{{ $categorias->nombre }}</td>
                             <td>
-                            <button onclick="location.href='/categorias/editarCategoria/{{ $categoria->id }}'">Actualizar</button>
+                            <a href= '/categorias/editarCategoria/{{ $categorias->id }}' ><button>Ver Productos</button></a>
                             </td>
                             <td>
-                                <form id="deleteForm" action="{{ route('categorias.elimicarCategoria', $categoria->id) }}" method="post">
+                            <a href= '/categorias/editarCategoria/{{ $categorias->id }}' ><button>Actualizar</button></a>
+                            </td>
+                            <td>
+                                <form id="deleteForm" action="{{ route('categorias.elimicarCategoria', $categorias->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <input type="submit" value="Borrar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">
                                 </form>
-                            </td>
-                            <td>
-                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
-                            </td>
-                            <td>
-                                <button onclick="location.href='/porConsignar/{{ $categoria->id }}'">Productos por consignar</button>
-                            </td>
-                            <td>
-                                <button onclick="location.href='noconsignados/{{ $categoria->id }}'">Productos no consignados</button>
                                 @empty
-                            </td>
+                            </tr>
                         @endforelse
                     </tbody>
             </table>
+            </section>
+            <section>
             <h1 >Tabla de Usuarios</h1>
-            <h1><button onclick="location.href = '/usuarios/agregarUsuario'">Registrar usuario</button></h1>
+            <h1><a href= '/usuarios/agregarUsuario'><button>Registrar usuario</button></a></h1>
 
             <table class="">
             
@@ -110,19 +108,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($usuario as $usuario)
+                    @forelse ($usuario as $usuarios)
                     <tr>
-                        <td>{{ $usuario->role }}</td>
-                        <td>{{ $usuario->nombre }}</td>
-                        <td>{{ $usuario->apellido_paterno }}</td>
-                        <td>{{ $usuario->apellido_materno }}</td>
-                        <td>{{ $usuario->email }}</td>
-                        <td>{{ $usuario->password }}</td>
-                        <td><button onclick="location.href='/usuarios/actualizarUsuario/{{ $usuario->id }}'">Actualizar usuario</button></td>
+                        <td>{{ $usuarios->role }}</td>
+                        <td>{{ $usuarios->nombre }}</td>
+                        <td>{{ $usuarios->apellido_paterno }}</td>
+                        <td>{{ $usuarios->apellido_materno }}</td>
+                        <td>{{ $usuarios->email }}</td>
+                        <td>{{ $usuarios->password }}</td>
+                        <td><a href='/usuarios/actualizarUsuario/{{ $usuarios->id }}'><button>Actualizar usuario</button></a></td>
                         @empty
+                    <tr>
                     @endforelse
                 </tbody>
             </table>
+            </section>
 
 </body>
 </html>

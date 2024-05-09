@@ -31,7 +31,7 @@ Route::get('/Registro', function () {
     return view('Registro');
 });
 
-Route::get('/producto', function () {
+Route::get('/producto/index', function () {
     return view('producto.index');
 });
 
@@ -50,6 +50,7 @@ Route::get('/categorias/editarCategoria', function () {
 Route::get('/usuarios/agregarUsuario', function () {
     return view('usuarios.agregarUsuario');
 });
+
 
 Route::get('/usuarios/editarUsuario', function () {
     return view('usuarios.editarUsuario');
@@ -85,6 +86,8 @@ Route::view('/vendedor', 'vendedor')->name('vendedor');
 Route::view('/default', 'default')->name('default');
 
 Route::get('/', [CategoriaController::class, 'index']);
+Route::get('/producto/index', [ProductoController::class, 'index'])->name('producto.index');
+
 Route::get('/cliente', [CategoriaController::class, 'indexCliente']);
 
 //Ruta para el proceso de mostrar las categorias
@@ -93,12 +96,12 @@ Route::get('/supervisor', [CategoriaController::class, 'indexSupervisor'])->name
 
 //Rutas para el proceso de agregar Categorias
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
-Route::post('/categorias/agregarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('/categoria');
+Route::post('/categorias/agregarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria');
 
 
 //Rutas para el proceso de actualizar Categorias
 Route::get('/categorias/editarCategoria/{id}', [CategoriaController::class, 'editCategoria'])->name('editarCategoria.actualizarCategoria');
-Route::put('/categorias', [CategoriaController::class, 'actualizarCategoria'])->name('categoria.actualizar');
+Route::put('/categorias', [CategoriaController::class, 'actualizarCategoria'])->name('categoria.actualizarCategoria');
 
 
 //Ruta para el proceso de eliminar Categorias
@@ -106,29 +109,43 @@ Route::delete('/elimicarCategoria/{id}', [CategoriaController::class, 'elimicarC
 
 
 //Ruta para el proceso de registro de usuarios desde la vista welcome
-Route::get('/Registro', [RegistroController::class, 'ir'])->name('Registro');
-Route::post('/Registro', [RegistroController::class, 'registrarUsuario'])->name('/Registro');
+Route::get('/Registro', [RegistroController::class, 'ir'])->name('Registro'); 
+
+Route::post('/Registro', [RegistroController::class, 'registrarUsuario'])->name('Registro');
+
 
 
 //Ruta para el proceso de mostrar las usuarios
-Route::get('/supervisor/usuarios', [RegistroController::class, 'verUsuarios'])->name('supervisor.usuarios');
+//Route::get('/supervisor', [RegistroController::class, 'verUsuarios'])->name('supervisor');
 
 //Ruta para el proceso de registro de usuarios desde la vista supervisor
 Route::get('/usuarios/agregarUsuario', [RegistroController::class, 'IrRegistro'])->name('usuarios.agregarUsuario');
-Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name('/supervisor');
+Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name('supervisor');
 
 //Ruta para el proceso de actuliazar los datos de los usuarios desde la view supervisor
 Route::get('/usuarios/actualizarUsuario/{id}', [RegistroController::class, 'editarUser'])->name('usuarios.actualizarUsuario');
-Route::put('/supervisor', [RegistroController::class, 'actualizarUser'])->name('supervisor');
+Route::put('/supervisor', [RegistroController::class, 'actualizarUser'])->name('supervisor.actualizarUsuario');
 
 //Rutas para mostrar los productos consignados, por consignar y no consignados, tambien muestra las categorias
-Route::get('/index', [ProductoController::class, 'index'])->name('index');
+Route::get('/producto', [ProductoController::class, 'index'])->name('index');
+
+
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
+
+//Ruta para el proceso de mostrar los productos por consignar
 Route::get('/porConsignar/{categoriaId}', [ProductoController::class, 'porValidar'])->name('porConsignar');
+
+
+
 //Ruta para el proceso de consignar producto
 Route::put('/productos/{categoriaId}', [RegistroController::class, 'aceptar'])->name('aceptar');
+
+Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->name('productos.vistaProducto');
+
+
+
 //Ruta para el proceso de no consignar producto
-Route::put('/supervisor', [RegistroController::class, 'rechazar'])->name('supervisor');
+//Route::put('/supervisor', [RegistroController::class, 'rechazar'])->name('supervisor');
 //Ruta para el proceso de ver los productos no consignados
 Route::get('/noconsignados/{categoriaId}', [ProductoController::class, 'noConsignados'])->name('noConsignados');
 Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
@@ -150,8 +167,11 @@ Route::post('/comentario', [ComentarioController::class, 'guardarComentario'])->
 
 
 //Ruta paran el proceso de mostrar los productos perteneciente a su respectivo vendedor
-Route::get('/producto/productoVendedor', [ProductoController::class, 'verProductosVendedor'])->name('producto.productoVendedor');
-Route::get('/comentario/{id_producto}', [ComentarioController::class, 'verComentarios'])->name('comentarios.ver');
+Route::get('producto/productoVendedor', [ProductoController::class, 'verProductosVendedor'])->name('producto.productoVendedor');
+Route::get('/producto/responderComentario/{id_producto}', [ComentarioController::class, 'verComentarios'])->name('responderComentario');
 
-//Ruta paran el proceso de mostrar comprar como si fuera cliete
-Route::get('/productos', [ProductoController::class, 'productoVer'])->name('productos');
+//Ruta paran el proceso de mostrar, comprar como si fuera cliete
+Route::get('/producto/vistaProducto', [ProductoController::class, 'productoVer'])->name('producto.vistaProducto');
+
+Route::get('/producto/productos', [ProductoController::class, 'productoComprar'])->name('producto.productos');
+

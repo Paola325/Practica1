@@ -96,7 +96,7 @@
     <nav>
         <ul>
             <li><a href="#">Inicio</a></li>
-            <li><a href="/producto">Productos</a></li>
+            <li><a href="/producto/index">Productos</a></li>
             <li class="categories"> <!-- Agrega la clase "categories" para el menú desplegable -->
                 <p class="titulo">Categorías</p>
                 <ul class="categorias-list"> 

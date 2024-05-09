@@ -92,7 +92,6 @@
             <input type="hidden" name="tipo" value="pregunta">
             <button type="submit">Enviar pregunta</button>
         </form>
-        <a href="/producto"><button>Regresar</button></a>
         
         
         

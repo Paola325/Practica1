@@ -55,8 +55,6 @@
 <body>
 <h1>Bienvenido Encargado {{ Auth::user()->nombre }}</h1>
 <h1 >Tabla de Categorías</h1> 
-<h1><button onclick="location.href = '/categorias/agregarCategoria'">Agregar categoria</button></h1>
-
         <table class="table-container">
                 <thead>
                 
@@ -73,10 +71,10 @@
                                 <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
                             </td>
                             <td>
-                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos por consignar</button>
+                                <button onclick="location.href='/porConsignar/{{ $categoria->id }}'">Productos por consignar</button>
                             </td>
                             <td>
-                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos no consignados</button>
+                                <button onclick="location.href='/noconsignados/{{ $categoria->id }}'">Productos no consignados</button>
                                 @empty
                             </td>
                         </tr>
@@ -107,7 +105,7 @@
                         <td>{{ $usuario->apellido_materno }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->password }}</td>
-                        <td><button onclick="location.href='/usuarios/editarUsuario/{{ $usuario->id }}'">Cambiar contraseña</button></td>
+                        <td><a href= '/usuarios/editarUsuario/{{ $usuario->id }}'><button>Cambiar contraseña</button></a></td>
                     </tr>
                 @endif
             @empty

@@ -21,7 +21,7 @@ class CategoriaController extends Controller
             return view('welcome', compact('categorias'));
         }
     }
-
+    
     public function indexCliente(Request $request)
     {
         $categorias = Categorias::all();
@@ -32,6 +32,7 @@ class CategoriaController extends Controller
             return view('cliente', compact('categorias'));
         }
     }
+    
 
     //CRUD del supervisor
     public function indexSupervisor(Request $request) //Ver las categorias
@@ -53,15 +54,23 @@ class CategoriaController extends Controller
 
         public function guardarCategoria(StoreCategoriaRequest $request)
         {
-            // Crear una nueva categoriao
             $nombre = $request -> nombre;
             $categorias = new Categorias;
             $categorias->nombre = $nombre;
             $categorias->save();
-
-            return redirect(route('categorias.agregarCategoria'));
+    
+            if( $request->expectsJson() ){
+                return response()->json($request->toArray(), 201, ["Cache-Control"=>"no-cache"]);
+            }else{
+                return redirect(route('categorias.agregarCategoria'));
+            }
         }
-        
+
+
+
+
+
+
         public function editCategoria(Request $request)
         {
             $id = $request->id;
@@ -69,13 +78,13 @@ class CategoriaController extends Controller
             return view('categorias.editarCategoria', compact('categorias'));      
         }
 
-        public function actualizarCategoria(UpdateCategoriaRequest $request, Categorias $categorias)
+        public function actualizarCategoria(UpdateCategoriaRequest $request, Categorias $categoria)
         {
             $id = $request->id;
             $categorias = Categorias::find($id);
             $categorias->fill($request->all());
             $categorias->save();
-        
+
             if ($request->expectsJson()) {
                 return response()->json($categorias->toArray(), 200, ["Cache-Control" => "no-cache"]);
             } else {

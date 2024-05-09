@@ -56,7 +56,7 @@
                     <p>Estado: {{ $producto->estado }}</p>
                     <p>Cantidad: {{ $producto->cantidad }}</p>
 
-                    <a href="{{ route('comentarios.ver', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
+                    <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
 
                     <a href="#">Comprar</a>
                 </div>

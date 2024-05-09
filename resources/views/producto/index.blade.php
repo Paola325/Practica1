@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-<a href="/cliente"><button class= "nombre">Regresar</button></a>
+<a href="/"><button class= "nombre">Regresar</button></a>
     <div class="productos-container">
         @foreach ($productos as $producto)
             @if ($producto->estado === 'consignado')

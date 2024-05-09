@@ -8,11 +8,10 @@
 <body>
     <h1>Registro de Sesión</h1>
     <form method="POST" action="{{ route('Registro') }}">
-        @csrf
-
+    @csrf
         <div>
             <label for="nombre">Nombre:</label><br>
-            <input type="text" id="nombre" name="nombre" required ><br>
+            <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" required ><br>
         </div>
 
         <div>
@@ -22,7 +21,7 @@
 
         <div>
             <label for="apellido_materno">Apellido Materno:</label><br>
-            <input type="text" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno') }}"><br>
+            <input type="text" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno') }}" required><br>
         </div>
 
         <div>
@@ -41,9 +40,10 @@
         </div>
 
         <div>
-        <br><br><a href="/Registro"><button>Registrarse</button></a></br></br>
+            <br>
+            <br><a href="/Registro"><button>Iniciar Sesion</button></a>
         </div>
     </form>
-    <a href="/login"><button>Iniciar Sesion</button></a>
+    <br><a href="/login"><button>Iniciar Sesion</button></a>
 </body>
 </html>
