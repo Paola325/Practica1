@@ -101,7 +101,7 @@
                 <p class="titulo">Categorías</p>
                 <ul class="categorias-list"> 
                     @forelse ($categorias as $categoria)
-                        <li><a href="/productos/{{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
+                        <li><a href="/prod/{{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
                     @empty
                         <li>No hay categorías disponibles</li>
                     @endforelse

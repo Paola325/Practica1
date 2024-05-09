@@ -24,6 +24,11 @@ class ProductoController extends Controller
         return view('producto.mostrarCategory', compact('productos'));
     }
 
+    public function viewProducto($categoriaId) {
+        $productos = Producto::where('categoria_id', $categoriaId)->get();
+        return view('producto.vistaproducto', compact('productos'));
+    }
+
     public function productVendedor() {
         if (Auth::check()) {
             // Obtener el ID del usuario autenticado

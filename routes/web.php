@@ -111,6 +111,7 @@ Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'
 Route::get('/noconsignados', [ProductoController::class, 'noConsignados'])->name('noConsignados');
 Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
 
+Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->name('producto.vistaproducto');
 
 
 //Ruta para el proceso de mostrar las categorias en la vista Encargado
