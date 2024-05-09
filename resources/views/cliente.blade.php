@@ -98,7 +98,7 @@
     <nav>
         <ul>
             <li><a href="#">Inicio</a></li>
-            <li><a href="/producto">Productos</a></li>
+            <li><a href="/index">Productos</a></li>
             <li class="categories"> <!-- Agrega la clase "categories" para el menú desplegable -->
                 <p class="titulo">Categorías</p>
                 <ul class="categorias-list"> 
@@ -110,8 +110,30 @@
                 </ul>
             </li>
         </ul>
+<<<<<<< HEAD
     </nav>
     <h1>Bienvenido Cliente</h1>
+=======
+        <ul>
+        <li><a href="/">Cerrar sesion</a></li>
+        </ul>
+    </nav>
+    <h1>Bienvenido cliente {{ Auth::user()->nombre }}</h1>
+    <div class="productos-container">
+        @forelse ($productos as $producto)
+            @if ($producto->estado === 'consignado')
+                <div class="producto">
+                    <h2>{{ $producto->nombre }}</h2>
+                    <p>{{ $producto->descripcion }}</p>
+                    <p>Cantidad: {{ $producto->cantidad }}</p>
+                </div>
+            @endif
+        @empty
+            <p>No hay productos consignados</p>
+        @endforelse
+    </div>
+    
+>>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
     
 </body>
 </html>

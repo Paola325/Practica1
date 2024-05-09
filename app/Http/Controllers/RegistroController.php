@@ -99,5 +99,26 @@ class RegistroController extends Controller
                 return redirect(route('encargado'));
             }
         }
+
+        public function editarUser(Request $request)
+        {
+            $id = $request->id;
+            $usuario = Usuario::find($id);
+            return view('usuarios.actualizarUsuario', compact('usuario'));      
+        }
+
+        public function actualizarUser(UpdateUsuarioRequest $request, Usuario $usuario)
+        {
+            $id = $request->id;
+            $usuario = Usuario::find($id);
+            $usuario->fill($request->all());
+            $usuario->save();
+        
+            if ($request->expectsJson()) {
+                return response()->json($usuario->toArray(), 200, ["Cache-Control" => "no-cache"]);
+            } else {
+                return redirect(route('supervisor'));
+            }
+        }
     
 }

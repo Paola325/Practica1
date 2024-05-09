@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Lista de Productos</title>
     <style>
         body {
@@ -29,10 +30,28 @@
 
         .producto h2 {
             margin-top: 0;
+=======
+    <title>Productos por Categoría</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+>>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
         }
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="productos-container">
         @foreach ($productos as $producto)
             @if ($producto->estado === 'consignado')
@@ -51,5 +70,39 @@
 
 
     </div>    
+=======
+    <h1>Productos Consignados</h1>
+    
+    @if($productos->isEmpty())
+        <p>No hay productos disponibles en esta categoría.</p>
+    @else
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <!-- Aqui estan los productos no consignados -->
+
+                @foreach($productos as $producto)
+                    @if ($producto->estado === 'consignado')
+                        <tr>
+                            <td>{{ $producto->nombre }}</td>
+                            <td>{{ $producto->descripcion }}</td>
+                            <td>{{ $producto->estado }}</td>
+                            <td>{{ $producto->cantidad }}</td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+    @endif
+    <br>
+    <br><a href="/supervisor"><button class= "button2">Regresar</button></a>
+>>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
 </body>
 </html>

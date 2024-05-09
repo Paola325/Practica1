@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Usuario; // Agregado el modelo Usuario
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Usuario;
 
 class LoginController extends Controller
 {
+    use AuthorizesRequests, ValidatesRequests;
+
     public function valida(Request $request){
         $credentials = $request->only('email', 'password');
 

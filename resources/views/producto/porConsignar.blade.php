@@ -6,7 +6,7 @@
     <title>Productos por Categoría</title>
     <style>
         table {
-            width: 50%;
+            width: 60%;
             border-collapse: collapse;
         }
 
@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <h1>Productos no consignados</h1>
+    <h1>Productos por consignar</h1>
     
     @if($productos->isEmpty())
         <p>No hay productos disponibles en esta categoría.</p>
@@ -34,7 +34,7 @@
                     <th>Descripción</th>
                     <th>Estado</th>
                     <th>Cantidad</th>
-                    <th>Motivo</th>
+                    <th colspan="2">Acciones</th>
                     
                 </tr>
             </thead>
@@ -48,7 +48,16 @@
                             <td>{{ $producto->descripcion }}</td>
                             <td>{{ $producto->estado }}</td>
                             <td>{{ $producto->cantidad }}</td>
-                            <td>{{ $producto->motivo }}</td>
+                            <td>
+                            <form id="putForm" action="{{ route('aceptar', $producto->id) }}" method="put">
+                                    @method('PUT')
+                                    @csrf
+                                    <input type="submit" value="Consignar" onclick="return confirm('¿Estás seguro que quieres consignar este producto?')">
+                                </form>
+                            </td>
+                            <td>
+                            <button onclick="location.href='#'">No consignar producto</button>
+                            </td>
                         </tr>
                     @endif
                 @endforeach

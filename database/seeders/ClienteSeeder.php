@@ -15,48 +15,48 @@ class ClienteSeeder extends Seeder
     public function run()
     {
         Usuario::create([
-            'email' => 'comprador@gmail.com',
+            'email' => 'cliente@gmail.com',
             'apellido_paterno' => 'Dominguez',
             'apellido_materno' => 'Belisario',
             'nombre' => 'Tomas',
-            'password' => bcrypt('comprador@gmail.com'),
+            'password' => bcrypt('cliente@gmail.com'),
             'role' => 'cliente',
         ]);
 
         Usuario::create([
             'role' => 'cliente',
-            'email' => 'comprador2@gmail.com',
+            'email' => 'cliente2@gmail.com',
             'apellido_paterno' => 'González',
             'apellido_materno' => 'Sánchez',
             'nombre' => 'Juan',
-            'password' => bcrypt('comprador2@gmail.com'),
+            'password' => bcrypt('cliente2@gmail.com'),
         ]);
         
         Usuario::create([
             'role' => 'cliente',
-            'email' => 'comprador3@gmail.com',
+            'email' => 'cliente3@gmail.com',
             'apellido_paterno' => 'Rodríguez',
             'apellido_materno' => 'Martínez',
             'nombre' => 'Laura',
-            'password' => bcrypt('comprador3@gmail.com'),
+            'password' => bcrypt('cliente3@gmail.com'),
         ]);
         
         Usuario::create([
             'role' => 'cliente',
-            'email' => 'comprador4@gmail.com',
+            'email' => 'cliente4@gmail.com',
             'apellido_paterno' => 'López',
             'apellido_materno' => 'Gómez',
             'nombre' => 'Pedro',
-            'password' => bcrypt('comprador4@gmail.com'),
+            'password' => bcrypt('cliente4@gmail.com'),
         ]);
         
         Usuario::create([
             'role' => 'cliente',
-            'email' => 'comprador5@gmail.com',
+            'email' => 'cliente5@gmail.com',
             'apellido_paterno' => 'Fernández',
             'apellido_materno' => 'Hernández',
             'nombre' => 'Ana',
-            'password' => bcrypt('comprador5@gmail.com'),
+            'password' => bcrypt('cliente5@gmail.com'),
         ]);
     }
 }

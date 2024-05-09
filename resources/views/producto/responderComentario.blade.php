@@ -66,7 +66,7 @@
 <body>
     <div class="container">
         @if ($comentarios->isEmpty())
-            <p>No hay comentarios para este producto.</p>
+            <p>No hay comentarios que responder para este producto.</p>
         @else
             @foreach ($comentarios as $comentario)
                 <div class="comentario">
@@ -87,12 +87,12 @@
             @csrf
             <input type="hidden" name="id_producto" value="{{ $productos->id }}">
             <!-- Cambiar 'text' a 'textarea' y asegurarse de que el atributo sea 'name' -->
-            <textarea name="texto" placeholder="Escribe tu pregunta aquí" rows="4" cols="50"></textarea>
+            <textarea name="texto" placeholder="Responde a la pregunta aqui" rows="4" cols="50"></textarea>
             <!-- Agregar campo oculto para el tipo con valor por defecto 'pregunta' -->
-            <input type="hidden" name="tipo" value="pregunta">
-            <button type="submit">Enviar pregunta</button>
+            <input type="hidden" name="tipo" value="respuesta">
+            <button type="submit">Enviar respuesta</button>
         </form>
-        <a href="/producto"><button>Regresar</button></a>
+        <a href="/vendedor"><button>Regresar</button></a>
         
         
         
