@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar contraselña del usuario</title>
     <style>
-       .button2 {
+    .button2 {
             margin-top: 10px;
         }
     </style>

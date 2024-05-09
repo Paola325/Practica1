@@ -6,12 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categorias;
 use App\Models\Comentario;
-use App\Models\Usuario;
-<<<<<<< HEAD
-=======
-use App\Http\Requests\UpdateProductoRequest;
-use Illuminate\Support\Facades\Auth;
->>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
+use App\Http\Requests\UpdateCategoriaRequest;
 
 class ProductoController extends Controller
 {
@@ -36,29 +31,6 @@ class ProductoController extends Controller
         return view('producto.mostrarCategory', compact('productos'));
     }
 
-<<<<<<< HEAD
-    public function viewProducto($categoriaId) {
-        $productos = Producto::where('categoria_id', $categoriaId)->get();
-        return view('producto.vistaproducto', compact('productos'));
-    }
-
-    public function productVendedor() {
-        if (Auth::check()) {
-            // Obtener el ID del usuario autenticado
-            $propietario_id = Auth::id();
-    
-            // Obtener los productos del usuario autenticado
-            $usuario = Usuario::findOrFail($propietario_id);
-            $productos = $usuario->productos;
-    
-            return view('vendedor', compact('productos'));
-        } else {
-            return redirect()->route('login'); 
-        }
-    }
-    
-    public function noConsignados()
-=======
     public function aceptar(UpdateProductoRequest $request, Producto $productos, $categoriaId ) {
         $id = $request->id;
         $productos = Producto::where('categoria_id', $categoriaId)->get();
@@ -70,7 +42,6 @@ class ProductoController extends Controller
 
 
     public function porValidar($categoriaId)
->>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
     {
         $productos = Producto::where('categoria_id', $categoriaId)->get();
         return view('producto.porConsignar', compact('productos'));

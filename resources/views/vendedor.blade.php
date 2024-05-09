@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -106,4 +103,3 @@
     <button onclick="location.href='/producto/productoVendedor'">Ver tus productos</button>
 </body>
 </html>
->>>>>>> 5a2cf6f83ff7c473a4ceee48d2cadbc8785fa4f5
