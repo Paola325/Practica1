@@ -83,18 +83,20 @@
                     <th>Descripción</th>
                     <th>Estado</th>
                     <th>Cantidad</th>
+                    <th>Accion</th>
                 </tr>
             </thead>
             <tbody> 
                 <!-- Aqui estan los productos no consignados -->
 
                 @foreach($productos as $producto)
-                    @if ($producto->estado === 'consignado')
+                    @if ($producto->estado === 'Consignado')
                         <tr>
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->descripcion }}</td>
                             <td>{{ $producto->estado }}</td>
                             <td>{{ $producto->cantidad }}</td>
+                            <td><a href="#"><button type="button">Desconsignar</button></a></td>
                         </tr>
                     @endif
                 @endforeach
@@ -102,6 +104,6 @@
         </table>
     @endif
     <br>
-    <br><a href="/encargado"><button class= "button2">Regresar</button></a>
+    <br><a href="/vistasEncargado/tablaCategorias"><button class= "button2">Regresar</button></a>
 </body>
 </html>

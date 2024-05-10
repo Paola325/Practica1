@@ -3,118 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido Encargado</title>
+    <title>Navigation Drawer</title>
     <style>
-        .container {
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
             display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
         }
 
-        .table-container {
-            width: 35%;
-
-            padding: 30px;
-        }
-
-        .table-container-users {
-            width: 35%;
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
             padding: 20px;
+            z-index: 1;
+            height: 100vh;
+            overflow-y: auto;
         }
 
-        table {
-            width: 50%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            color: #000;
-        }
-
-        td {
+        .content {
+            flex: 1;
+            padding: 20px;
             background-color: #fff;
         }
 
-        button {
-            padding: 5px 10px;
-            background-color: #ccc;
-            border: none;
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
             border-radius: 5px;
-            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-<h1>Bienvenido Encargado {{ Auth::user()->nombre }}</h1>
-<h1 >Tabla de Categorías</h1> 
-        <table class="table-container">
-                <thead>
-                
-                    <tr>
-                        <th>Nombre</th>
-                        <th colspan="3">Acciones</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                        @forelse ($categorias as $categoria)
-                        <tr>
-                            <td>{{ $categoria->nombre }}</td>
-                            <td>
-                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
-                            </td>
-                            <td>
-                                <button onclick="location.href='/porConsignar/{{ $categoria->id }}'">Productos por consignar</button>
-                            </td>
-                            <td>
-                                <button onclick="location.href='/noconsignados/{{ $categoria->id }}'">Productos no consignados</button>
-                                @empty
-                            </td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-            </table>
+    <div class="sidebar">
+        <br>
+    <h2>Bienvenido encargado, {{ Auth::user()->nombre }}</h2>
+        <ul>
+        <h3><li><a href="/vistasEncargado/tablaCategorias">Categorias</a></li></h3>
+        <h3><li><a href="/vistasEncargado/tablaClientes">Cliente</a></li></h3>
+        <h3><li><a href="#">Tablero</a></li></h3>
+        <h3><h2><li style="margin-top: 620px;"><a href="/">Cerrar Sesión</a></li></h2>
 
-            <table class="table-container-users">
-            <h1 >Tabla de Usuarios</h1>
-                <thead>
-                    <tr>
-                        <th>Rol</th>
-                        <th>Nombre</th>
-                        <th>Apellido 1</th>
-                        <th>Apellido 2</th>
-                        <th>Correo</th>
-                        <th>Contraseña</th>
-                        <th colspan="3">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-            @forelse ($usuario as $usuario)
-                @if (in_array($usuario->role, ['encargado', 'cliente', 'contador']))
-                    <tr>
-                        <td>{{ $usuario->role }}</td>
-                        <td>{{ $usuario->nombre }}</td>
-                        <td>{{ $usuario->apellido_paterno }}</td>
-                        <td>{{ $usuario->apellido_materno }}</td>
-                        <td>{{ $usuario->email }}</td>
-                        <td>{{ $usuario->password }}</td>
-                        <td><a href= '/usuarios/editarUsuario/{{ $usuario->id }}'><button>Cambiar contraseña</button></a></td>
-                    </tr>
-                @endif
-            @empty
-                <tr>
-                    <td colspan="7">No hay usuarios disponibles</td>
-                </tr>
-            @endforelse
-        </tbody>
-
-        </table>
+        </ul>
+    </div>
+    <main class="content">
+    @yield("contenido")
+    </main>
 </body>
 </html>

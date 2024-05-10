@@ -13,6 +13,6 @@
     <input type="text" id="nombre" name="nombre" value="{{ $categorias->nombre}}" required><br><br>
     <button type="submit">Guardar</button>
 </form>
-<br><a href= '/supervisor'><button>Regresar</button></a>
+<br><a href= '/vistasSupervisor/tablaCategorias'><button>Regresar</button></a>
 </body>     
 </html>

@@ -14,6 +14,6 @@
         <input type="text" id="nombre" name="nombre" required><br><br>
         <a href="supervisor"><button>Guardar</button>
     </form>
-    <br><br><a href="/supervisor"><button>Regresar</button></a>
+    <br><br><a href="/vistasSupervisor/tablaCategorias"><button>Regresar</button></a>
 </body>
 </html>
