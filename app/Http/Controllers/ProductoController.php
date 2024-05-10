@@ -8,6 +8,8 @@ use App\Models\Categorias;
 use App\Models\Comentario;
 use App\Models\Usuario;
 use App\Http\Requests\UpdateProductoRequest;
+use App\Http\Requests\StoreProductoRequest;
+
 use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
@@ -91,7 +93,7 @@ class ProductoController extends Controller
     }
 
     public function indexCliente(Request $request) 
-        {
+    {
             $productos = Producto::all();
             $categorias = Categorias::all();
     
@@ -100,22 +102,48 @@ class ProductoController extends Controller
             } else {
                 return view('cliente', compact('productos', 'categorias'));
             }
-        }
+    }
 
-        
-        public function verProductosCategoria($categoriaId) {
+        //Controlador para el vendedor
+    public function verProductosCategoria($categoriaId) {
             $productos = Producto::where('categoria_id', $categoriaId)->get();
             return view('vistasSupervisor.tablaProductos', compact('productos'));
-        }
+    }
     
 
-
-        public function verProductosVendedor(Request $request)
-        {
+    public function verProductosVendedor(Request $request)
+    {
             $vendedor_id = Auth::id();
             $productos = Producto::where('propietario_id', $vendedor_id)->get();
             $comentario = Comentario::all();
             return view('vistasVendedor.verProducto', compact('productos','comentario', 'vendedor_id'));      
-        }
+    }
+
+    public function crearProducto(StoreProductoRequest $request,Categorias $categorias)
+    {
+
+        $categorias = Categorias::all();
+        $nombre = $request -> nombre;
+        $estado = $request -> estado;
+        $fecha_publicacion = $request -> fecha_publicacion;
+        $descripcion = $request -> descripcion;
+        $cantidad = $request -> cantidad;
+        $categoria_id = $request -> categoria_id;
+        $propietario_id = Auth::id();
+
+        $producto = new Producto();
+
+        $producto->nombre = $nombre;
+        $producto->estado = 'Propuesto';
+        $producto->fecha_publicacion = $fecha_publicacion;
+        $producto->descripcion = $descripcion;
+        $producto->cantidad = $cantidad;
+        $producto->categoria_id = $categoria_id;
+        $producto->propietario_id = $propietario_id;
+        $producto->save();
+
+        return redirect()->route('vistasVendedor.registroProducto', compact('producto','categorias'));
+    }
 }
+
 

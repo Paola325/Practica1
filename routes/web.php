@@ -112,6 +112,11 @@ Route::get('/vistasVendedor/comprarProducto', function () {
     return view('vistasVendedor.comprarProducto');
 });
 
+Route::get('/vistasVendedor/registroProducto', function () {
+    return view('vistasVendedor.registroProducto');
+});
+
+
 
 
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
@@ -194,6 +199,7 @@ Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->
 
 //Ruta para el proceso de no consignar producto
 //Route::put('/supervisor', [RegistroController::class, 'rechazar'])->name('supervisor');
+
 //Ruta para el proceso de ver los productos no consignados
 Route::get('/noconsignados/{categoriaId}', [ProductoController::class, 'noConsignados'])->name('noConsignados');
 Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
@@ -221,9 +227,12 @@ Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar']
 Route::get('/vistasVendedor/verProducto', [ProductoController::class, 'verProductosVendedor'])->name('vistasVendedor.verProducto');
 Route::get('/producto/responderComentario/{id_producto}', [ComentarioController::class, 'verComentarios'])->name('responderComentario');
 
-//Ruta paran el proceso de mostrar, comprar como si fuera cliete
-//Route::get('/producto/vistaProducto', [ProductoController::class, 'productoVer'])->name('producto.vistaProducto');
+//Ruta paran el proceso de mostrar comprar como si fuera cliete
 Route::get('/vistasVendedor/comprarProducto', [ProductoController::class, 'productoVer'])->name('vistasVendedor.comprarProducto');
-
 Route::get('/producto/productos', [ProductoController::class, 'productoComprar'])->name('producto.productos');
+
+Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
+
+
+
 

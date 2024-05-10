@@ -92,7 +92,7 @@
             <input type="hidden" name="tipo" value="respuesta">
             <button type="submit">Enviar respuesta</button>
         </form>
-        <a href="/vendedor"><button>Regresar</button></a>
+        <a href="/vistasVendedor/verProducto"><button>Regresar</button></a>
         
         
         
