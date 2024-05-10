@@ -49,14 +49,16 @@
                             <td>{{ $producto->estado }}</td>
                             <td>{{ $producto->cantidad }}</td>
                             <td>
-                            <form id="putForm" action="{{ route('aceptar', $producto->id) }}" method="put">
-                                    @method('PUT')
-                                    @csrf
-                                    <input type="submit" value="Consignar" onclick="return confirm('¿Estás seguro que quieres consignar este producto?')">
-                                </form>
+                            <form id="putForm" action="{{ route('aceptar.producto', ['id' => $producto->id, 'categoriaId' => $producto->categoria_id]) }}" method="post">
+                                @method('PUT')
+                                @csrf
+                                <!-- Agregar un campo oculto para enviar el ID del producto -->
+                                <input type="hidden" name="id" value="{{ $producto->id }}">                           
+                                <input type="submit" value="Consignado" onclick="return confirm('¿Estás seguro que quieres consignar este producto?');">
+                            </form>
                             </td>
                             <td>
-                            <button onclick="location.href='#'">No consignar producto</button>
+                            <a href="/producto/rechazado"><button>No consignar producto</button></a>
                             </td>
                         </tr>
                     @endif
@@ -66,5 +68,9 @@
     @endif
     <br>
     <br><a href="/vistasEncargado/tablaCategorias"><button class= "button2">Regresar</button></a>
+    <br><br>
+    <main class="content">
+    @yield("contenido")
+    </main>
 </body>
 </html>

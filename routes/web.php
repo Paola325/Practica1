@@ -98,6 +98,22 @@ Route::get('/vistasSupervisor/tablaProductos', function () {
     return view('vistasSupervisor.tablaProductos');
 });
 
+Route::get('/producto/rechazado', function () {
+    return view('producto.rechazado');
+});
+
+
+
+Route::get('/vistasVendedor/verProducto', function () {
+    return view('vistasVendedor.verProducto');
+});
+
+Route::get('/vistasVendedor/comprarProducto', function () {
+    return view('vistasVendedor.comprarProducto');
+});
+
+
+
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
 // Cambio en la ruta de login
 
@@ -167,8 +183,11 @@ Route::get('/porConsignar/{categoriaId}', [ProductoController::class, 'porValida
 
 
 
-//Ruta para el proceso de consignar producto
-Route::put('/productos/{categoriaId}', [RegistroController::class, 'aceptar'])->name('aceptar');
+
+// Ruta para el proceso de consignar producto
+Route::put('/porConsignar/{categoriaId}', [ProductoController::class, 'aceptar'])->name('aceptar.producto');
+
+
 
 Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->name('productos.vistaProducto');
 
@@ -196,12 +215,15 @@ Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('come
 Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar'])->name('comentarios.show');
 
 
+
+
 //Ruta paran el proceso de mostrar los productos perteneciente a su respectivo vendedor
-Route::get('producto/productoVendedor', [ProductoController::class, 'verProductosVendedor'])->name('producto.productoVendedor');
+Route::get('/vistasVendedor/verProducto', [ProductoController::class, 'verProductosVendedor'])->name('vistasVendedor.verProducto');
 Route::get('/producto/responderComentario/{id_producto}', [ComentarioController::class, 'verComentarios'])->name('responderComentario');
 
 //Ruta paran el proceso de mostrar, comprar como si fuera cliete
-Route::get('/producto/vistaProducto', [ProductoController::class, 'productoVer'])->name('producto.vistaProducto');
+//Route::get('/producto/vistaProducto', [ProductoController::class, 'productoVer'])->name('producto.vistaProducto');
+Route::get('/vistasVendedor/comprarProducto', [ProductoController::class, 'productoVer'])->name('vistasVendedor.comprarProducto');
 
 Route::get('/producto/productos', [ProductoController::class, 'productoComprar'])->name('producto.productos');
 

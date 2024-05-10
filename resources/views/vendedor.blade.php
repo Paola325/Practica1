@@ -3,102 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal del Vendedor</title>
+    <title>Navigation Drawer</title>
     <style>
-        /* Estilos CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f3f4f6;
+            display: flex;
         }
 
-        nav {
+        .sidebar {
+            width: 250px;
             background-color: #333;
             color: #fff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center; 
+            padding: 20px;
+            z-index: 1;
+            height: 100vh;
+            overflow-y: auto;
         }
 
-        nav ul {
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .sidebar ul {
             list-style-type: none;
-            margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
         }
 
-        nav ul li {
-            margin-right: 20px;
+        .sidebar li {
+            margin-bottom: 10px;
         }
 
-        nav ul li a {
+        .sidebar a {
             color: #fff;
             text-decoration: none;
-        }
-
-        .highlighted-products {
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        .productos-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .producto {
-            width: 200px;
-            margin: 10px;
+            display: block;
             padding: 10px;
-            border: 1px solid #ccc;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
-        .producto img {
-            max-width: 100%;
-            height: auto;
+        .sidebar a:hover {
+            background-color: #555;
         }
-
-        /* Estilos adicionales según necesidad */
-        .producto h2 {
-            margin-top: 0;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #333;
-            margin-left: 10px;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        h1{
-            margin-left: 10px; 
-        }
-
     </style>
 </head>
 <body>
-    <nav>
+    <div class="sidebar">
+        <br>
+    <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
         <ul>
-            <li><a></a></li>
-            <li><a></a></li>
-            <li><a></a></li>
+        <h3><li><a href="/vistasVendedor/verProducto">Tus productos</a></li></h3>
+        <h3><li><a href="/vistasVendedor/comprarProducto">Registrar producto</a></li></h3>
+        <h3><li><a href="#">Ir a comprar</a></li></h3>
+        <h3><h2><li style="margin-top: 600px;"><a href="/">Cerrar Sesión</a></li></h2>
+
         </ul>
-        <ul>
-            <li><a href="/">Cerrar sesión</a></li>
-        </ul>
-    </nav>
-    <h1 style= >Bienvenido vendedor {{ Auth::user()->nombre }}</h1>
-    <div class="productos-container">
     </div>
-    <a href="/producto/productos"><button>Ir a comprar</button></a>
-    <a href= '/producto/productoVendedor' ><button>Ver tus productos</button>
+    <main class="content">
+    @yield("contenido")
+    </main>
 </body>
 </html>

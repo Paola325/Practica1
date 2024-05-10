@@ -55,7 +55,7 @@
 <body>
     <div class="sidebar">
         <br>
-    <h2>Bienvenido supervisor, {{ Auth::user()->nombre }}</h2>
+    <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
         <ul>
         <h3><li><a href="/vistasSupervisor/tablaCategorias">Categorias</a></li></h3>
         <h3><li><a href="/vistasSupervisor/tablaClientes">Cliente</a></li></h3>

@@ -34,6 +34,7 @@
                     <th>Descripción</th>
                     <th>Estado</th>
                     <th>Cantidad</th>
+                    <th>Accion</th>
                 </tr>
             </thead>
             <tbody> 
@@ -46,6 +47,7 @@
                             <td>{{ $producto->descripcion }}</td>
                             <td>{{ $producto->estado }}</td>
                             <td>{{ $producto->cantidad }}</td>
+                            <td><a href="#"><button type="button">Desconsignar</button></a></td>
                         </tr>
                     @endif
                 @endforeach

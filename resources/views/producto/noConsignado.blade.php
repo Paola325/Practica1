@@ -42,7 +42,7 @@
                 <!-- Aqui estan los productos no consignados -->
 
                 @foreach($productos as $producto)
-                    @if ($producto->estado === 'Propuesto')
+                    @if ($producto->estado === 'Rechazado')
                         <tr>
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->descripcion }}</td>
