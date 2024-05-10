@@ -13,7 +13,7 @@
                       @forelse ($categorias as $categoria)
                       <tr>
                           <td>{{ $categoria->nombre }}</td>
-                          <td><a href='/categorias/editarCategoria/{{ $categoria->id }}'><button>Ver Productos</button></a></td>
+                          <td><a href='/vistasSupervisor/tablaProductos/{{ $categoria->id }}'><button>Ver Productos</button></a></td>
                           <td><a href='/categorias/editarCategoria/{{ $categoria->id }}'><button>Actualizar</button></a></td>
                           <td>
                               <form action="{{ route('categorias.elimicarCategoria', $categoria->id) }}" method="post">

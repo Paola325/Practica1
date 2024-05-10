@@ -16,7 +16,7 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->enum('estado',['propuesto','consignado'])->default('propuesto');
+            $table->enum('estado',['Propuesto','Consignado','Rechazado'])->default('propuesto');
             $table->date('fecha_publicacion');
             $table->string('motivo')->nullable()->default(null);
             $table->text('descripcion');

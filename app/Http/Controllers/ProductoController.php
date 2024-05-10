@@ -94,6 +94,13 @@ class ProductoController extends Controller
             }
         }
 
+        
+        public function verProductosCategoria($categoriaId) {
+            $productos = Producto::where('categoria_id', $categoriaId)->get();
+            return view('vistasSupervisor.tablaProductos', compact('productos'));
+        }
+    
+
 
         public function verProductosVendedor(Request $request)
         {

@@ -62,7 +62,7 @@
     <div class="productos-container">
         @foreach ($productos as $producto)
           @if ($producto->propietario_id && $producto->propietario_id == $vendedor_id)
-                  @if ($producto->estado === 'propuesto')
+                  @if ($producto->estado === 'Propuesto')
                   <div class="producto2">
                             <h2>{{ $producto->nombre }}</h2>
                             <p>{{ $producto->descripcion }}</p>
