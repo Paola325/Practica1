@@ -39,19 +39,20 @@ class RegistroController extends Controller
     }
 
     //Usuarios desde el role Supervisor
-    /*
+    
     public function verUsuarios(Request $request) //Ver las categorias
     {
         $usuario = Usuario::all();
-        $categorias = Categorias::all();
+        //$categorias = Categorias::all();
 
         if ($request->expectsJson()) {
             return response()->json($usuario);
         } else {
-            return view('supervisor', compact('usuario', 'categorias'));
+            //return view('supervisor', compact('usuario', 'categorias'));
+            return view('vistasSupervisor.tablaClientes', compact('usuario'));
         }
     }
-    */
+    
 
     public function IrRegistro()
     {
@@ -140,7 +141,7 @@ class RegistroController extends Controller
             if ($request->expectsJson()) {
                 return response()->json($usuario->toArray(), 200, ["Cache-Control" => "no-cache"]);
             } else {
-                return redirect(route('supervisor'));
+                return redirect(route('vistasSupervisor.tablaClientes'));
             }
         }
     

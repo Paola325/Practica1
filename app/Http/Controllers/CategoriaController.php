@@ -37,13 +37,14 @@ class CategoriaController extends Controller
     //CRUD del supervisor
     public function indexSupervisor(Request $request) //Ver las categorias
     {
-        $usuario = Usuario::all();
+        //$usuario = Usuario::all();
         $categorias = Categorias::all();
 
         if ($request->expectsJson()) {
             return response()->json($usuario);
         } else {
-            return view('supervisor', compact('usuario', 'categorias'));
+            //return view('supervisor', compact('usuario', 'categorias'));
+            return view('vistasSupervisor.tablaCategorias', compact('categorias'));
         }
     }
 
@@ -88,7 +89,7 @@ class CategoriaController extends Controller
             if ($request->expectsJson()) {
                 return response()->json($categorias->toArray(), 200, ["Cache-Control" => "no-cache"]);
             } else {
-                return redirect(route('supervisor'));
+                return redirect(route('vistasSupervisor.tablaCategorias'));
             }
         }
 
@@ -97,7 +98,7 @@ class CategoriaController extends Controller
             $categoria = Categorias::find($id);
             Producto::where('categoria_id', $categoria->id)->delete();
             $categoria->delete();
-            return redirect(route('supervisor'));
+            return redirect(route('vistasSupervisor.tablaCategorias'));
         }
 
         //Ver las categorias y productos en la vista Encargado

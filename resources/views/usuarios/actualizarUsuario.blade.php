@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-<form method="POST" action="{{ route('supervisor.actualizarUsuario', ['id' => $usuario->id]) }}">
+<form method="POST" action="{{ route('vistasSupervisor.tablaClientes', ['id' => $usuario->id]) }}">
     @csrf
     @method('PUT')
     <label for="role">Rol:</label><br>
