@@ -136,7 +136,6 @@ Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'
 Route::get('/porConsignar/{categoriaId}', [ProductoController::class, 'porValidar'])->name('porConsignar');
 
 
-
 //Ruta para el proceso de consignar producto
 Route::put('/productos/{categoriaId}', [RegistroController::class, 'aceptar'])->name('aceptar');
 

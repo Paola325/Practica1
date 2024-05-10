@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 
 class LoginController extends Controller
@@ -13,13 +14,19 @@ class LoginController extends Controller
     use AuthorizesRequests, ValidatesRequests;
 
     public function valida(Request $request){
+        // Obtiene las credenciales del formulario de inicio de sesión
         $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Si las credenciales son válidas, redirigir al usuario según su rol
-            $user = Auth::user();
-            return redirect()->route($user->role); // Redirigir según el rol del usuario
+        
+        // Busca el usuario en la base de datos por su correo electrónico
+        $user = Usuario::where('email', $credentials['email'])->first();
+    
+        // Comprueba si se encontró un usuario y si la contraseña proporcionada coincide con el hash almacenado
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            // Si las credenciales son válidas, inicia sesión con el usuario y redirige según su rol
+            Auth::login($user);
+            return redirect()->route($user->role); // Redirige según el rol del usuario
         } else {
+            // Si las credenciales no son válidas, redirige de nuevo a la página de inicio de sesión con un mensaje de error
             return redirect()->route('login')->withErrors(['email' => 'Credenciales incorrectas']);
         }
     }

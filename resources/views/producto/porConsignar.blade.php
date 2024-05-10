@@ -35,7 +35,7 @@
                     <th>Estado</th>
                     <th>Cantidad</th>
                     <th colspan="2">Acciones</th>
-                    
+
                 </tr>
             </thead>
             <tbody> 
