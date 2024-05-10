@@ -116,6 +116,9 @@ Route::get('/vistasVendedor/registroProducto', function () {
     return view('vistasVendedor.registroProducto');
 });
 
+Route::get('/vistasCliente/mostrarProducto', function () {
+    return view('vistasCliente.mostrarProductos');
+});
 
 
 
@@ -193,8 +196,9 @@ Route::get('/porConsignar/{categoriaId}', [ProductoController::class, 'porValida
 Route::put('/porConsignar/{categoriaId}', [ProductoController::class, 'aceptar'])->name('aceptar.producto');
 
 
-
-Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->name('productos.vistaProducto');
+//Ruat para el proceso de mostrar los productos por categoria en la vista de Cliente
+//Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->name('productos.vistaProducto');
+Route::get('/vistasCliente/mostrarProductos/{categoriaId}', [ProductoController::class, 'clienteProducto'])->name('vistasCliente.mostrarProductos');
 
 
 //Ruta para el proceso de no consignar producto
