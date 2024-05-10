@@ -103,7 +103,7 @@ class RegistroController extends Controller
             if ($request->expectsJson()) {
                 return response()->json($usuario->toArray(), 200, ["Cache-Control" => "no-cache"]);
             } else {
-                return redirect(route('encargado'));
+                return redirect(route('vistasEncargado.tablaClientes'));
             }
         }
 
@@ -144,5 +144,20 @@ class RegistroController extends Controller
                 return redirect(route('vistasSupervisor.tablaClientes'));
             }
         }
+
+                //Ver los productos en la vista Encargado
+                public function mostrarProductos(Request $request) //Ver las categorias
+                {
+                    $usuario = Usuario::all();
+                    //$categorias = Categorias::all();
+            
+                    if ($request->expectsJson()) {
+                        return response()->json($usuario);
+                        
+                    } else {
+                        //return view('vistas', compact('usuario', 'categorias'));
+                        return view('vistasEncargado.tablaClientes', compact('usuario'));
+                    }
+                }
     
 }

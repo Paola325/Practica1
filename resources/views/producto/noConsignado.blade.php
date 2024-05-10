@@ -56,6 +56,6 @@
         </table>
     @endif
     <br>
-    <br><a href="/encargado"><button class= "button2">Regresar</button></a>
+    <br><a href="/vistasEncargado/tablaCategorias"><button class= "button2">Regresar</button></a>
 </body>
 </html>

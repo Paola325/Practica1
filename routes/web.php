@@ -80,6 +80,18 @@ Route::get('/vistasSupervisor/tablero', function () {
     return view('vistasSupervisor.tablero');
 });
 
+
+Route::get('/vistasEncargado/tablaCategorias', function () {
+    return view('vistasEncargado.tablaCategorias');
+});
+
+Route::get('/vistasEncargado/tablaClientes', function () {
+    return view('vistasEncargado.tablaClientes');
+});
+
+Route::get('/vistasEncargado/tablero', function () {
+    return view('vistasEncargado.tablero');
+});
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
 // Cambio en la ruta de login
 
@@ -164,11 +176,14 @@ Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('clien
 
 
 //Ruta para el proceso de mostrar las categorias en la vista Encargado
-Route::get('/encargado', [CategoriaController::class, 'indexEncargado'])->name('encargado');
+Route::get('/vistasEncargado/tablaCategorias', [CategoriaController::class, 'indexEncargado'])->name('vistasEncargado.tablaCategorias');
+
+//Ruta para el proceso de mostrar los productos en la vista Encargado
+Route::get('/vistasEncargado/tablaClientes', [RegistroController::class, 'mostrarProductos'])->name('vistasEncargado.tablaClientes');
 
 //Rutas para el proceso de actualizar contraseña(encargado,cleinte,contador) de la vista Encargado
 Route::get('/usuarios/editarUsuario/{id}', [RegistroController::class, 'editarContra'])->name('usuarios.editarUsuario');
-Route::put('/encargado', [RegistroController::class, 'actualizarContra'])->name('encargado');
+Route::put('/vistasEncargado/tablaClientes', [RegistroController::class, 'actualizarContra'])->name('vistasEncargado.tablaClientes');
 
 
 //Rutas para los comentarios

@@ -101,16 +101,18 @@ class CategoriaController extends Controller
             return redirect(route('vistasSupervisor.tablaCategorias'));
         }
 
-        //Ver las categorias y productos en la vista Encargado
+        //Ver las categorias en la vista Encargado
         public function indexEncargado(Request $request) //Ver las categorias
         {
-            $usuario = Usuario::all();
+            //$usuario = Usuario::all();
             $categorias = Categorias::all();
     
             if ($request->expectsJson()) {
                 return response()->json($usuario);
+                
             } else {
-                return view('encargado', compact('usuario', 'categorias'));
+                //return view('vistas', compact('usuario', 'categorias'));
+                return view('vistasEncargado.tablaCategorias', compact('categorias'));
             }
         }
 
