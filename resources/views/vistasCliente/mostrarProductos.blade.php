@@ -24,12 +24,7 @@
                 <p>Cantidad: {{ $producto->cantidad }}</p>
 
                 <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
-
-
-                <a href="{{ route('formulario') }}">Comprar</a>
-
-
-                
+                <a href="{{ route('formulario', ['id_producto' => $producto->id]) }}">Comprar</a>              
             </div>
         @endif
     @endforeach

@@ -247,7 +247,7 @@ Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'cre
 
 
 //Transaccion de un producto
-Route::get('/formulario', [TransaccionController::class, 'crearFormulario'])->name('formulario');
+Route::get('/formulario/{id_producto}', [TransaccionController::class, 'crearFormulario'])->name('formulario');
 Route::post('/procesar-transaccion', [TransaccionController::class, 'procesarTransaccion'])->name('procesar.transaccion');
 
 //Mostrar transaccion

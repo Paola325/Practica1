@@ -63,7 +63,8 @@
                 <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
-    
+
+        <input type="hidden" name="producto_id" value="{{ $productos->id }}">
         <input type="hidden" name="usuario_id" value="{{ Auth::user()->id }}">
     
         <button type="submit" class="btn-submit">Enviar</button>

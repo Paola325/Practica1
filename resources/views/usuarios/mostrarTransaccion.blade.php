@@ -64,6 +64,7 @@
         </thead>
         <tbody>
             @foreach ($transacciones as $transaccion)
+                @if ($transaccion->validar == true)
                 <tr>
                     <td>{{ $transaccion->id }}</td>
                     <td>
@@ -79,6 +80,7 @@
                         </form>
                     </td>
                 </tr>
+                @endif
             @endforeach
         </tbody>
     </table>

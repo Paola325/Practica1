@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Models\Transaccion;
 use Illuminate\Support\Facades\Storage;
@@ -9,10 +10,13 @@ use Illuminate\Support\Facades\File;
 
 class TransaccionController extends Controller
 {
-    public function crearFormulario()
+    public function crearFormulario($id)
     {
-        return view('usuarios.transaccion');
+        $productos = Producto::findOrFail($id);
+        
+        return view('usuarios.transaccion', compact('productos'));
     }
+
 
     public function procesarTransaccion(Request $request)
     {
@@ -32,6 +36,7 @@ class TransaccionController extends Controller
         
         $transaccion->calificacion = $request->calificacion;
         $transaccion->usuario_id = $request->usuario_id;
+        $transaccion->producto_id = $request->producto_id;
         $transaccion->save();
 
         return redirect()->back();

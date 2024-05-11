@@ -19,6 +19,8 @@ class CreateTransaccionTable extends Migration
             $table->integer('calificacion')->nullable();
             $table->bigInteger('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->bigInteger('producto_id')->unsigned();
+            $table->foreign('producto_id')->references('id')->on('productos');
             $table->boolean('valida')->default(false);
             $table->timestamps();
         });
