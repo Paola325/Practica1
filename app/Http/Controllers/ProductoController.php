@@ -10,7 +10,8 @@ use App\Models\Usuario;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Http\Requests\StoreProductoRequest;
 
-use Illuminate\Support\Facades\Auth;
+
+//use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
