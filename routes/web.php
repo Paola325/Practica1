@@ -109,6 +109,9 @@ Route::get('/producto/rechazado', function () {
     return view('producto.rechazado');
 });
 
+Route::get('/vistasSupervisor/kardexProducto', function () {
+    return view('vistasSupervisor.kardexProducto');
+});
 
 
 Route::get('/vistasVendedor/verProducto', function () {

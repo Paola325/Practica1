@@ -152,6 +152,11 @@ class ProductoController extends Controller
 
         return redirect()->route('vistasVendedor.registroProducto', compact('producto','categorias'));
     }
+
+    public function kardex () {
+        $productos = Producto::all();
+        return view('vistasSupervisor.kardexProducto', compact('productos'));
+    }
 }
 
 
