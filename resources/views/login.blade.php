@@ -59,16 +59,16 @@
         <h2>Iniciar Sesión</h2>
         <form action="{{ route('login') }}" method="post">
             @csrf <!-- Agrega el token CSRF para protección contra CSRF -->
-            <input type="text" name="email" placeholder="Correo electrónico" required>
+             
             @error('email')
-                <span>{{ $message }}</span>
+            <span>{{ $message }}</span>
             @enderror
+            <input type="text" name="email" placeholder="Correo electrónico" required>
+            
             <input type="password" name="password" placeholder="Contraseña" required>
-            @error('password')
-                <span>{{ $message }}</span>
-            @enderror
             <input type="submit" value="Iniciar Sesión">
         </form>
     </div>
+
 </body>
 </html>

@@ -28,6 +28,15 @@ Route::get('/login', function () {
     return view('login');
 });
 
+// Rutas para las vistas de los distintos roles
+Route::get('/supervisor', [LoginController::class, 'restriccionSupervisor'])->middleware('auth')->name('supervisor');
+Route::get('/cliente', [LoginController::class, 'restriccionCliente'])->middleware('auth')->name('cliente');
+Route::get('/contador', [LoginController::class, 'restriccionContador'])->middleware('auth')->name('contador');
+Route::get('/encargado', [LoginController::class, 'restriccionEncargado'])->middleware('auth')->name('encargado');
+Route::get('/vendedor', [LoginController::class, 'restriccionVendedor'])->middleware('auth')->name('vendedor');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::get('/Registro', function () {
     return view('Registro');
 });
@@ -36,9 +45,6 @@ Route::get('/producto/index', function () {
     return view('producto.index');
 });
 
-Route::get('/supervisor', function () {
-    return view('Supervisor');
-});
 
 Route::get('/categorias/agregarCategoria', function () {
     return view('categorias.agregarCategoria');
@@ -122,17 +128,8 @@ Route::get('/vistasCliente/mostrarProducto', function () {
 });
 
 
-
-Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
 // Cambio en la ruta de login
-
-
-// Rutas para las vistas de los distintos roles
-Route::view('/cliente', 'cliente')->name('cliente');
-Route::view('/contador', 'contador')->name('contador');
-Route::view('/encargado', 'encargado')->name('encargado');
-Route::view('/supervisor', 'supervisor')->name('supervisor');
-Route::view('/vendedor', 'vendedor')->name('vendedor');
+Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
 
 
 // Ruta por defecto en caso de que no se encuentre un rol específico para el usuario
@@ -141,7 +138,7 @@ Route::view('/default', 'default')->name('default');
 Route::get('/', [CategoriaController::class, 'index']);
 Route::get('/producto/index', [ProductoController::class, 'index'])->name('producto.index');
 
-Route::get('/cliente', [CategoriaController::class, 'indexCliente']);
+//Route::get('/cliente', [CategoriaController::class, 'indexCliente']);
 
 //Ruta para el proceso de mostrar las categorias
 Route::get('/vistasSupervisor/tablaCategorias', [CategoriaController::class, 'indexSupervisor'])->name('vistasSupervisor.tablaCategorias');
@@ -207,7 +204,9 @@ Route::get('/vistasCliente/mostrarProductos/{categoriaId}', [ProductoController:
 
 //Ruta para el proceso de ver los productos no consignados
 Route::get('/noconsignados/{categoriaId}', [ProductoController::class, 'noConsignados'])->name('noConsignados');
-Route::get('/cliente', [ProductoController::class, 'indexCliente'])->name('cliente');
+
+//Checar esto mañana o despues de la pelicula!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Route::get('/cliente', [ProductoController::class, 'indexCliente'])->middleware('auth')->name('cliente');
 
 
 

@@ -22,18 +22,6 @@ class CategoriaController extends Controller
         }
     }
     
-    public function indexCliente(Request $request)
-    {
-        $categorias = Categorias::all();
-
-        if ($request->expectsJson()) {
-            return response()->json($categorias);
-        } else {
-            return view('cliente', compact('categorias'));
-        }
-    }
-    
-
     //CRUD del supervisor
     public function indexSupervisor(Request $request) //Ver las categorias
     {

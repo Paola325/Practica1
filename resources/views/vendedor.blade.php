@@ -60,7 +60,7 @@
         <h3><li><a href="/vistasVendedor/verProducto">Tus productos</a></li></h3>
         <h3><li><a href="/vistasVendedor/registroProducto">Registrar producto</a></li></h3>
         <h3><li><a href="/vistasVendedor/comprarProducto">Ir a comprar</a></li></h3>
-        <h3><h2><li style="margin-top: 600px;"><a href="/">Cerrar Sesión</a></li></h2>
+        <h3><h2><li style="margin-top: 600px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
 
         </ul>
     </div>

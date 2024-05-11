@@ -69,7 +69,7 @@
         .categorias-list {
             display: none; /* Oculta la lista de categorías por defecto */
             position: absolute; /* Posición absoluta para superponer la lista de categorías sobre otros elementos */
-            top: calc(100% + 5px); /* Coloca la lista justo debajo del título */
+             /* Coloca la lista justo debajo del título */
             left: 0; /* Alinea la lista con el borde izquierdo del título */
             background-color: #363636; 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
