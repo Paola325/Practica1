@@ -22,6 +22,7 @@ class CreateCompraTable extends Migration
             $table->integer('cantidad');
             $table->timestamps();
         });
+
     }
 
     /**
