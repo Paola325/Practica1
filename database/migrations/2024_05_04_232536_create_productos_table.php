@@ -20,6 +20,7 @@ class CreateProductosTable extends Migration
             $table->date('fecha_publicacion');
             $table->string('motivo')->nullable()->default(null);
             $table->text('descripcion');
+            $table->double('precio');
             $table->integer('cantidad');
             $table->bigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');

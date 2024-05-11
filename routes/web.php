@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\CompraController;
 
 
 /*
@@ -237,6 +238,10 @@ Route::get('/vistasVendedor/comprarProducto', [ProductoController::class, 'produ
 Route::get('/producto/productos', [ProductoController::class, 'productoComprar'])->name('producto.productos');
 
 Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
+
+//comprar un producto
+Route::post('/comprar', [CompraController::class, 'guardarCompra'])->name('compra.guardarCompra');
+
 
 
 
