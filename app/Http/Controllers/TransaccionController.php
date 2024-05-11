@@ -37,4 +37,23 @@ class TransaccionController extends Controller
         return redirect()->back();
     }
 
+    public function mostrarTransaccion(){
+        $transacciones = Transaccion::all();
+
+        return view('usuarios.mostrarTransaccion', compact('transacciones'));
+    }
+
+    public function validarTransaccion($id)
+    {
+        // Buscar la transacción por su ID
+        $transaccion = Transaccion::findOrFail($id);
+
+        // Cambiar el valor de 'valida' a true
+        $transaccion->valida = true;
+        $transaccion->save();
+
+        // Redireccionar de vuelta a la página anterior
+        return redirect()->back();
+    }
+
 }

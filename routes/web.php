@@ -227,8 +227,6 @@ Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('come
 Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar'])->name('comentarios.show');
 
 
-
-
 //Ruta paran el proceso de mostrar los productos perteneciente a su respectivo vendedor
 Route::get('/vistasVendedor/verProducto', [ProductoController::class, 'verProductosVendedor'])->name('vistasVendedor.verProducto');
 Route::get('/producto/responderComentario/{id_producto}', [ComentarioController::class, 'verComentarios'])->name('responderComentario');
@@ -239,14 +237,23 @@ Route::get('/producto/productos', [ProductoController::class, 'productoComprar']
 
 Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
 
-//comprar un producto
-//Route::post('/comprar', [CompraController::class, 'guardarCompra'])->name('compra.guardarCompra');
+
+
+
+
+
+
+
+
 
 //Transaccion de un producto
 Route::get('/formulario', [TransaccionController::class, 'crearFormulario'])->name('formulario');
 Route::post('/procesar-transaccion', [TransaccionController::class, 'procesarTransaccion'])->name('procesar.transaccion');
 
-
+//Mostrar transaccion
+Route::get('/transacciones', [TransaccionController::class, 'mostrarTransaccion'])->name('transacciones.mostrar');
+//Valida transaccion
+Route::put('/transaccion/validar/{id}', [TransaccionController::class, 'validarTransaccion'])->name('transaccion.validar');
 
 
 

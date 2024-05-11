@@ -58,7 +58,7 @@
         <br>
     <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
         <ul>
-        <h3><li><a href="#">Transacciones</a></li></h3>
+        <h3><li><a href="/transacciones">Transacciones</a></li></h3>
         <h3><li><a href="#">Crear nuevo pago</a></li></h3>
         <h3><li><a href="#">Lista de los pagos</a></li></h3>
         <h3><h2><li style="margin-top: 620px;"><a href="/">Cerrar Sesión</a></li></h2>
