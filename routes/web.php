@@ -6,7 +6,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ComentarioController;
-use App\Http\Controllers\CompraController;
+use App\Http\Controllers\TransaccionController;
 
 
 /*
@@ -223,7 +223,7 @@ Route::put('/vistasEncargado/tablaClientes', [RegistroController::class, 'actual
 
 
 //Rutas para los comentarios
-//Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
+Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
 Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar'])->name('comentarios.show');
 
 
@@ -240,7 +240,11 @@ Route::get('/producto/productos', [ProductoController::class, 'productoComprar']
 Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
 
 //comprar un producto
-Route::post('/comprar', [CompraController::class, 'guardarCompra'])->name('compra.guardarCompra');
+//Route::post('/comprar', [CompraController::class, 'guardarCompra'])->name('compra.guardarCompra');
+
+//Transaccion de un producto
+Route::get('/formulario', [TransaccionController::class, 'crearFormulario'])->name('formulario');
+Route::post('/procesar-transaccion', [TransaccionController::class, 'procesarTransaccion'])->name('procesar.transaccion');
 
 
 

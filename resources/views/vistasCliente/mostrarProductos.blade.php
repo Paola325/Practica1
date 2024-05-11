@@ -25,14 +25,10 @@
 
                 <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
 
-                <!-- Boton para comprar un producto-->
-                <form action="{{ route('compra.guardarCompra') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="id_producto" value="{{ $producto->id }}">
-                    <input type="hidden" name="id_cliente" value="{{ Auth::user()->id }}">
-                    <input type="number" name="cantidad" value="1" min="1" required>
-                    <button type="submit">Comprar</button>
-                </form>
+
+                <a href="{{ route('formulario') }}">Comprar</a>
+
+
                 
             </div>
         @endif
