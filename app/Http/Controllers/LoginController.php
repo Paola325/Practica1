@@ -8,6 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Hash;
+
 
 class LoginController extends Controller
 {
