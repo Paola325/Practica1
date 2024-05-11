@@ -67,7 +67,7 @@
                 @endforelse
             </ul>
         </li></h3>
-        <h3><h2><li style="margin-top: 450px;"><a href="/">Cerrar Sesión</a></li></h2>
+        <h3><h2><li style="margin-top: 420px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
         </ul>
     </div>
     <main class="content">

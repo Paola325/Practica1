@@ -60,7 +60,7 @@
         <h3><li><a href="/vistasSupervisor/tablaCategorias">Categorias</a></li></h3>
         <h3><li><a href="/vistasSupervisor/tablaClientes">Cliente</a></li></h3>
         <h3><li><a href="/vistasSupervisor/tablero">Tablero</a></li></h3>
-        <h3><h2><li style="margin-top: 620px;"><a href="/">Cerrar Sesión</a></li></h2>
+        <h3><h2><li style="margin-top: 620px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
 
         </ul>
     </div>
