@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Models\Transaccion;
+use App\Models\Pago;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -56,6 +58,79 @@ class TransaccionController extends Controller
         // Cambiar el valor de 'valida' a true
         $transaccion->valida = true;
         $transaccion->save();
+
+        // Redireccionar de vuelta a la página anterior
+        return redirect()->back();
+    }
+
+
+    ////////////////////////////////////////////////////////////////
+
+    public function mostrarTransaccionValidos(){
+        $transacciones = Transaccion::all();
+
+        return view('usuarios.mostrarTransaccionesValidas', compact('transacciones'));
+    }
+
+
+
+
+    public function crearPago()
+    {
+        $vendedores = Usuario::where('role', 'vendedor')->get();
+
+        foreach ($vendedores as $vendedor) {
+            $transaccionesVendedor = Transaccion::where('producto_id', $vendedor->id)->get();
+
+            if ($transaccionesVendedor->isNotEmpty()) {
+                $montoTotalVendedor = 0;
+
+                // Verificar si todas las transacciones del vendedor están marcadas como válidas
+                $transaccionesValidas = $transaccionesVendedor->where('valida', true);
+
+                if ($transaccionesValidas->count() === $transaccionesVendedor->count()) {
+                    // Calcular el monto total de las transacciones del vendedor
+                    foreach ($transaccionesVendedor as $transaccion) {
+                        $precioProducto = Producto::find($transaccion->producto_id)->precio;
+                        $montoTotalVendedor += $precioProducto;
+                    }
+
+                    // Guardar el pago solo si todas las transacciones son válidas
+                    $pago = new Pago();
+                    $pago->monto = $montoTotalVendedor;
+                    $pago->save();
+                    
+                    // Devolver la vista con el pago
+                    return view('usuarios.pago', compact('pago'));
+                }
+            }
+        }
+
+        // En caso de no haber pagos válidos, devolver la vista sin ningún pago
+        return view('usuarios.pago');
+    }
+
+
+    public function ShowPagos()
+    {
+        $pagos = Pago::all();
+        return view('usuarios.mostrarPago', compact('pagos'));
+    }
+
+    public function Entregado()
+    {
+        $pagos = Pago::all();
+        return view('usuarios.cambiarEntregado', compact('pagos'));
+    }
+
+    public function EntregarPago($id)
+    {
+        // Buscar la transacción por su ID
+        $pagos = Pago::findOrFail($id);
+
+        // Cambiar el valor de 'valida' a true
+        $pagos->entregado = true;
+        $pagos->save();
 
         // Redireccionar de vuelta a la página anterior
         return redirect()->back();

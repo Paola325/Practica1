@@ -7,7 +7,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\TransaccionController;
-
+use App\Http\Controllers\CompraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -246,7 +246,8 @@ Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'cre
 
 
 
-
+//Compras 
+Route::post('/compras', [CompraController::class, 'guardarCompra'])->name('compra.guardarCompra');
 
 //Transaccion de un producto
 Route::get('/formulario/{id_producto}', [TransaccionController::class, 'crearFormulario'])->name('formulario');
@@ -254,8 +255,15 @@ Route::post('/procesar-transaccion', [TransaccionController::class, 'procesarTra
 
 //Mostrar transaccion
 Route::get('/transacciones', [TransaccionController::class, 'mostrarTransaccion'])->name('transacciones.mostrar');
+Route::get('/transacciones/valida', [TransaccionController::class, 'mostrarTransaccionValidos'])->name('transacciones.valida');
+
 //Valida transaccion
 Route::put('/transaccion/validar/{id}', [TransaccionController::class, 'validarTransaccion'])->name('transaccion.validar');
 
+//Pagos
+Route::get('/crear-pago', [TransaccionController::class, 'crearPago'])->name('crear_pago');
+Route::get('/Entregado', [TransaccionController::class, 'Entregado'])->name('Entregado');
+Route::get('/pago', [TransaccionController::class, 'ShowPagos'])->name('Show.pagos');
 
-
+// Entregar transacciones
+Route::put('/pago/entregar/{id}', [TransaccionController::class, 'EntregarPago'])->name('pago.entregar');
