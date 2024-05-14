@@ -34,8 +34,8 @@
   <tr>
     <td>{{ $producto->nombre }}</td>
     <td>{{ $producto->fecha_publicacion }}</td>
-    <td>{{ $cantidadComentarios }}</td>
-    <td>Sí</td>
+    <td>{{ $cantidadComentarios }}</td> 
+    <td>{{ $cantidadCompras }}</td>
   </tr>
 </table>
 <br>

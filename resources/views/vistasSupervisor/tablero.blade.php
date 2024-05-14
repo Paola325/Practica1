@@ -1,4 +1,4 @@
 @extends('supervisor')
 @section('contenido')
-Tablero
+<h1>En mantenimiento...</h1>
 @endsection

@@ -68,7 +68,7 @@
             </ul>
         </li></h3>
         <br>
-        <h2><li><a style="margin-top: 420px;"href="/login">Iniciar Sesión</a></li></h2>
+        <h2><li><a style="margin-top: 220px;"href="/login">Iniciar Sesión</a></li></h2>
         <h2><li><a href="/Registro">Registrarse</a></li></h2>
         </ul>
     </div>

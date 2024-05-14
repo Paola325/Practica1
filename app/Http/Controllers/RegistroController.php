@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Producto;
 use App\Http\Requests\StoreRegistroRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 
@@ -145,8 +146,8 @@ class RegistroController extends Controller
             }
         }
 
-                //Ver los productos en la vista Encargado
-                public function mostrarProductos(Request $request) //Ver las categorias
+                //Ver los usuarios en la vista Encargado
+                public function mostrarProductos(Request $request) 
                 {
                     $usuario = Usuario::all();
                     //$categorias = Categorias::all();
@@ -158,6 +159,13 @@ class RegistroController extends Controller
                         //return view('vistas', compact('usuario', 'categorias'));
                         return view('vistasEncargado.tablaClientes', compact('usuario'));
                     }
+                }
+
+                public function verInfoVendedores()
+                {
+                    $usuario = Usuario::all();
+                    
+                    return view('vistasSupervisor.tablaInfoCliente', compact('usuario'));      
                 }
     
 }

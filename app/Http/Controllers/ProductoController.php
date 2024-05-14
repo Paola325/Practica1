@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categorias;
 use App\Models\Comentario;
+use App\Models\Compra;
 use App\Models\Usuario;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Http\Requests\StoreProductoRequest;
@@ -41,7 +42,7 @@ class ProductoController extends Controller
     
     public function productCate($categoriaId) {
         $productos = Producto::where('categoria_id', $categoriaId)->get();
-        return view('producto.mostrarCategory', compact('productos'));
+        return view('producto.consignados', compact('productos'));
     }
     
     public function viewProducto($categoriaId) {
@@ -85,20 +86,37 @@ class ProductoController extends Controller
     }
 
     //Desconsignar o rechazar Propuesta de un producto
-    public function rechazar(UpdateProductoRequest $request, Producto $usuario)
+    public function rechazar(UpdateProductoRequest $request, Producto $producto)
     {
         // Encuentra el producto específico por su ID
         $producto = Producto::findOrFail($request->id);
-        $producto = $request-> $motivo;
+        $motivo = $request-> motivo;
         // Actualiza el estado del producto a "Reachazado"
         $producto->estado = 'Rechazado';
         $producto-> motivo = $motivo;
         $producto->save();
 
         // Redirige a la ruta porConsignar con el parámetro categoriaId
-        return redirect()->route('noConsignados', ['categoriaId' => $producto->categoria_id]);
+        return redirect()->route('porConsignar', ['categoriaId' => $producto->categoria_id]);
 
     }
+
+        //Desconsignar o rechazar Propuesta de un producto
+        public function desConsignar(UpdateProductoRequest $request, Producto $producto)
+        {
+            // Encuentra el producto específico por su ID
+            $producto = Producto::findOrFail($request->id);
+            $motivo = $request-> motivo;
+            // Actualiza el estado del producto a "Reachazado"
+            $producto->estado = 'Rechazado';
+            $producto-> motivo = $motivo;
+            $producto->save();
+            Comentario::where('producto_id', $producto->id)->delete();
+    
+            // Redirige a la ruta porConsignar con el parámetro categoriaId
+            return redirect()->route('producto.consignados', ['categoriaId' => $producto->categoria_id]);
+    
+        }
     
     public function noConsignados($categoriaId)
     {
@@ -167,7 +185,10 @@ class ProductoController extends Controller
             // Contar la cantidad de comentarios asociados al producto
             $cantidadComentarios = Comentario::where('producto_id', $id)->where('tipo', 'pregunta')
             ->count();
+            // Contar la cantidad de compras asociados al producto
+            $cantidadCompras = Compra::where('producto_id', $id)->count();
 
-        return view('vistasSupervisor.kardexProducto', compact('producto', 'cantidadComentarios'));
+
+        return view('vistasSupervisor.kardexProducto', compact('producto', 'cantidadComentarios', 'cantidadCompras'));
     }
 }

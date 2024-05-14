@@ -14,7 +14,7 @@
                         <tr>
                             <td>{{ $categoria->nombre }}</td>
                             <td>
-                                <button onclick="location.href='/productos/{{ $categoria->id }}'">Productos consignados</button>
+                                <button onclick="location.href='/consignados/{{ $categoria->id }}'">Productos consignados</button>
                             </td>
                             <td>
                                 <button onclick="location.href='/porConsignar/{{ $categoria->id }}'">Productos por consignar</button>

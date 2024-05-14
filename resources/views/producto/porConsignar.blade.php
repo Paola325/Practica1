@@ -49,17 +49,30 @@
                             <td>{{ $producto->estado }}</td>
                             <td>{{ $producto->cantidad }}</td>
                             <td>
-                            <form id="putForm" action="{{ route('aceptar.producto', ['id' => $producto->id, 'categoriaId' => $producto->categoria_id]) }}" method="post">
-                                @method('PUT')
-                                @csrf
-                                <!-- Agregar un campo oculto para enviar el ID del producto -->
-                                <input type="hidden" name="id" value="{{ $producto->id }}">                           
-                                <input type="submit" value="Consignado" onclick="return confirm('¿Estás seguro que quieres consignar este producto?');">
-                            </form>
+                                <!-- Formulario para aceptar un producto -->
+                                <form id="putForm" action="{{ route('aceptar.producto', ['categoriaId' => $producto->categoria_id]) }}" method="post">
+                                    @method('PUT')
+                                    @csrf
+                                    <!-- Agregar un campo oculto para enviar el ID del producto -->
+                                    <input type="hidden" name="id" value="{{ $producto->id }}">                           
+                                    <input type="submit" value="Consignado" onclick="return confirm('¿Estás seguro que quieres consignar este producto?');">
+                                </form>
                             </td>
                             <td>
-                            <a href="/producto/rechazado"><button>No consignar producto</button></a>
+                                <!-- Formulario para rechazar un producto -->
+                                <form id="putForm" action="{{ route('rechazar.producto', ['categoriaId' => $producto->categoria_id]) }}" method="post">
+                                    @method('PUT')
+                                    @csrf
+                                    <!-- Agregar un campo oculto para enviar el ID del producto -->
+                                    <input type="hidden" name="id" value="{{ $producto->id }}">
+                                    <!-- Agregar un campo de texto para el motivo -->
+                                    <label for="motivo">Motivo:</label>
+                                    <input type="text" name="motivo" id="motivo" required>
+                                    <!-- Botón de envío del formulario -->
+                                    <input type="submit" value="Rechazar" onclick="return confirm('¿Estás seguro que quieres rechazar este producto?');">
+                                </form>
                             </td>
+
                         </tr>
                     @endif
                 @endforeach
