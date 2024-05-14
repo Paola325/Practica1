@@ -9,11 +9,11 @@
       @csrf
       <label for="nombre">Nombre:</label><br>
       <input type="text" id="nombre" name="nombre" required><br>
-      
+
       <label for="categoria_id">Categoria:</label><br>
         <select id="categoria_id" name="categoria_id" required>
             @foreach($categorias as $categoria)
-                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+              <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
             @endforeach
         </select><br>
       

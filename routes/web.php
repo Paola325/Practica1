@@ -235,9 +235,17 @@ Route::get('/vistasVendedor/comprarProducto', [ProductoController::class, 'produ
 Route::get('/producto/productos', [ProductoController::class, 'productoComprar'])->name('producto.productos');
 
 Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
-//Actualizar producto
-Route::get('/vistasVendedor/actualizarProducto', [ProductoController::class, 'actulizarProducto'])->name('vistasVendedor.actulizarProducto');
 
+//Actualizar producto
+Route::get('/vistasVendedor/{id_producto}', [ProductoController::class, 'formularioActualizarProducto'])->name('actualizarProducto');
+Route::put('/vistasVendedor/actualizar', [ProductoController::class, 'actualizarProducto'])->name('actualizar.producto');
+
+//Agregar fotos de los productos
+Route::get('/vistasVendedor/agregarFotos/{id_producto}', [ProductoController::class, 'agregarFoto'])->name('producto.fotos');
+Route::post('/vistasVendedor/agregarFotos', [ProductoController::class, 'agregarFotoProducto'])->name('agregar.fotos');
+
+//Eliminar producto
+Route::delete('/vistasVendedor/{id_producto}', [ProductoController::class, 'eliminarProducto'])->name('eliminar.producto');
 
 
 

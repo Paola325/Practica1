@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categorias;
 use App\Models\Comentario;
+use App\Models\Foto;
 use App\Models\Usuario;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Http\Requests\StoreProductoRequest;
@@ -154,6 +155,101 @@ class ProductoController extends Controller
 
         return redirect()->route('vistasVendedor.registroProducto', compact('producto','categorias'));
     }
+
+
+    public function formularioActualizarProducto($id_producto)
+    {
+        // Obtener el producto a actualizar
+        $producto = Producto::findOrFail($id_producto);
+        
+
+        return view('producto.actualizarProductoVendedor', compact('producto'));
+    }
+
+    public function actualizarProducto(Request $request)
+    {
+        // Recuperar el ID del producto desde la solicitud
+        $id_producto = $request->id_producto;
+        $producto = Producto::find($id_producto);
+
+        // Verificar si el producto está en estado "Propuesto"
+        if ($producto->estado === 'Propuesto') {
+            // Actualizar los atributos del producto con los nuevos valores de la solicitud
+            $producto->nombre = $request->nombre;
+            $producto->fecha_publicacion = $request->fecha_publicacion;
+            $producto->descripcion = $request->descripcion;
+            $producto->precio = $request->precio;
+            $producto->cantidad = $request->cantidad;
+            $producto->categoria_id = $request->categoria_id;
+
+            // Guardar los cambios en la base de datos
+            $producto->save();
+
+            // Redireccionar de vuelta a la vista anterior con un mensaje de éxito
+            return redirect()->back()->with('success', 'Producto actualizado correctamente.');
+        } else {
+            // El producto no está en estado "Propuesto", mostrar mensaje de alerta
+            return redirect()->back()->with('alert', 'No se puede actualizar un producto consignado.');
+        }
+    }
+
+
+    public function agregarFoto($id_producto) {
+        $producto = Producto::find($id_producto);
+        return view('vistasVendedor.formAgregarFoto', compact('producto'));
+    }
+
+
+    public function agregarFotoProducto(Request $request) {
+        //dd($request->all());
+        
+        $id_producto = $request->id_producto;
+        $producto = Producto::find($id_producto);
+        $foto = new Foto();
+        
+        if ($producto->estado === 'Propuesto') {
+            if ($request->hasFile('foto')) {
+                // Obtener el archivo de la solicitud
+                $file = $request->file('foto');
+                // Definir la ruta de destino dentro del almacenamiento de Laravel
+                $destinPath = 'foto/';
+                // Generar un nombre único para el archivo
+                $filename = time() . '-' . $file->getClientOriginalName();
+                // Almacenar el archivo en el sistema de archivos utilizando el almacenamiento de Laravel
+                $uploadSuccess = $request->file('foto')->move($destinPath, $filename);
+                $foto->foto = $destinPath . $filename; //concatenar la ruta del archivo
+            } 
+            $foto->producto_id = $id_producto;
+            $foto->save();
+            return redirect()->back()->with('success', '¡Guardado con éxito!');
+        } else {
+            // El producto no está en estado "Propuesto", mostrar mensaje de alerta
+            return redirect()->back()->with('alert', 'No se puede agregar foto a un producto consignado.');
+        }
+    }
+
+    public function eliminarProducto($id_producto){
+        // Buscar el producto por su ID
+        $producto = Producto::find($id_producto);
+    
+        // Verificar si el producto existe
+        if($producto){
+            // Eliminar las fotos relacionadas con el producto
+            Foto::where('producto_id', $id_producto)->delete();
+    
+            // Eliminar el producto
+            $producto->delete();
+    
+            // Redirigir con un mensaje de éxito
+            return redirect()->back()->with('success', '¡Producto eliminado correctamente!');
+        } else {
+            // Si el producto no existe, redirigir con un mensaje de error
+            return redirect()->back()->with('error', 'El producto no existe o ya ha sido eliminado.');
+        }
+    }
+    
+    
+
 }
 
 

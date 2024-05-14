@@ -45,6 +45,7 @@ class TransaccionController extends Controller
         $transaccion->save();
 
         return redirect()->back()->with('success', '¡Guardado con éxito!');
+    
     }
 
     
