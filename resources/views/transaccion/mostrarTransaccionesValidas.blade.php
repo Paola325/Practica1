@@ -1,3 +1,5 @@
+@extends('contador')
+@section('contenido')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,3 +138,4 @@
         </table>
 </body>
 </html>
+@endsection

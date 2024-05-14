@@ -22,7 +22,9 @@ class CreateTransaccionCompraTable extends Migration
             $table->boolean('valida')->default(false);
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
+
 
     /**
      * Reverse the migrations.
@@ -31,6 +33,7 @@ class CreateTransaccionCompraTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('transaccion_compra');
     }
 }

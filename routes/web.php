@@ -45,6 +45,10 @@ Route::get('/producto/index', function () {
     return view('producto.index');
 });
 
+Route::get('/producto/index', function () {
+    return view('producto.index');
+});
+
 
 Route::get('/categorias/agregarCategoria', function () {
     return view('categorias.agregarCategoria');
@@ -71,8 +75,8 @@ Route::get('/producto/productoVendedor', function () {
     return view('producto.productoVendedor');
 });
 
-Route::get('/producto/mostrarCategory', function () {
-    return view('producto.mostrarCategory');
+Route::get('/producto/consignados', function () {
+    return view('producto.consignados');
 });
 
 Route::get('/vistasSupervisor/tablaCategorias', function () {
@@ -82,6 +86,11 @@ Route::get('/vistasSupervisor/tablaCategorias', function () {
 Route::get('/vistasSupervisor/tablaClientes', function () {
     return view('vistasSupervisor.tablaClientes');
 });
+
+Route::get('/vistasSupervisor/tablaInfoCliente', function () {
+    return view('vistasSupervisor.tablaInfoCliente');
+});
+
 
 Route::get('/vistasSupervisor/tablero', function () {
     return view('vistasSupervisor.tablero');
@@ -109,6 +118,9 @@ Route::get('/producto/rechazado', function () {
     return view('producto.rechazado');
 });
 
+Route::get('/vistasSupervisor/kardexProducto', function () {
+    return view('vistasSupervisor.kardexProducto');
+});
 
 
 Route::get('/vistasVendedor/verProducto', function () {
@@ -149,6 +161,8 @@ Route::get('/vistasSupervisor/tablaCategorias', [CategoriaController::class, 'in
 
 Route::get('/vistasSupervisor/tablaProductos/{categoriaId}', [ProductoController::class, 'verProductosCategoria'])->name('vistasSupervisor.tablaProductos');
 
+Route::get('/vistasSupervisor/kardexProducto/{id}', [ProductoController::class, 'kardex'])->name('vistasSupervisor.kardexProducto');
+
 //Rutas para el proceso de agregar Categorias
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
 Route::post('/categorias/agregarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria');
@@ -171,6 +185,9 @@ Route::post('/Registro', [RegistroController::class, 'registrarUsuario'])->name(
 //Ruta para el proceso de mostrar las usuarios
 Route::get('/vistasSupervisor/tablaClientes', [RegistroController::class, 'verUsuarios'])->name('vistasSupervisor.tablaClientes');
 
+//Ruta para el proceso de mostrar los vendedores desde la vista Supervisor
+Route::get('/vistasSupervisor/tablaInfoCliente', [RegistroController::class, 'verInfoVendedores'])->name('vistasSupervisor.tablaInfoCliente');
+
 //Ruta para el proceso de registro de usuarios desde la vista supervisor
 Route::get('/usuarios/agregarUsuario', [RegistroController::class, 'IrRegistro'])->name('usuarios.agregarUsuario');
 Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name('supervisor');
@@ -180,22 +197,27 @@ Route::get('/usuarios/actualizarUsuario/{id}', [RegistroController::class, 'edit
 Route::put('/vistasSupervisor/tablaClientes', [RegistroController::class, 'actualizarUser'])->name('vistasSupervisor.tablaClientes');
 
 //Rutas para mostrar los productos consignados, por consignar y no consignados, tambien muestra las categorias
-Route::get('/producto', [ProductoController::class, 'index'])->name('index');
+//Route::get('/producto', [ProductoController::class, 'index'])->name('index');
 
-Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
+
 
 //Ruta para el proceso de mostrar los productos por consignar
 Route::get('/porConsignar/{categoriaId}', [ProductoController::class, 'porValidar'])->name('porConsignar');
+// Ruta para consignar un producto
+Route::put('/porConsignar/{categoriaId}/aceptar', [ProductoController::class, 'aceptar'])->name('aceptar.producto');
 
+// Ruta para rechazar un producto
+Route::put('/porConsignar/{categoriaId}/rechazar', [ProductoController::class, 'rechazar'])->name('rechazar.producto');
 
-
-
-// Ruta para el proceso de consignar producto
-Route::put('/porConsignar/{categoriaId}', [ProductoController::class, 'aceptar'])->name('aceptar.producto');
+//Ruta para el proceso de mostrar los productos consignados
+Route::get('/consignados/{categoriaId}', [ProductoController::class, 'productCate'])->name('consignados.productCate');
+// Ruta para desConsignar un producto
+Route::put('/consignados/{categoriaId}', [ProductoController::class, 'desConsignar'])->name('producto.consignados');
 
 
 //Ruat para el proceso de mostrar los productos por categoria en la vista de Cliente
 //Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->name('productos.vistaProducto');
+Route::get('/producto/index/{categoriaId}', [ProductoController::class, 'anonimoProducto'])->name('producto.index');
 Route::get('/vistasCliente/mostrarProductos/{categoriaId}', [ProductoController::class, 'clienteProducto'])->name('vistasCliente.mostrarProductos');
 
 
@@ -219,6 +241,8 @@ Route::get('/vistasEncargado/tablaClientes', [RegistroController::class, 'mostra
 //Rutas para el proceso de actualizar contraseña(encargado,cleinte,contador) de la vista Encargado
 Route::get('/usuarios/editarUsuario/{id}', [RegistroController::class, 'editarContra'])->name('usuarios.editarUsuario');
 Route::put('/vistasEncargado/tablaClientes', [RegistroController::class, 'actualizarContra'])->name('vistasEncargado.tablaClientes');
+
+
 
 
 //Rutas para los comentarios

@@ -5,6 +5,7 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Cantidad</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
                     <td>{{ $producto->nombre }}</td>
                     <td>{{ $producto->descripcion }}</td>
                     <td>{{ $producto->cantidad }}</td>
+                    <td><a href="/vistasSupervisor/kardexProducto/{{ $producto->id }}"><button class= "nombre">Kardex</button></a></td>
                 </tr>
             @endif
         @endforeach

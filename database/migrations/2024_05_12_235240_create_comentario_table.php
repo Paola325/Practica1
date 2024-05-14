@@ -19,8 +19,11 @@ class CreateComentarioTable extends Migration
             $table->enum('tipo', ['pregunta', 'respuesta']);
             $table->bigInteger('producto_id')->unsigned();
             $table->foreign('producto_id')->references('id')->on('productos');
+            $table->bigInteger('comprador_id')->unsigned();
+            $table->foreign('comprador_id')->references('id')->on('usuarios');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -30,6 +33,7 @@ class CreateComentarioTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('comentarios');
     }
 }

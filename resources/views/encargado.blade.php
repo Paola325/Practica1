@@ -59,8 +59,7 @@
         <ul>
         <h3><li><a href="/vistasEncargado/tablaCategorias">Categorias</a></li></h3>
         <h3><li><a href="/vistasEncargado/tablaClientes">Cliente</a></li></h3>
-        <h3><li><a href="#">Tablero</a></li></h3>
-        <h3><h2><li style="margin-top: 620px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
+        <h3><h2><li style="margin-top: 600px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
         </ul>
     </div>
     <main class="content">

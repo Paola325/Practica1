@@ -58,9 +58,10 @@
     <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
         <ul>
         <h3><li><a href="/vistasSupervisor/tablaCategorias">Categorias</a></li></h3>
-        <h3><li><a href="/vistasSupervisor/tablaClientes">Cliente</a></li></h3>
+        <h3><li><a href="/vistasSupervisor/tablaClientes">Usuarios</a></li></h3>
+        <h3><li><a href="/vistasSupervisor/tablaInfoCliente">Vendedores</a></li></h3>
         <h3><li><a href="/vistasSupervisor/tablero">Tablero</a></li></h3>
-        <h3><h2><li style="margin-top: 620px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
+        <h3><h2><li style="margin-top: 420px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
 
         </ul>
     </div>

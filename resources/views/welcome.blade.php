@@ -1,118 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda en Línea</title>
+    <title>Navigation Drawer</title>
     <style>
-        /* Estilos CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f3f4f6;
+            display: flex;
         }
 
-        nav {
+        .sidebar {
+            width: 250px;
             background-color: #333;
             color: #fff;
-            padding: 10px;
-            display: flex; /* Alinear elementos del nav en línea */
-            justify-content: space-between; /* Espaciar elementos del nav */
-            align-items: center; 
-        }
-
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex; /* Alinear elementos de la lista en línea */
-            align-items: center; /* Centrar verticalmente los elementos de la lista */
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: #fff; /* Cambiar el color del texto a blanco */
-            text-decoration: none; /* Quitar el subrayado */
-        }
-
-        .highlighted-products {
             padding: 20px;
-            background-color: #f4f4f4;
+            z-index: 1;
+            height: 100vh;
+            overflow-y: auto;
         }
 
-        .products-container {
-            display: flex;
-            flex-wrap: wrap;
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
         }
 
-        .product {
-            width: 200px;
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        .product img {
-            max-width: 100%;
-            height: auto;
+        .sidebar li {
+            margin-bottom: 10px;
         }
 
-        .categories {
-            position: relative; /* Posición relativa para que la lista de categorías sea absoluta con respecto a este elemento */
-            cursor: pointer; /* Cambia el cursor al pasar por encima */
-        }
-
-        .categorias-list {
-            display: none; /* Oculta la lista de categorías por defecto */
-            position: absolute; /* Posición absoluta para superponer la lista de categorías sobre otros elementos */
-             /* Coloca la lista justo debajo del título */
-            left: 0; /* Alinea la lista con el borde izquierdo del título */
-            background-color: #363636; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-            padding: 10px;
-            z-index: 1; /* Asegura que la lista de categorías esté por encima de otros elementos */
-        }
-
-        .categories:hover .categorias-list,
-        .categorias-list:hover {
-            display: block; /* Muestra la lista de categorías al pasar el ratón por encima del título o la lista misma */
-        }
-        .titulo{
-            color: #fff;
-            font-size: 16px;
-            margin-right: 20px; /* Añade margen para separar las categorías del botón de inicio de sesión */
-        }
-        nav a {
+        .sidebar a {
             color: #fff;
             text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-    <nav>
+    <div class="sidebar">
+        <br>
+        <h1>Tienda en Línea</h1>
         <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="/producto/index">Productos</a></li>
-            <li class="categories"> <!-- Agrega la clase "categories" para el menú desplegable -->
-                <p class="titulo">Categorías</p>
-                <ul class="categorias-list"> 
-                    @forelse ($categorias as $categoria)
-                        <li><a href="/prod/{{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
-                    @empty
-                        <li>No hay categorías disponibles</li>
-                    @endforelse
-                </ul>
-            </li>
+        <h3><li class="categories">
+            <h3>Categorias</h3>
+            <ul class="categorias-list">
+                @forelse ($categorias as $categoria)
+                    <li><a href="/producto/index/{{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
+                @empty
+                    <li>No hay categorías disponibles</li>
+                @endforelse
+            </ul>
+        </li></h3>
+        <br>
+        <h2><li><a style="margin-top: 220px;"href="/login">Iniciar Sesión</a></li></h2>
+        <h2><li><a href="/Registro">Registrarse</a></li></h2>
         </ul>
-        <ul>
-        <li><a href="/login">Iniciar Sesión</a></li>
-        <li><a href="/Registro">Registrarse</a></li>
-        </ul>
-    </nav>
-    <h1>Tienda en Línea</h1>
+    </div>
+    <main class="content">
+    @yield("contenido")
+    </main>
 </body>
 </html>

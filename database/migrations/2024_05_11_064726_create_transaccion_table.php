@@ -24,7 +24,12 @@ class CreateTransaccionTable extends Migration
             $table->boolean('valida')->default(false);
             $table->timestamps();
         });
+
+
+        // Volver a activar las restricciones de clave externa
+        Schema::enableForeignKeyConstraints();
     }
+
 
     /**
      * Reverse the migrations.
@@ -33,6 +38,8 @@ class CreateTransaccionTable extends Migration
      */
     public function down()
     {
+        // Desactivar temporalmente las restricciones de clave externa
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('transaccion');
     }
 }

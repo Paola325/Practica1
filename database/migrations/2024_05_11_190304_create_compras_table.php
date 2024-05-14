@@ -23,7 +23,11 @@ class CreateComprasTable extends Migration
             $table->decimal('Total');
             $table->timestamps();
         });
+
+                // Volver a activar las restricciones de clave externa
+                Schema::enableForeignKeyConstraints();
     }
+
 
     /**
      * Reverse the migrations.
@@ -32,6 +36,8 @@ class CreateComprasTable extends Migration
      */
     public function down()
     {
+                // Desactivar temporalmente las restricciones de clave externa
+                Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('compras');
     }
 }

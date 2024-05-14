@@ -28,6 +28,10 @@ class CreateProductosTable extends Migration
             $table->foreign('propietario_id')->references('id')->on('usuarios');
             $table->timestamps();
         });
+
+        // Volver a activar las restricciones de clave externa
+        Schema::enableForeignKeyConstraints();
+
     }
 
     /**
@@ -37,6 +41,8 @@ class CreateProductosTable extends Migration
      */
     public function down()
     {
+                        // Desactivar temporalmente las restricciones de clave externa
+                        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('productos');
     }
 }

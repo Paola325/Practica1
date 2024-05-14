@@ -21,6 +21,7 @@ class CreatePagosTable extends Migration
             $table->foreign('transaccion_id')->references('id')->on('transaccion_compra');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -30,6 +31,7 @@ class CreatePagosTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('pagos');
     }
 }

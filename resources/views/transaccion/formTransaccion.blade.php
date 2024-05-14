@@ -54,6 +54,7 @@
     </style>
 </head>
 <body>
+<!--<a href="{{ url()->previous() }}"><button class="nombre">Regresar</button></a>-->
 
     @if(session('success'))
         <div class="alert alert-success" style="background-color: #d4edda; color: #155724; border-color: #c3e6cb; padding: 10px; border-radius: 5px;">
@@ -84,6 +85,6 @@
 
         <button type="submit" class="btn-submit">Enviar</button>
     </form>
-
+    
 </body>
 </html>
