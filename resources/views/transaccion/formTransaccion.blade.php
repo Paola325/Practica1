@@ -7,8 +7,8 @@
     <title>Document</title>
     <style>
         .form-container {
-        max-width: 400px;
-        margin: 0 auto;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .form-group {
@@ -29,13 +29,22 @@
             border-radius: 4px;
         }
 
-        .btn-submit {
+        .btn-submit{
+            font-family: Arial, sans-serif;
+            font-size: 14px;
             background-color: #007bff;
             color: #fff;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            text-decoration: none; 
+            display: inline-block; 
+            margin-right: 10px;
+        }
+
+        .btn-submit:hover{
+            background-color: #0056b3;
         }
 
         .error-message {
@@ -45,9 +54,16 @@
     </style>
 </head>
 <body>
+
+    @if(session('success'))
+        <div class="alert alert-success" style="background-color: #d4edda; color: #155724; border-color: #c3e6cb; padding: 10px; border-radius: 5px;">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('procesar.transaccion') }}" enctype="multipart/form-data" class="form-container">
         @csrf
-    
+
         <div class="form-group">
             <label for="voucher">Voucher Bancario:</label>
             <input type="file" id="voucher" name="voucher" accept="image/*,.pdf" class="form-control">
@@ -55,7 +71,7 @@
                 <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
-    
+
         <div class="form-group">
             <label for="calificacion">Calificación (1-5):</label>
             <input type="number" id="calificacion" name="calificacion" placeholder="Ingrese la calificación" min="1" max="5" class="form-control">
@@ -64,10 +80,10 @@
             @enderror
         </div>
 
-        <input type="hidden" name="producto_id" value="{{ $productos->id }}">
-        <input type="hidden" name="usuario_id" value="{{ Auth::user()->id }}">
-    
+        <input type="hidden" id="compra_id" name="compra_id" value="{{ $compras->id }}">
+
         <button type="submit" class="btn-submit">Enviar</button>
     </form>
+
 </body>
 </html>

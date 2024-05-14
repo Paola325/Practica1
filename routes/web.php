@@ -240,8 +240,8 @@ Route::get('/vistasVendedor/comprarProducto', [ProductoController::class, 'produ
 Route::get('/producto/productos', [ProductoController::class, 'productoComprar'])->name('producto.productos');
 
 Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
-
-
+//Actualizar producto
+Route::get('/vistasVendedor/actualizarProducto', [ProductoController::class, 'actulizarProducto'])->name('vistasVendedor.actulizarProducto');
 
 
 
@@ -249,23 +249,28 @@ Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'cre
 
 
 //Compras 
-Route::post('/compras', [CompraController::class, 'guardarCompra'])->name('compra.guardarCompra');
+Route::get('/compra/crear/{id_producto}/{id_usuario}', [CompraController::class, 'crearCompra'])->name('compra.crear');
+Route::post('/compras', [CompraController::class, 'guardarCompra'])->name('compra.guardar');
 
 //Transaccion de un producto
-Route::get('/formulario/{id_producto}', [TransaccionController::class, 'crearFormulario'])->name('formulario');
+Route::get('/formulario/{idCompra}', [TransaccionController::class, 'crearFormulario'])->name('formulario.transaccion');
 Route::post('/procesar-transaccion', [TransaccionController::class, 'procesarTransaccion'])->name('procesar.transaccion');
 
 //Mostrar transaccion
 Route::get('/transacciones', [TransaccionController::class, 'mostrarTransaccion'])->name('transacciones.mostrar');
-Route::get('/transacciones/valida', [TransaccionController::class, 'mostrarTransaccionValidos'])->name('transacciones.valida');
+Route::get('/transacciones/pago', [TransaccionController::class, 'mostrarTransaccionPago'])->name('transaccion.pago');
 
 //Valida transaccion
 Route::put('/transaccion/validar/{id}', [TransaccionController::class, 'validarTransaccion'])->name('transaccion.validar');
 
 //Pagos
-Route::get('/crear-pago', [TransaccionController::class, 'crearPago'])->name('crear_pago');
-Route::get('/Entregado', [TransaccionController::class, 'Entregado'])->name('Entregado');
+Route::post('/crear/pago', [TransaccionController::class, 'crearPago'])->name('crear_pago');
+
+//Mostrar lista de los pagos
 Route::get('/pago', [TransaccionController::class, 'ShowPagos'])->name('Show.pagos');
+//cambiar la entrega de pagos
+Route::get('/Entregado', [TransaccionController::class, 'Entregado'])->name('Entregado');
+
 
 // Entregar transacciones
 Route::put('/pago/entregar/{id}', [TransaccionController::class, 'EntregarPago'])->name('pago.entregar');
