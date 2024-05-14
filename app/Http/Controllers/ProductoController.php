@@ -248,7 +248,21 @@ class ProductoController extends Controller
         }
     }
     
-    
+    public function mostrarFoto()
+    {
+        // Obtener todas las fotos
+        $fotos = Foto::all();
+
+        // Pasar los datos a la vista y renderizarla
+        return view('producto.mostrarFotos', compact('fotos'));
+    }
+
+    public function eliminarFoto($id_foto)
+    {
+        // Buscar la foto por su ID
+        $foto = Foto::find($id_foto);
+        $foto->delete();
+    }
 
 }
 
