@@ -152,6 +152,8 @@ Route::get('/vistasSupervisor/tablaCategorias', [CategoriaController::class, 'in
 
 Route::get('/vistasSupervisor/tablaProductos/{categoriaId}', [ProductoController::class, 'verProductosCategoria'])->name('vistasSupervisor.tablaProductos');
 
+Route::get('/vistasSupervisor/kardexProducto/{id}', [ProductoController::class, 'kardex'])->name('vistasSupervisor.kardexProducto');
+
 //Rutas para el proceso de agregar Categorias
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
 Route::post('/categorias/agregarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria');

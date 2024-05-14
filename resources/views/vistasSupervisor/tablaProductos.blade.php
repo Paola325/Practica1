@@ -15,7 +15,7 @@
                     <td>{{ $producto->nombre }}</td>
                     <td>{{ $producto->descripcion }}</td>
                     <td>{{ $producto->cantidad }}</td>
-                    <td><a href="/vistasSupervisor/kardexProducto"><button class= "nombre">Kardex</button></a></td>
+                    <td><a href="/vistasSupervisor/kardexProducto/{{ $producto->id }}"><button class= "nombre">Kardex</button></a></td>
                 </tr>
             @endif
         @endforeach

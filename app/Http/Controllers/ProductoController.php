@@ -112,7 +112,7 @@ class ProductoController extends Controller
             }
     }
 
-        //Controlador para el vendedor
+
     public function verProductosCategoria($categoriaId) {
             $productos = Producto::where('categoria_id', $categoriaId)->get();
             return view('vistasSupervisor.tablaProductos', compact('productos'));
@@ -153,10 +153,13 @@ class ProductoController extends Controller
         return redirect()->route('vistasVendedor.registroProducto', compact('producto','categorias'));
     }
 
-    public function kardex () {
-        $productos = Producto::all();
-        return view('vistasSupervisor.kardexProducto', compact('productos'));
+    public function kardex ($id) {
+        $producto = Producto::find($id);
+        if ($producto) 
+            // Contar la cantidad de comentarios asociados al producto
+            $cantidadComentarios = Comentario::where('producto_id', $id)->where('tipo', 'pregunta')
+            ->count();
+
+        return view('vistasSupervisor.kardexProducto', compact('producto', 'cantidadComentarios'));
     }
 }
-
-
