@@ -1,3 +1,5 @@
+@extends('welcome')
+@section('contenido')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,19 +48,17 @@
     </style>
 </head>
 <body>
-<a href="/"><button class= "nombre">Regresar</button></a>
     <div class="productos-container">
         @foreach ($productos as $producto)
             @if ($producto->estado === 'Consignado')
                 <div class="producto">
                     <h2>{{ $producto->nombre }}</h2>
                     <p>{{ $producto->descripcion }}</p>
+                    <p>Precio: $ {{ $producto->precio }}</p>
                     <p>Estado: {{ $producto->estado }}</p>
                     <p>Cantidad: {{ $producto->cantidad }}</p>
 
                     <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
-
-                    <a href="#">Comprar</a>
                 </div>
             @endif
         @endforeach
@@ -68,3 +68,4 @@
     </div>    
 </body>
 </html>
+@endsection

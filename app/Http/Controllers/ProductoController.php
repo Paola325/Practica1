@@ -43,17 +43,23 @@ class ProductoController extends Controller
         $productos = Producto::where('categoria_id', $categoriaId)->get();
         return view('producto.mostrarCategory', compact('productos'));
     }
-    /*
+    
     public function viewProducto($categoriaId) {
         $productos = Producto::where('categoria_id', $categoriaId)->get();
-        return view('producto.vistaProducto', compact('productos'));
+        return view('producto.index', compact('productos'));
     }
-    */
+    
 
     public function clienteProducto($categoriaId, Categorias $categorias) {
         $categorias = Categorias::all();
         $productos = Producto::where('categoria_id', $categoriaId)->get();
         return view('vistasCliente.mostrarProductos', compact('productos', 'categorias'));
+    }
+
+    public function anonimoProducto($categoriaId, Categorias $categorias) {
+        $categorias = Categorias::all();
+        $productos = Producto::where('categoria_id', $categoriaId)->get();
+        return view('producto.index', compact('productos', 'categorias'));
     }
 
     

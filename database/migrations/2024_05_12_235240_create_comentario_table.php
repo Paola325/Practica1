@@ -23,6 +23,7 @@ class CreateComentarioTable extends Migration
             $table->foreign('comprador_id')->references('id')->on('usuarios');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -32,6 +33,7 @@ class CreateComentarioTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('comentarios');
     }
 }

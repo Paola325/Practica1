@@ -45,6 +45,10 @@ Route::get('/producto/index', function () {
     return view('producto.index');
 });
 
+Route::get('/producto/index', function () {
+    return view('producto.index');
+});
+
 
 Route::get('/categorias/agregarCategoria', function () {
     return view('categorias.agregarCategoria');
@@ -185,7 +189,7 @@ Route::get('/usuarios/actualizarUsuario/{id}', [RegistroController::class, 'edit
 Route::put('/vistasSupervisor/tablaClientes', [RegistroController::class, 'actualizarUser'])->name('vistasSupervisor.tablaClientes');
 
 //Rutas para mostrar los productos consignados, por consignar y no consignados, tambien muestra las categorias
-Route::get('/producto', [ProductoController::class, 'index'])->name('index');
+//Route::get('/producto', [ProductoController::class, 'index'])->name('index');
 
 Route::get('/productos/{categoriaId}', [ProductoController::class, 'productCate'])->name('productos.productCate');
 
@@ -201,6 +205,7 @@ Route::put('/porConsignar/{categoriaId}', [ProductoController::class, 'aceptar']
 
 //Ruat para el proceso de mostrar los productos por categoria en la vista de Cliente
 //Route::get('/prod/{categoriaId}', [ProductoController::class, 'viewProducto'])->name('productos.vistaProducto');
+Route::get('/producto/index/{categoriaId}', [ProductoController::class, 'anonimoProducto'])->name('producto.index');
 Route::get('/vistasCliente/mostrarProductos/{categoriaId}', [ProductoController::class, 'clienteProducto'])->name('vistasCliente.mostrarProductos');
 
 
