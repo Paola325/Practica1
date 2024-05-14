@@ -7,30 +7,40 @@ use Illuminate\Http\Request;
 
 class CompraController extends Controller
 {
+
+    public function crearCompra($idProducto, $idUsuario)
+    {
+        $producto = Producto::find($idProducto);
+        return view('comprar.crearCompra', compact('producto','idUsuario'));
+    }
+
+
     public function guardarCompra(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'id_producto' => 'required|integer',
-            'id_cliente' => 'required|integer',
-            'cantidad' => 'required|integer|min:1',
-            'total' => 'required|integer',
+            'producto_id' => 'required|integer',
+            'Usuario_id' => 'required|integer',
+            'Cantidad' => 'required|integer|min:1',
         ]);
 
         // Obtener el producto
-        $producto = Producto::findOrFail($request->id_producto);
-
+        $producto = Producto::findOrFail($request->producto_id);
+        
         // Calcular el total
-        $total = $producto->precio * $request->cantidad;
+        $total = $producto->precio * $request->Cantidad;
         // Crear una nueva compra
         $compra = new Compra();
-        $compra->id_producto = $request->id_producto;
-        $compra->id_cliente = $request->id_cliente;
-        $compra->cantidad = $request->cantidad;
-        $compra->total = $total;
+        $compra->producto_id = $request->producto_id;
+        $compra->Usuario_id = $request->Usuario_id;
+        $compra->Cantidad = $request->Cantidad;
+        $compra->Total = $total;
         $compra->save();
 
-        // Redirigir de vuelta a la página anterior
-        return redirect()->back();
+        $producto->cantidad -= $request->Cantidad;
+        $producto->save();
+        $idCompra = $compra->id;
+
+        return redirect()->route('formulario.transaccion', ['idCompra' => $idCompra]);
     }
 }

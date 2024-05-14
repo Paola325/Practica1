@@ -20,7 +20,7 @@
                         <td>{{ $producto->cantidad }}</td>
                         <td>
                             <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
-                            <a href="#">Comprar</a>
+                            <a href="{{ route('compra.crear', ['id_producto' => $producto->id, 'id_usuario' =>  Auth::user()->id]) }}">Comprar</a>
                         </td>
                     </tr>
                 @endif

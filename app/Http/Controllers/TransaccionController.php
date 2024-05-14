@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comentario;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Models\Transaccion;
+use App\Models\Compra;
+use App\Models\TransaccionCompra;
 use App\Models\Pago;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Storage;
@@ -12,17 +15,18 @@ use Illuminate\Support\Facades\File;
 
 class TransaccionController extends Controller
 {
-    public function crearFormulario($id)
+    //Se muestra el formulario de la transaccion
+    public function crearFormulario($idCompra)
     {
-        $productos = Producto::findOrFail($id);
+        $compras = Compra::find($idCompra);
         
-        return view('usuarios.transaccion', compact('productos'));
+        return view('transaccion.formTransaccion', compact('compras'));
     }
-
+    
 
     public function procesarTransaccion(Request $request)
     {
-        $transaccion = new Transaccion();
+        $transaccion = new TransaccionCompra();
 
         if ($request->hasFile('voucher')) {
             // Obtener el archivo de la solicitud
@@ -37,23 +41,27 @@ class TransaccionController extends Controller
         } 
         
         $transaccion->calificacion = $request->calificacion;
-        $transaccion->usuario_id = $request->usuario_id;
-        $transaccion->producto_id = $request->producto_id;
+        $transaccion->compra_id = $request->compra_id;
         $transaccion->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', '¡Guardado con éxito!');
     }
+
+    
+
+    //////// Desde contador ////////////////////////////
 
     public function mostrarTransaccion(){
-        $transacciones = Transaccion::all();
+        $transacciones = TransaccionCompra::all();
 
-        return view('usuarios.mostrarTransaccion', compact('transacciones'));
+        return view('transaccion.mostrarTransaccion', compact('transacciones'));
     }
+
 
     public function validarTransaccion($id)
     {
         // Buscar la transacción por su ID
-        $transaccion = Transaccion::findOrFail($id);
+        $transaccion = TransaccionCompra::findOrFail($id);
 
         // Cambiar el valor de 'valida' a true
         $transaccion->valida = true;
@@ -64,63 +72,46 @@ class TransaccionController extends Controller
     }
 
 
-    ////////////////////////////////////////////////////////////////
-
-    public function mostrarTransaccionValidos(){
-        $transacciones = Transaccion::all();
-
-        return view('usuarios.mostrarTransaccionesValidas', compact('transacciones'));
-    }
-
-
-
-
-    public function crearPago()
+    ////crear nuevo pago///
+    public function mostrarTransaccionPago()
     {
-        $vendedores = Usuario::where('role', 'vendedor')->get();
-
-        foreach ($vendedores as $vendedor) {
-            $transaccionesVendedor = Transaccion::where('producto_id', $vendedor->id)->get();
-
-            if ($transaccionesVendedor->isNotEmpty()) {
-                $montoTotalVendedor = 0;
-
-                // Verificar si todas las transacciones del vendedor están marcadas como válidas
-                $transaccionesValidas = $transaccionesVendedor->where('valida', true);
-
-                if ($transaccionesValidas->count() === $transaccionesVendedor->count()) {
-                    // Calcular el monto total de las transacciones del vendedor
-                    foreach ($transaccionesVendedor as $transaccion) {
-                        $precioProducto = Producto::find($transaccion->producto_id)->precio;
-                        $montoTotalVendedor += $precioProducto;
-                    }
-
-                    // Guardar el pago solo si todas las transacciones son válidas
-                    $pago = new Pago();
-                    $pago->monto = $montoTotalVendedor;
-                    $pago->save();
-                    
-                    // Devolver la vista con el pago
-                    return view('usuarios.pago', compact('pago'));
-                }
-            }
-        }
-
-        // En caso de no haber pagos válidos, devolver la vista sin ningún pago
-        return view('usuarios.pago');
+        // Obtener todas las transacciones de compra junto con sus compras asociadas
+        $transacciones = TransaccionCompra::with('compra')->get();
+        $compras = Compra::with('producto')->get();
+        
+        
+        return view('transaccion.mostrarTransaccionesValidas', compact('transacciones','compras'));
     }
 
+
+    public function crearPago(Request $request){
+        //dd($request->all());
+
+        $transaccionId = $request->transaccion_id;
+        $montoPago = $request->pago;
+
+        $pago = new Pago();
+        $pago->monto = $montoPago;
+        $pago->transaccion_id = $transaccionId;
+        $pago->save();
+
+        //Crear un campo en transaccion de realizado pago
+        //despues activarlo en esta parte
+        
+        return redirect()->back()->with('success', 'Los pagos se han enviado correctamente.');
+        
+    }
 
     public function ShowPagos()
     {
         $pagos = Pago::all();
-        return view('usuarios.mostrarPago', compact('pagos'));
+        return view('pago.mostrarPago', compact('pagos'));
     }
 
     public function Entregado()
     {
         $pagos = Pago::all();
-        return view('usuarios.cambiarEntregado', compact('pagos'));
+        return view('pago.cambiarEntregado', compact('pagos'));
     }
 
     public function EntregarPago($id)

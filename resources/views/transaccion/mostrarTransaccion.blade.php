@@ -51,32 +51,38 @@
     </style>
 </head>
 <body>
-    <h1>Listado de Transacciones Validas</h1>
+    <h1>Listado de Transacciones</h1>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Voucher</th>
                 <th>Calificación</th>
-                <th>Usuario ID</th>
+                <th>Compra ID</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($transacciones as $transaccion)
-                @if ($transaccion->valida == true)
+                @if ($transaccion->valida == false)
                 <tr>
                     <td>{{ $transaccion->id }}</td>
                     <td>
                         <a href="{{ asset($transaccion->voucher) }}" target="_blank">Descargar</a>
                     </td>
                     <td>{{ $transaccion->calificacion }}</td>
-                    <td>{{ $transaccion->usuario_id }}</td>
+                    <td>{{ $transaccion->compra_id }}</td>
+                    <td>
+                        <form action="{{ route('transaccion.validar', $transaccion->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit">Validar</button>
+                        </form>
+                    </td>
                 </tr>
                 @endif
             @endforeach
         </tbody>
     </table>
-    <h3><a href="{{ route('crear_pago') }}">Crear nuevo pago</a></h3>
-
 </body>
 </html>

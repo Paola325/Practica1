@@ -135,6 +135,7 @@ class ProductoController extends Controller
         $estado = $request -> estado;
         $fecha_publicacion = $request -> fecha_publicacion;
         $descripcion = $request -> descripcion;
+        $precio = $request -> precio;
         $cantidad = $request -> cantidad;
         $categoria_id = $request -> categoria_id;
         $propietario_id = Auth::id();
@@ -145,6 +146,7 @@ class ProductoController extends Controller
         $producto->estado = 'Propuesto';
         $producto->fecha_publicacion = $fecha_publicacion;
         $producto->descripcion = $descripcion;
+        $producto->precio = $precio;
         $producto->cantidad = $cantidad;
         $producto->categoria_id = $categoria_id;
         $producto->propietario_id = $propietario_id;

@@ -17,6 +17,8 @@ class CreatePagosTable extends Migration
             $table->id();
             $table->decimal('monto');
             $table->boolean('entregado')->default(false);
+            $table->bigInteger('transaccion_id')->unsigned();
+            $table->foreign('transaccion_id')->references('id')->on('transaccion_compra');
             $table->timestamps();
         });
     }

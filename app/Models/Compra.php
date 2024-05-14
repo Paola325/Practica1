@@ -19,12 +19,12 @@ class Compra extends Model
     // Relación con el modelo Producto
     public function producto()
     {
-        return $this->belongsTo(Producto::class, 'id_producto');
+        return $this->belongsTo(Producto::class);
     }
 
     // Relación con el modelo Cliente
     public function cliente()
     {
-        return $this->belongsTo(Usuario::class, 'id_cliente');
+        return $this->belongsTo(Usuario::class);
     }
 }

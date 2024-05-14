@@ -58,9 +58,9 @@
         <br>
     <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
         <ul>
-        <h3><li><a href="/transacciones">Transacciones</a></li></h3>
+        <h3><li><a href="/transacciones">Transacciones Pendientes</a></li></h3>
         <h3><li>
-            <a href="{{ route('transacciones.valida') }}">Crear nuevo pago</a>
+            <a href="{{ route('transaccion.pago') }}">Crear nuevo pago</a>
         </li></h3>
         <h3><li><a href="{{ route('Show.pagos') }}">Lista de los pagos</a></li></h3>
         <h3><li><a href="{{ route('Entregado') }}">Solicitud para entrega</a></li></h3>

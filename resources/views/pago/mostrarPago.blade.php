@@ -77,10 +77,8 @@
         <tbody>
             @foreach ($pagos as $pago)
                 <tr>
-                    @if ($pago->entregado == false)
-                        <td>{{ $pago->id }}</td>
-                        <td>{{ $pago->monto }}</td>
-                    @endif    
+                    <td>{{ $pago->id }}</td>
+                    <td>{{ $pago->monto }}</td>
                 </tr>
             @endforeach
         </tbody>
