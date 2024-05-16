@@ -270,8 +270,10 @@ Route::post('/vistasVendedor/agregarFotos', [ProductoController::class, 'agregar
 
 //Eliminar producto
 Route::delete('/vistasVendedor/{id_producto}', [ProductoController::class, 'eliminarProducto'])->name('eliminar.producto');
+
 //Mostrar las fotos de los productos
 Route::get('/mostrar/fotos', [ProductoController::class, 'mostrarFoto'])->name('mostrarFoto');
+
 //Eliminar foto
 Route::delete('/eliminar/foto/{id_foto}', [ProductoController::class, 'eliminarFoto'])->name('eliminar.foto');
 
@@ -304,3 +306,5 @@ Route::get('/Entregado', [TransaccionController::class, 'Entregado'])->name('Ent
 
 // Entregar transacciones
 Route::put('/pago/entregar/{id}', [TransaccionController::class, 'EntregarPago'])->name('pago.entregar');
+
+

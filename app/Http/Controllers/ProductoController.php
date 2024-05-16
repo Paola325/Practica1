@@ -192,7 +192,7 @@ class ProductoController extends Controller
 
         return view('vistasSupervisor.kardexProducto', compact('producto', 'cantidadComentarios', 'cantidadCompras'));
     }
-}
+
 
 
     public function formularioActualizarProducto($id_producto)
@@ -299,8 +299,20 @@ class ProductoController extends Controller
     {
         // Buscar la foto por su ID
         $foto = Foto::find($id_foto);
-        $foto->delete();
+
+        // Verificar si la foto existe
+        if ($foto) {
+            // Verificar si el producto asociado a la foto está consignado
+            if ($foto->producto->estado !== 'Consignado') {
+                // Eliminar la foto
+                $foto->delete();
+                return redirect()->back()->with('success', '¡La foto se eliminó correctamente!');
+            } else {
+                return redirect()->back()->with('error', 'No se puede eliminar la foto de un producto consignado.');
+            }
+        } 
     }
+
 
 }
 
