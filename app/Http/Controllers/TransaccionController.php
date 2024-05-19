@@ -44,6 +44,8 @@ class TransaccionController extends Controller
         $transaccion->compra_id = $request->compra_id;
         $transaccion->save();
 
+        
+
         return redirect()->back()->with('success', '¡Guardado con éxito!');
     
     }

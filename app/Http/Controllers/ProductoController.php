@@ -314,6 +314,26 @@ class ProductoController extends Controller
     }
 
 
+    public function comprasVendedor()
+    {
+        $vendedor_id = Auth::id();
+        $compras = Compra::where('Usuario_id', $vendedor_id)->get();
+        $productos = Producto::all();
+        //dd($compras);
+        return view('vistasVendedor.verCompra', compact('vendedor_id', 'productos', 'compras'));  
+    }
+
+
+    public function ventasVendedor()
+    {
+        $vendedor_id = Auth::id();
+        $productos = Producto::where('propietario_id', $vendedor_id)->get();
+        $compras = Compra::all();
+        //dd($compras);
+        return view('vistasVendedor.verVentas', compact('vendedor_id', 'productos', 'compras'));  
+    }
+
+
 }
 
 

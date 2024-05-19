@@ -277,6 +277,11 @@ Route::get('/mostrar/fotos', [ProductoController::class, 'mostrarFoto'])->name('
 //Eliminar foto
 Route::delete('/eliminar/foto/{id_foto}', [ProductoController::class, 'eliminarFoto'])->name('eliminar.foto');
 
+//Mostrar que productos ha comprado el vendedor
+Route::get('/verCompra', [ProductoController::class, 'comprasVendedor'])->name('verComprasVendedor');
+
+//Mostrar los productos que ha vendido
+Route::get('/verVentas', [ProductoController::class, 'ventasVendedor'])->name('verVentasVendedor');
 
 
 
