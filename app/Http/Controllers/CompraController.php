@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Compra;
 use App\Models\Producto;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Mail\CorreoMailable;
+use Illuminate\Support\Facades\Mail;
 
 class CompraController extends Controller
 {
@@ -37,12 +40,17 @@ class CompraController extends Controller
         $compra->Total = $total;
         $compra->save();
 
-        //$producto->cantidad -= $request->Cantidad;
-        //$producto->save();
+        $producto->cantidad -= $request->Cantidad;
+        $producto->save();
         $idCompra = $compra->id;
 
-        
+        // Obtener detalles del cliente
+        $cliente = Usuario::findOrFail($request->Usuario_id);
 
+        // Enviar correo al vendedor
+        $email_vendedor = 'vendedor@example.com'; // Reemplaza con el correo del vendedor
+        Mail::to($email_vendedor)->send(new CorreoMailable($producto, $request->Cantidad, $total, $cliente));
+        
         return redirect()->route('formulario.transaccion', ['idCompra' => $idCompra]);
     }
 }
