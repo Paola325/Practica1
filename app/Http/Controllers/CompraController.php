@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Mail\CorreoMailable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 
 class CompraController extends Controller
 {
@@ -16,7 +17,6 @@ class CompraController extends Controller
         $producto = Producto::find($idProducto);
         return view('comprar.crearCompra', compact('producto','idUsuario'));
     }
-
 
     public function guardarCompra(Request $request)
     {
@@ -30,8 +30,14 @@ class CompraController extends Controller
         // Obtener el producto
         $producto = Producto::findOrFail($request->producto_id);
         
+        // Verificar si la cantidad solicitada es mayor que la cantidad disponible
+        if ($request->Cantidad > $producto->cantidad) {
+            throw ValidationException::withMessages(['Cantidad']);
+        }
+
         // Calcular el total
         $total = $producto->precio * $request->Cantidad;
+
         // Crear una nueva compra
         $compra = new Compra();
         $compra->producto_id = $request->producto_id;
@@ -40,8 +46,8 @@ class CompraController extends Controller
         $compra->Total = $total;
         $compra->save();
 
-        $producto->cantidad -= $request->Cantidad;
-        $producto->save();
+        //$producto->cantidad -= $request->Cantidad;
+        //$producto->save();
         $idCompra = $compra->id;
 
         // Obtener detalles del cliente
@@ -53,4 +59,6 @@ class CompraController extends Controller
         
         return redirect()->route('formulario.transaccion', ['idCompra' => $idCompra]);
     }
+
+
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Drawer</title>
+    <title>Dashboard del Vendedor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,22 +50,36 @@
         .sidebar a:hover {
             background-color: #555;
         }
+
+        .alert {
+            padding: 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .alert-danger {
+            background-color: #f44336; /* Red */
+        }
+
+        .alert-success {
+            background-color: #4CAF50; /* Green */
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <br>
-    <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
+        <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
         <ul>
-        <h3><li><a href="/vistasVendedor/verProducto">Tus productos</a></li></h3>
-        <h3><li><a href="/vistasVendedor/registroProducto">Registrar producto</a></li></h3>
-        <h3><li><a href="comprarProducto">Ir a comprar</a></li></h3>
-        <h3><li><a href="/mostrar/fotos">Ver fotos</a></li></h3>
-        <h3><h2><li style="margin-top: 600px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
+            <h3><li><a href="/vistasVendedor/verProducto">Tus productos</a></li></h3>
+            <h3><li><a href="/vistasVendedor/registroProducto">Registrar producto</a></li></h3>
+            <h3><li><a href="comprarProducto">Ir a comprar</a></li></h3>
+            <h3><li><a href="/mostrar/fotos">Ver fotos</a></li></h3>
+            <h3><li><a href="/verCompra">Ver Compras</a></li></h3>
+            <h3><li><a href="/verVentas">Ver Ventas</a></li></h3>
+            <h2><li style="margin-top: 600px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
         </ul>
-    </div>
-    <main class="content">
-    @yield("contenido")
-    </main>
+    </div>  
 </body>
 </html>
