@@ -8,6 +8,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\TransaccionController;
 use App\Http\Controllers\CompraController;
+use App\Models\Transaccion;
 
 /*
 |--------------------------------------------------------------------------
@@ -162,6 +163,10 @@ Route::get('/vistasSupervisor/tablaCategorias', [CategoriaController::class, 'in
 Route::get('/vistasSupervisor/tablaProductos/{categoriaId}', [ProductoController::class, 'verProductosCategoria'])->name('vistasSupervisor.tablaProductos');
 
 Route::get('/vistasSupervisor/kardexProducto/{id}', [ProductoController::class, 'kardex'])->name('vistasSupervisor.kardexProducto');
+
+//Ruta para mostrar el tablero en supervisor
+Route::get('/vistasSupervisor/tablero', [TransaccionController::class, 'tablero'])->name('vistasSupervisor.tablero');
+
 
 //Rutas para el proceso de agregar Categorias
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
