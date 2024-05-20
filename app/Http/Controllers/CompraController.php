@@ -57,6 +57,8 @@ class CompraController extends Controller
         $email_vendedor = 'vendedor@example.com'; // Reemplaza con el correo del vendedor
         Mail::to($email_vendedor)->send(new CorreoMailable($producto, $request->Cantidad, $total, $cliente));
         
+        $request->session()->flash('correo_enviado');
+
         return redirect()->route('formulario.transaccion', ['idCompra' => $idCompra]);
     }
 
