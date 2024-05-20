@@ -84,6 +84,5 @@
     <main class="content">
         @yield("contenido")
         </main>
-    
 </body>
 </html>
