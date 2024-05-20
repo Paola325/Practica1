@@ -81,5 +81,9 @@
             <h2><li style="margin-top: 600px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
         </ul>
     </div>  
+    <main class="content">
+        @yield("contenido")
+        </main>
+    
 </body>
 </html>
