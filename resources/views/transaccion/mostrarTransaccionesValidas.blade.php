@@ -128,6 +128,7 @@
                                     @csrf
                                     <input type="hidden" name="transaccion_id" value="{{ $transaccion->id }}">
                                     <input type="text" name="pago" placeholder="Monto del pago">
+                                    
                                     <button type="submit">Enviar Pago</button>
                                 </form>
                             </td>
