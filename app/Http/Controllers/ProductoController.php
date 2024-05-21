@@ -192,9 +192,6 @@ class ProductoController extends Controller
 
         return view('vistasSupervisor.kardexProducto', compact('producto', 'cantidadComentarios', 'cantidadCompras'));
     }
-}
-
-
     public function formularioActualizarProducto($id_producto)
     {
         // Obtener el producto a actualizar
@@ -301,7 +298,12 @@ class ProductoController extends Controller
         $foto = Foto::find($id_foto);
         $foto->delete();
     }
-
 }
+
+
+    
+
+
+
 
 
