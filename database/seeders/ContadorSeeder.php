@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 
 class ContadorSeeder extends Seeder
 {
+    
     /**
      * Run the database seeds.
      *
