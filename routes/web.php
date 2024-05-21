@@ -8,6 +8,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\TransaccionController;
 use App\Http\Controllers\CompraController;
+use App\Models\Transaccion;
 
 /*
 |--------------------------------------------------------------------------
@@ -163,6 +164,10 @@ Route::get('/vistasSupervisor/tablaProductos/{categoriaId}', [ProductoController
 
 Route::get('/vistasSupervisor/kardexProducto/{id}', [ProductoController::class, 'kardex'])->name('vistasSupervisor.kardexProducto');
 
+//Ruta para mostrar el tablero en supervisor
+Route::get('/vistasSupervisor/tablero', [TransaccionController::class, 'tablero'])->name('vistasSupervisor.tablero');
+
+
 //Rutas para el proceso de agregar Categorias
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
 Route::post('/categorias/agregarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria');
@@ -270,11 +275,18 @@ Route::post('/vistasVendedor/agregarFotos', [ProductoController::class, 'agregar
 
 //Eliminar producto
 Route::delete('/vistasVendedor/{id_producto}', [ProductoController::class, 'eliminarProducto'])->name('eliminar.producto');
+
 //Mostrar las fotos de los productos
 Route::get('/mostrar/fotos', [ProductoController::class, 'mostrarFoto'])->name('mostrarFoto');
+
 //Eliminar foto
 Route::delete('/eliminar/foto/{id_foto}', [ProductoController::class, 'eliminarFoto'])->name('eliminar.foto');
 
+//Mostrar que productos ha comprado el vendedor
+Route::get('/verCompra', [ProductoController::class, 'comprasVendedor'])->name('verComprasVendedor');
+
+//Mostrar los productos que ha vendido
+Route::get('/verVentas', [ProductoController::class, 'ventasVendedor'])->name('verVentasVendedor');
 
 
 
@@ -304,3 +316,5 @@ Route::get('/Entregado', [TransaccionController::class, 'Entregado'])->name('Ent
 
 // Entregar transacciones
 Route::put('/pago/entregar/{id}', [TransaccionController::class, 'EntregarPago'])->name('pago.entregar');
+
+

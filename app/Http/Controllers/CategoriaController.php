@@ -25,7 +25,7 @@ class CategoriaController extends Controller
     //CRUD del supervisor
     public function indexSupervisor(Request $request) //Ver las categorias
     {
-        //$usuario = Usuario::all();
+        $usuario = Usuario::all();
         $categorias = Categorias::all();
 
         if ($request->expectsJson()) {
@@ -92,7 +92,7 @@ class CategoriaController extends Controller
         //Ver las categorias en la vista Encargado
         public function indexEncargado(Request $request) //Ver las categorias
         {
-            //$usuario = Usuario::all();
+            $usuario = Usuario::all();
             $categorias = Categorias::all();
     
             if ($request->expectsJson()) {

@@ -44,6 +44,8 @@ class TransaccionController extends Controller
         $transaccion->compra_id = $request->compra_id;
         $transaccion->save();
 
+        
+
         return redirect()->back()->with('success', '¡Guardado con éxito!');
     
     }
@@ -126,6 +128,19 @@ class TransaccionController extends Controller
 
         // Redireccionar de vuelta a la página anterior
         return redirect()->back();
+    }
+
+    public function tablero()
+    {
+        $numUsuarios = Usuario::count();
+        $numTransacciones = TransaccionCompra::count();
+        $numProductosNoConsignados = Producto::where('estado', '!=', 'Consignado')->count();
+        $numProductosConsignados = Producto::where('estado', 'Consignado')->count();
+        $numCompras = Compra::count();
+        $numPagos= Pago::count();
+        //****falta agregar coemtario******
+
+        return view('vistasSupervisor.tablero', compact('numUsuarios', 'numTransacciones', 'numProductosNoConsignados','numProductosConsignados','numCompras','numPagos'));
     }
 
 }

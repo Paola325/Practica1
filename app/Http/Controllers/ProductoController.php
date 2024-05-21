@@ -192,6 +192,9 @@ class ProductoController extends Controller
 
         return view('vistasSupervisor.kardexProducto', compact('producto', 'cantidadComentarios', 'cantidadCompras'));
     }
+
+
+
     public function formularioActualizarProducto($id_producto)
     {
         // Obtener el producto a actualizar
@@ -296,14 +299,41 @@ class ProductoController extends Controller
     {
         // Buscar la foto por su ID
         $foto = Foto::find($id_foto);
-        $foto->delete();
+
+        // Verificar si la foto existe
+        if ($foto) {
+            // Verificar si el producto asociado a la foto está consignado
+            if ($foto->producto->estado !== 'Consignado') {
+                // Eliminar la foto
+                $foto->delete();
+                return redirect()->back()->with('success', '¡La foto se eliminó correctamente!');
+            } else {
+                return redirect()->back()->with('error', 'No se puede eliminar la foto de un producto consignado.');
+            }
+        } 
     }
+
+
+    public function comprasVendedor()
+    {
+        $vendedor_id = Auth::id();
+        $compras = Compra::where('Usuario_id', $vendedor_id)->get();
+        $productos = Producto::all();
+        //dd($compras);
+        return view('vistasVendedor.verCompra', compact('vendedor_id', 'productos', 'compras'));  
+    }
+
+
+    public function ventasVendedor()
+    {
+        $vendedor_id = Auth::id();
+        $productos = Producto::where('propietario_id', $vendedor_id)->get();
+        $compras = Compra::all();
+        //dd($compras);
+        return view('vistasVendedor.verVentas', compact('vendedor_id', 'productos', 'compras'));  
+    }
+
+
 }
-
-
-    
-
-
-
 
 

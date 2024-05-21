@@ -66,10 +66,39 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .error-message {
+            list-style-type: none;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    <li class="error-message">¡Lo sentimos! No hay suficientes productos disponibles para completar esta compra</li>
+                </ul>
+            </div>
+        @endif
+
+
+
         <h2>Compra</h2>
         
 
