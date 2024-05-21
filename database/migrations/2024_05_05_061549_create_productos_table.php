@@ -41,8 +41,8 @@ class CreateProductosTable extends Migration
      */
     public function down()
     {
-                        // Desactivar temporalmente las restricciones de clave externa
-                        Schema::disableForeignKeyConstraints();
+        // Desactivar temporalmente las restricciones de clave externa
+        //Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('productos');
     }
 }
