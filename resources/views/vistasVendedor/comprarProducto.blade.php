@@ -1,32 +1,99 @@
 @extends('vendedor')
 @section('contenido')
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Color de fondo gris claro */
+        }
 
-<div class="productos-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Cantidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($productos as $producto)
-                @if ($producto->estado === 'Consignado')
-                    <tr class="producto">
-                        <td>{{ $producto->nombre }}</td>
-                        <td>{{ $producto->descripcion }}</td>
-                        <td>{{ $producto->cantidad }}</td>
-                        <td>
-                            <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
-                            <a href="{{ route('compra.crear', ['id_producto' => $producto->id, 'id_usuario' =>  Auth::user()->id]) }}">Comprar</a>
-                        </td>
-                    </tr>
-                @endif
-            @endforeach
-        </tbody>
-    </table>
+        .productos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Espacio entre los productos */
+            padding: 20px; /* Margen alrededor de los productos */
+        }
+
+        .producto {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px; /* Ancho fijo para cada producto */
+            background-color: #fff; /* Color de fondo blanco */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+            transition: transform 0.2s;
+        }
+
+        .producto:hover {
+            transform: translateY(-10px); /* Efecto de elevar al pasar el cursor */
+        }
+
+        .producto h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .producto p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .producto .nombre {
+            display: block;
+            background-color: #007bff; /* Color de fondo azul */
+            color: #fff;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .producto .nombre:hover {
+            background-color: #0056b3; /* Color de fondo azul oscuro al pasar el cursor */
+        }
+
+        .producto a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .producto a:hover {
+            color: #0056b3;
+        }
+    </style>
+
+<div class="productos-container"> 
+    <body>
+    <div class="productos-container">
+        @foreach ($productos as $producto)
+            @if ($producto->estado === 'Consignado')
+                <div class="producto">
+                    <h2>{{ $producto->nombre }}</h2>
+                    <p>{{ $producto->descripcion }}</p>
+                    <p>Precio: $ {{ $producto->precio }}</p>
+                    <p>Estado: {{ $producto->estado }}</p>
+                    <p>Cantidad: {{ $producto->cantidad }}</p>
+                    
+                    <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
+
+                    <a href="{{ route('compra.crear', ['id_producto' => $producto->id, 'id_usuario' =>  Auth::user()->id]) }}">Comprar</a>
+                </div>
+            @endif
+        @endforeach
+    </div>    
+</body>
 </div>
     
 
