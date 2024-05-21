@@ -7,11 +7,7 @@ use App\Models\Comentario;
 
 class ComentarioSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
     }

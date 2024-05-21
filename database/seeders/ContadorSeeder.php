@@ -4,6 +4,7 @@ namespace Database\Seeders;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 
+
 class ContadorSeeder extends Seeder
 {
     /**
