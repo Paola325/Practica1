@@ -42,6 +42,7 @@ class LoginController extends Controller
     public function restriccionCliente(){
         if (Auth::user()->role !== 'cliente') {
             return redirect()->route('login');
+            Cookie::forget('laravel_session');
         }
         return view('cliente');
     }
@@ -49,6 +50,7 @@ class LoginController extends Controller
     public function restriccionContador(){
         if (Auth::user()->role !== 'contador') {
             return redirect()->route('login');
+            Cookie::forget('laravel_session');
         }
         return view('contador');
     }
@@ -56,6 +58,7 @@ class LoginController extends Controller
     public function restriccionEncargado(){
         if (Auth::user()->role !== 'encargado') {
             return redirect()->route('login');
+            Cookie::forget('laravel_session');
         } 
         return view('encargado');
     }
@@ -64,6 +67,7 @@ class LoginController extends Controller
     {
         if (Auth::user()->role !== 'supervisor') {
             return redirect()->route('login');
+            Cookie::forget('laravel_session');
         }
         return view('supervisor');
     }
@@ -71,6 +75,7 @@ class LoginController extends Controller
     public function restriccionVendedor(){
         if (Auth::user()->role !== 'vendedor') {
             return redirect()->route('login');
+            Cookie::forget('laravel_session');
         }
         return view('vendedor');
     }

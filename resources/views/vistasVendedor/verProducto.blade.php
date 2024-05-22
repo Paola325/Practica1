@@ -102,13 +102,18 @@
                             <td style="text-align: center;">{{ $producto->cantidad }}</td>
                             <td>
                                 @if ($producto->estado === 'Propuesto')
-                                
+                                <p>No es valido</p>
                                 @else
                                     <a href="{{ route('responderComentario', ['id_producto' => $producto->id]) }}">Comentarios</a>
                                 @endif
                             </td>
                             <td><a href="{{ route('actualizarProducto', ['id_producto' => $producto->id]) }}">Actualizar</a></td>
-                            <td><a href="{{ route('producto.fotos', ['id_producto' => $producto->id]) }}">Agregar Foto</a></td>
+                            <td>
+                            @if ($producto->estado === 'Propuesto')
+                            <a href="{{ route('producto.fotos', ['id_producto' => $producto->id]) }}">Agregar Foto</a>
+                                @else
+                                <p>No es valido</p>
+                                @endif
                             <td>
                                 <form id="eliminar-producto-{{$producto->id}}" action="{{ route('eliminar.producto', ['id_producto' => $producto->id]) }}" method="POST" style="display:inline;">
                                     @csrf
