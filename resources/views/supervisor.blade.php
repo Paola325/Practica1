@@ -3,70 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Drawer</title>
+    <title>Supervisor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 2;
             background-color: #f3f4f6;
-            display: flex;
         }
 
-        .sidebar {
-            width: 250px;
+        .navbar {
+            width: 100%;
             background-color: #333;
             color: #fff;
-            padding: 20px;
+            padding: 4px;
             z-index: 1;
-            height: 100vh;
-            overflow-y: auto;
+            overflow: hidden;
         }
 
-        .content {
-            flex: 1;
-            padding: 20px;
-            background-color: #fff;
-        }
-
-        .sidebar ul {
+        .navbar ul {
             list-style-type: none;
+            margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: space-around;
         }
 
-        .sidebar li {
-            margin-bottom: 10px;
+        .navbar li {
+            margin: 0;
         }
 
-        .sidebar a {
+        .navbar a {
             color: #fff;
             text-decoration: none;
-            display: block;
-            padding: 10px;
+            padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
 
-        .sidebar a:hover {
+        .navbar a:hover {
             background-color: #555;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .welcome-message {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        li.logout {
+            margin-left: auto;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <br>
-    <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
+    <div class="navbar">
+        <h3 class="welcome-message">Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h3>
         <ul>
-        <h3><li><a href="/vistasSupervisor/tablaCategorias">Categorias</a></li></h3>
-        <h3><li><a href="/vistasSupervisor/tablaClientes">Usuarios</a></li></h3>
-        <h3><li><a href="/vistasSupervisor/tablaInfoCliente">Vendedores</a></li></h3>
-        <h3><li><a href="/vistasSupervisor/tablero">Tablero</a></li></h3>
-        <h3><h2><li style="margin-top: 420px;"><a href="{{ route('logout') }}">Cerrar Sesión</a></li></h2>
-
+            <li><a href="/vistasSupervisor/tablaCategorias">Categorías</a></li>
+            <li><a href="/vistasSupervisor/tablaClientes">Usuarios</a></li>
+            <li><a href="/vistasSupervisor/tablaInfoCliente">Vendedores</a></li>
+            <li><a href="/vistasSupervisor/tablero">Tablero</a></li>
+            <li class="logout"><a href="{{ route('logout') }}">Cerrar Sesión</a></li>
         </ul>
     </div>
+
     <main class="content">
-    @yield("contenido")
+        @yield("contenido")
     </main>
+
 </body>
 </html>

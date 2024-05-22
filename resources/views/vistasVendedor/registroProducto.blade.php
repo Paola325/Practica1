@@ -5,6 +5,53 @@
     $categorias = App\Models\Categorias::all();
 @endphp
 
+<style>
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+
+    }
+
+    form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 8px;
+    }
+
+    form input[type="text"],
+    form input[type="date"],
+    form input[type="number"],
+    form textarea,
+    form select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-top: 2px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    form input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 10px;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+    }
+
+    form input[type="submit"]:hover {
+        background-color: #555;
+    }
+</style>
   <form action="{{ route('vistasVendedor.registroProducto') }}" method="post">
       @csrf
       <label for="nombre">Nombre:</label><br>
