@@ -17,4 +17,8 @@ class Producto extends Model
     public function propietario(){
         return $this->belongsTo(Usuario::class);
     }
+    public function fotos()
+    {
+        return $this->hasMany(Foto::class);
+    }
 }
