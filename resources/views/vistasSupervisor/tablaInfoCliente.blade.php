@@ -119,21 +119,21 @@
         </tr>
     </thead>
     <tbody>
-    @forelse ($usuario as $usuario)
+    @forelse ($usuarios as $usuario)
             @if (in_array($usuario->role, ['vendedor']))
-               <tr>
-                  <td style="text-align: center;">{{ $usuario->nombre }}</td>
-                  <td style="text-align: center;">{{ $usuario->email }}</td>
-                  <td style="text-align: center;">{{ $usuario->created_at }}</td>
-                  <td style="text-align: center;">/</td>
-                  <td style="text-align: center;">/</td>
+            <tr>
+                <td style="text-align: center;">{{ $usuario->nombre }}</td>
+                <td style="text-align: center;">{{ $usuario->email }}</td>
+                <td style="text-align: center;">{{ $usuario->created_at }}</td>
+                <td style="text-align: center;">{{ $usuario->numTransacciones }}</td>
+                <td style="text-align: center;">{{ $usuario->numProductosConsignados }}</td>
                 </tr>
-             @endif
+            @endif
             @empty
                 <tr>
-                  <td colspan="7">No hay usuarios disponibles</td>
+                <td colspan="7">No hay usuarios disponibles</td>
                 </tr>
-          @endforelse
+        @endforelse
 </table>
 
 </body>

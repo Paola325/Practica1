@@ -94,49 +94,45 @@
     @endif
 
     <h1>Listado de Transacciones Válidas</h1>
-        @csrf
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Voucher</th>
-                    <th>Calificación</th>
-                    <th>Vendedor</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
-                    <th>Pago</th> 
-                    
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($transacciones as $transaccion)
-                    @if($transaccion->valida && $transaccion->compra && $transaccion->compra->producto && $transaccion->compra->producto->propietario)
-                        <tr>
-                            <td>{{ $transaccion->id }}</td>
-                            <td>
-                                <a href="{{ asset($transaccion->voucher) }}" target="_blank">Descargar</a>
-                            </td>
-                            <td>{{ $transaccion->calificacion }}</td>
-                            <td>{{ $transaccion->compra->producto->propietario->nombre }}</td>
-                            <td>{{ $transaccion->compra->producto->nombre }}</td>
-                            <td>{{ $transaccion->compra->Cantidad }}</td>
-                            <td>{{ $transaccion->compra->Total }}</td>
-                            
-                            <td>
-                                <form action="{{ route('crear_pago') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="transaccion_id" value="{{ $transaccion->id }}">
-                                    <input type="text" name="pago" placeholder="Monto del pago">
-                                    
-                                    <button type="submit">Enviar Pago</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Voucher</th>
+                <th>Calificación</th>
+                <th>Vendedor</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Pago</th> 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($transaccionesSinPago as $transaccion)
+                @if($transaccion->valida && $transaccion->compra && $transaccion->compra->producto && $transaccion->compra->producto->propietario)
+                    <tr>
+                        <td>{{ $transaccion->id }}</td>
+                        <td>
+                            <a href="{{ asset($transaccion->voucher) }}" target="_blank">Descargar</a>
+                        </td>
+                        <td>{{ $transaccion->calificacion }}</td>
+                        <td>{{ $transaccion->compra->producto->propietario->nombre }}</td>
+                        <td>{{ $transaccion->compra->producto->nombre }}</td>
+                        <td>{{ $transaccion->compra->Cantidad }}</td>
+                        <td>{{ $transaccion->compra->Total }}</td>
+                        <td>
+                            <form action="{{ route('crear_pago') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="transaccion_id" value="{{ $transaccion->id }}">
+                                <input type="text" name="pago" placeholder="Monto del pago">
+                                <button type="submit">Enviar Pago</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+        </tbody>
+    </table>
 </body>
 </html>
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Producto;
+use App\Models\Compra;
+use App\Models\TransaccionCompra;
 use App\Http\Requests\StoreRegistroRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 
@@ -163,9 +165,19 @@ class RegistroController extends Controller
 
                 public function verInfoVendedores()
                 {
-                    $usuario = Usuario::all();
-                    
-                    return view('vistasSupervisor.tablaInfoCliente', compact('usuario'));      
+                    // Obtén los usuarios con el rol 'vendedor'
+                    $usuarios = Usuario::where('role', 'vendedor')->get();
+
+                    foreach ($usuarios as $usuario) {
+                        // Calcular el número de transacciones (compras) para este vendedor
+                        $usuario->numTransacciones = Compra::whereHas('producto', function($query) use ($usuario) {
+                            $query->where('propietario_id', $usuario->id);
+                        })->count();
+
+                        // Calcular el número de productos consignados para este vendedor
+                        $usuario->numProductosConsignados = Producto::where('propietario_id', $usuario->id)->count();
+                    }
+                    return view('vistasSupervisor.tablaInfoCliente', ['usuarios' => $usuarios]);      
                 }
     
 }

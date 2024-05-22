@@ -82,9 +82,18 @@ class TransaccionController extends Controller
         $transacciones = TransaccionCompra::with('compra')->get();
         $compras = Compra::with('producto')->get();
         
-        
-        return view('transaccion.mostrarTransaccionesValidas', compact('transacciones','compras'));
+        // Identificar las transacciones que tienen pagos asociados
+        $transaccionesSinPago = [];
+        foreach ($transacciones as $transaccion) {
+            $tienePago = Pago::where('transaccion_id', $transaccion->id)->exists();
+            if (!$tienePago) {
+                $transaccionesSinPago[] = $transaccion;
+            }
+        }
+
+        return view('transaccion.mostrarTransaccionesValidas', compact('transaccionesSinPago', 'compras'));
     }
+
 
 
     public function crearPago(Request $request){
