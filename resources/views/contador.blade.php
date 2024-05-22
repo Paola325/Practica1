@@ -3,69 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Drawer</title>
+    <title>Contador</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 2;
             background-color: #f3f4f6;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
             display: flex;
         }
 
-        .sidebar {
-            width: 250px;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            z-index: 1;
-            height: 100vh;
-            overflow-y: auto;
+        .navbar li {
+            margin: 0;
         }
 
-        .content {
-            flex: 1;
-            padding: 20px;
-            background-color: #fff;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar a {
+        .navbar a {
             color: #fff;
             text-decoration: none;
-            display: block;
-            padding: 10px;
+            padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
 
-        .sidebar a:hover {
+        .navbar a:hover {
             background-color: #555;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #fff;
+
+        }
+
+        .welcome-message {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        li.logout {
+            margin-left: auto;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <br>
-    <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
+    <div class="navbar">
+        <h3>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h3>
         <ul>
-        <h3><li><a href="/transacciones">Transacciones Pendientes</a></li></h3>
-        <h3><li>
-            <a href="{{ route('transaccion.pago') }}">Crear nuevo pago</a>
-        </li></h3>
-        <h3><li><a href="{{ route('Show.pagos') }}">Lista de los pagos</a></li></h3>
-        <h3><li><a href="{{ route('Entregado') }}">Solicitud para entrega</a></li></h3>
-        <h3><h2><li style="margin-top: 620px;">
-            <a href="{{ route('logout') }}">Cerrar Sesión</a>
-        </li></h2>
+        <li><a href="/transacciones">Transacciones Pendientes</a></li>
+        <li><a href="{{ route('transaccion.pago') }}">Crear nuevo pago</a></li>
+        <li><a href="{{ route('Show.pagos') }}">Lista de los pagos</a></li>
+        <li><a href="{{ route('Entregado') }}">Solicitud para entrega</a></li>
+        <li style="font-weight: bold;" class="logout"><a href="{{ route('logout') }}">Cerrar Sesión</a> </li>
         </ul>
     </div>
     <main class="content">
