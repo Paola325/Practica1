@@ -18,7 +18,7 @@
         }
 
         table {
-            width: 40%;
+            width: 60%;
             border-collapse: collapse;
             margin: 20px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

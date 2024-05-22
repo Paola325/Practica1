@@ -82,7 +82,7 @@ class RegistroController extends Controller
         $usuario->password = $passwordC;
         $usuario->save();
 
-        return redirect(route('supervisor'));
+        return redirect(route('vistasSupervisor.tablaClientes'));
     }
 
     //Para ir al form de cambio de contraseña desde encargado

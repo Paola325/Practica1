@@ -199,7 +199,7 @@ Route::get('/vistasSupervisor/tablaInfoCliente', [RegistroController::class, 've
 
 //Ruta para el proceso de registro de usuarios desde la vista supervisor
 Route::get('/usuarios/agregarUsuario', [RegistroController::class, 'IrRegistro'])->name('usuarios.agregarUsuario');
-Route::post('/supervisor', [RegistroController::class, 'registerUsuario'])->name('supervisor');
+Route::post('/vistasSupervisor/tablaClientes', [RegistroController::class, 'registerUsuario'])->name('vistasSupervisor.tablaClientes');
 
 //Ruta para el proceso de actuliazar los datos de los usuarios desde la view supervisor
 Route::get('/usuarios/actualizarUsuario/{id}', [RegistroController::class, 'editarUser'])->name('usuarios.actualizarUsuario');
