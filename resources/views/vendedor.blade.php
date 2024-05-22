@@ -16,7 +16,7 @@
             width: 100%;
             background-color: #333;
             color: #fff;
-            padding: 4px;
+            padding: 10px;
             z-index: 1;
             overflow: hidden;
         }
@@ -26,7 +26,6 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: space-around;
         }
 
         .navbar li {
@@ -48,6 +47,7 @@
         .content {
             padding: 20px;
             background-color: #fff;
+
         }
 
         .welcome-message {
@@ -62,7 +62,7 @@
 </head>
 <body>
     <div class="navbar">
-        <h2>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h2>
+        <h3>Bienvenido {{ Auth::user()->role }}, {{ Auth::user()->nombre }}</h3>
         <ul>
             <li><a href="/vistasVendedor/verProducto">Tus productos</a></li>
             <li><a href="/vistasVendedor/registroProducto">Registrar producto</a></li>
@@ -70,7 +70,7 @@
             <li><a href="/mostrar/fotos">Ver fotos</a></li>
             <li><a href="/verCompra">Ver Compras</a></li>
             <li><a href="/verVentas">Ver Ventas</a></li>
-            <li><a href="{{ route('logout') }}">Cerrar Sesión</a></li>
+            <li style="font-weight: bold;" class="logout"><a href="{{ route('logout') }}">Cerrar Sesión</a></li>
         </ul>
     </div>  
     <main class="content">

@@ -16,7 +16,7 @@
             width: 100%;
             background-color: #333;
             color: #fff;
-            padding: 4px;
+            padding: 10px;
             z-index: 1;
             overflow: hidden;
         }
@@ -68,7 +68,7 @@
             <li><a href="/vistasSupervisor/tablaClientes">Usuarios</a></li>
             <li><a href="/vistasSupervisor/tablaInfoCliente">Vendedores</a></li>
             <li><a href="/vistasSupervisor/tablero">Tablero</a></li>
-            <li class="logout"><a href="{{ route('logout') }}">Cerrar Sesión</a></li>
+            <li style="font-weight: bold;" class="logout"><a href="{{ route('logout') }}">Cerrar Sesión</a></li>
         </ul>
     </div>
 
