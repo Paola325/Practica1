@@ -1,6 +1,8 @@
 @extends('vendedor')
 @section('contenido')
-
+@php
+    $categorias = App\Models\Categorias::all();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -27,11 +27,22 @@ class ProductoController extends Controller
 
     public function productoVer()//Para el cliente
     {
+        $categorias = Categorias::all();
         $productos = Producto::all();
         $comentario = Comentario::all();
 
-        return view('vistasVendedor.comprarProducto', compact('productos','comentario'));
+        return view('vistasVendedor.comprarProducto', compact('categorias', 'productos','comentario'));
     }
+
+    public function productoPorCategoria($categoriaId) // Para filtrar productos por categoría
+    {
+        $categorias = Categorias::all();
+        $productos = Producto::where('categoria_id', $categoriaId)->get();
+        $comentario = Comentario::all();
+
+        return view('vistasVendedor.comprarProducto', compact('categorias', 'productos', 'comentario'));
+    }
+
 
     public function productoComprar()//Para el vendedor
     {
@@ -292,7 +303,7 @@ class ProductoController extends Controller
         $fotos = Foto::all();
 
         // Pasar los datos a la vista y renderizarla
-        return view('producto.mostrarFotos', compact('fotos'));
+        return view('vistasVendedor.mostrarFotos', compact('fotos'));
     }
 
     public function eliminarFoto($id_foto)
@@ -335,5 +346,11 @@ class ProductoController extends Controller
 
 
 }
+
+
+    
+
+
+
 
 

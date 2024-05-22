@@ -21,7 +21,6 @@ class CategoriaController extends Controller
             return view('welcome', compact('categorias'));
         }
     }
-    
     //CRUD del supervisor
     public function indexSupervisor(Request $request) //Ver las categorias
     {
@@ -35,6 +34,7 @@ class CategoriaController extends Controller
             return view('vistasSupervisor.tablaCategorias', compact('categorias'));
         }
     }
+
 
         public function crearCategoria()
         {

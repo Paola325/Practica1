@@ -91,7 +91,7 @@
                     <p>Estado: {{ $producto->estado }}</p>
                     <p>Cantidad: {{ $producto->cantidad }}</p>
                     
-                    <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
+                    <!--<a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>-->
                 </div>
             @endif
         @endforeach

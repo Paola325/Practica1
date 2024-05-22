@@ -141,6 +141,10 @@ Route::get('/vistasCliente/mostrarProducto', function () {
 });
 
 
+Route::get('/vistasVendedor/mostrarFotos', function () {
+    return view('vistasVendedor.mostrarFotos');
+});
+
 // Cambio en la ruta de login
 Route::post('/login', [LoginController::class, 'valida'])->name('login'); 
 
@@ -260,8 +264,15 @@ Route::get('/vistasVendedor/verProducto', [ProductoController::class, 'verProduc
 Route::get('/producto/responderComentario/{id_producto}', [ComentarioController::class, 'verComentarios'])->name('responderComentario');
 
 //Ruta paran el proceso de mostrar comprar como si fuera cliete
+// Ruta para ver todos los productos
 Route::get('/vistasVendedor/comprarProducto', [ProductoController::class, 'productoVer'])->name('vistasVendedor.comprarProducto');
-Route::get('/producto/productos', [ProductoController::class, 'productoComprar'])->name('producto.productos');
+
+// Ruta para ver productos filtrados por categoría
+Route::get('/vistasVendedor/comprarProducto/{categoria}', [ProductoController::class, 'productoPorCategoria'])->name('vistasVendedor.comprarProducto.categoria');
+
+
+//Route::get('/producto/vistaproducto', [ProductoController::class, 'productoComprar'])->name('producto.vistaproducto');
+
 
 Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
 
@@ -277,7 +288,7 @@ Route::post('/vistasVendedor/agregarFotos', [ProductoController::class, 'agregar
 Route::delete('/vistasVendedor/{id_producto}', [ProductoController::class, 'eliminarProducto'])->name('eliminar.producto');
 
 //Mostrar las fotos de los productos
-Route::get('/mostrar/fotos', [ProductoController::class, 'mostrarFoto'])->name('mostrarFoto');
+Route::get('/vistasVendedor/mostrarFotos', [ProductoController::class, 'mostrarFoto'])->name('mostrarFoto');
 
 //Eliminar foto
 Route::delete('/eliminar/foto/{id_foto}', [ProductoController::class, 'eliminarFoto'])->name('eliminar.foto');
