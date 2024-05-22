@@ -2,7 +2,7 @@
 @section('contenido')
 
 <div class="productos-container">
-<style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -74,25 +74,105 @@
         .producto a:hover {
             color: #0056b3;
         }
+
+        .img-container {
+            position: relative;
+            width: 100%; /* Ajusta el ancho según sea necesario */
+            height: 200px; /* Establece la altura deseada */
+            border-radius: 10px;
+            overflow: hidden; /* Para recortar cualquier parte de la imagen que exceda el contenedor */
+            margin: 10px; /* Margen entre las imágenes */
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .control-prev, .control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .control-prev {
+            left: 10px;
+        }
+
+        .control-next {
+            right: 10px;
+        }
     </style>
 
     @foreach ($productos as $producto)
         @if ($producto->estado === 'Consignado')
             <div class="producto">
+                @if ($producto->fotos->isNotEmpty())
+                    <div class="img-container">
+                        @foreach ($producto->fotos as $index => $foto)
+                            <img src="{{ asset($foto->foto) }}" class="img" style="display: {{ $index == 0 ? 'block' : 'none' }};">
+                        @endforeach
+                        <button class="control-prev" onclick="showPrevImage(this)">&#10094;</button>
+                        <button class="control-next" onclick="showNextImage(this)">&#10095;</button>
+                    </div>
+                @else
+                    <div class="img-container">
+                        <img src="{{ asset('img_producto.jpeg') }}" alt="Imagen predefinida" class="img">
+                    </div>
+                @endif
                 <h2>{{ $producto->nombre }}</h2>
                 <p>{{ $producto->descripcion }}</p>
                 <p>Estado: {{ $producto->estado }}</p>
                 <p>Cantidad: {{ $producto->cantidad }}</p>
-
-
-                <a href="{{ route('compra.crear', ['id_producto' => $producto->id, 'id_usuario' =>  Auth::user()->id]) }}">Comprar</a>
+                <a href="{{ route('compra.crear', ['id_producto' => $producto->id, 'id_usuario' => Auth::user()->id]) }}">Comprar</a>
                 <br>
                 <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
-
             </div>
         @endif
     @endforeach
 </div>
 
+<script>
+    function showNextImage(button) {
+        const container = button.parentElement;
+        const images = container.getElementsByClassName('img');
+        let currentIndex = 0;
+
+        for (let i = 0; i < images.length; i++) {
+            if (images[i].style.display === 'block') {
+                currentIndex = i;
+                images[i].style.display = 'none';
+                break;
+            }
+        }
+
+        const nextIndex = (currentIndex + 1) % images.length;
+        images[nextIndex].style.display = 'block';
+    }
+
+    function showPrevImage(button) {
+        const container = button.parentElement;
+        const images = container.getElementsByClassName('img');
+        let currentIndex = 0;
+
+        for (let i = 0; i < images.length; i++) {
+            if (images[i].style.display === 'block') {
+                currentIndex = i;
+                images[i].style.display = 'none';
+                break;
+            }
+        }
+
+        const prevIndex = (currentIndex - 1 + images.length) % images.length;
+        images[prevIndex].style.display = 'block';
+    }
+</script>
 
 @endsection
