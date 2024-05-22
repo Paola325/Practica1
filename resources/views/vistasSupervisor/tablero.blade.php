@@ -59,7 +59,8 @@
             <li class="linea">Cantidad de compras: <span>{{ $numCompras }}</span></li>
             <li class="linea">Cantidad de transacciones: <span>{{ $numTransacciones }}</span></li>
             <li class="linea">Cantidad de pagos: <span>{{ $numPagos }}</span></li>
-            <!--Agregar comentario, pregunta y respuesta--->
+            <li class="linea">Cantidad de Preguntas: <span>{{ $numPreguntas }}</span></li>
+            <li class="linea">Cantidad de Respuestas: <span>{{ $numRespuestas }}</span></li>
         </ul>
     </div>
 

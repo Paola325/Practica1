@@ -17,7 +17,7 @@
         <tbody>
           @forelse ($usuario as $usuario)
             @if (in_array($usuario->role, ['encargado', 'cliente', 'contador']))
-               <tr>
+              <tr>
                   <td>{{ $usuario->role }}</td>
                   <td>{{ $usuario->nombre }}</td>
                   <td>{{ $usuario->apellido_paterno }}</td>
@@ -26,7 +26,7 @@
                   <td>{{ $usuario->password }}</td>
                   <td><a href= '/usuarios/editarUsuario/{{ $usuario->id }}'><button>Cambiar contraseña</button></a></td>
                 </tr>
-             @endif
+            @endif
             @empty
                 <tr>
                   <td colspan="7">No hay usuarios disponibles</td>

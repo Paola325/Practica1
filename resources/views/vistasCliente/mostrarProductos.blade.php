@@ -89,8 +89,6 @@
                 <br>
                 <a href="{{ route('comentarios.show', ['id_producto' => $producto->id]) }}">Ver comentarios</a>
 
-
-            
             </div>
         @endif
     @endforeach

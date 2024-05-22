@@ -46,8 +46,8 @@ class CompraController extends Controller
         $compra->Total = $total;
         $compra->save();
 
-        //$producto->cantidad -= $request->Cantidad;
-        //$producto->save();
+        $producto->cantidad -= $request->Cantidad;
+        $producto->save();
         $idCompra = $compra->id;
 
         // Obtener detalles del cliente

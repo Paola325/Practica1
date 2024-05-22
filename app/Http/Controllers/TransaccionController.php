@@ -147,9 +147,10 @@ class TransaccionController extends Controller
         $numProductosConsignados = Producto::where('estado', 'Consignado')->count();
         $numCompras = Compra::count();
         $numPagos= Pago::count();
-        //****falta agregar coemtario******
+        $numPreguntas = Comentario::where('tipo', 'pregunta')->count();
+        $numRespuestas = Comentario::where('tipo', 'respuesta')->count();
 
-        return view('vistasSupervisor.tablero', compact('numUsuarios', 'numTransacciones', 'numProductosNoConsignados','numProductosConsignados','numCompras','numPagos'));
+        return view('vistasSupervisor.tablero', compact('numUsuarios', 'numTransacciones', 'numProductosNoConsignados','numProductosConsignados','numCompras','numPagos','numPreguntas','numRespuestas'));
     }
 
 }
