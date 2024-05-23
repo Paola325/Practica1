@@ -106,9 +106,6 @@ class TransaccionController extends Controller
         $pago->monto = $montoPago;
         $pago->transaccion_id = $transaccionId;
         $pago->save();
-
-        //Crear un campo en transaccion de realizado pago
-        //despues activarlo en esta parte
         
         return redirect()->back()->with('success', 'Los pagos se han enviado correctamente.');
         
