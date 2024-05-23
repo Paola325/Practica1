@@ -74,7 +74,10 @@ class ProductoController extends Controller
 
     public function anonimoProducto($categoriaId, Categorias $categorias) {
         $categorias = Categorias::all();
-        $productos = Producto::where('categoria_id', $categoriaId)->get();
+        $productos = Producto::where('categoria_id', $categoriaId)
+            ->where('estado', 'Consignado')
+            ->with('fotos') // Cargar las fotos relacionadas con los productos
+            ->get();
         return view('producto.index', compact('productos', 'categorias'));
     }
 
