@@ -59,7 +59,6 @@
         <h2>Iniciar Sesión</h2>
         <form action="{{ route('login') }}" method="post">
             @csrf <!-- Agrega el token CSRF para protección contra CSRF -->
-             
             @error('email')
             <span>{{ $message }}</span>
             @enderror

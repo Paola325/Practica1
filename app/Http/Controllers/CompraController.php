@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\CorreoMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
+use App\Events\PedidoRealizado;
 
 class CompraController extends Controller
 {
@@ -20,19 +21,17 @@ class CompraController extends Controller
 
     public function guardarCompra(Request $request)
     {
-        // Validar los datos del formulario
         $request->validate([
             'producto_id' => 'required|integer',
             'Usuario_id' => 'required|integer',
             'Cantidad' => 'required|integer|min:1',
         ]);
 
-        // Obtener el producto
         $producto = Producto::findOrFail($request->producto_id);
         
         // Verificar si la cantidad solicitada es mayor que la cantidad disponible
         if ($request->Cantidad > $producto->cantidad) {
-            throw ValidationException::withMessages(['Cantidad']);
+            throw ValidationException::withMessages(['Cantidad' => 'Cantidad solicitada excede la cantidad disponible.']);
         }
 
         // Calcular el total
@@ -46,6 +45,7 @@ class CompraController extends Controller
         $compra->Total = $total;
         $compra->save();
 
+        // Actualizar la cantidad de producto disponible
         $producto->cantidad -= $request->Cantidad;
         $producto->save();
         $idCompra = $compra->id;
@@ -53,14 +53,11 @@ class CompraController extends Controller
         // Obtener detalles del cliente
         $cliente = Usuario::findOrFail($request->Usuario_id);
 
-        // Enviar correo al vendedor
-        $email_vendedor = 'vendedor@example.com'; // Reemplaza con el correo del vendedor
-        Mail::to($email_vendedor)->send(new CorreoMailable($producto, $request->Cantidad, $total, $cliente));
-        
-        $request->session()->flash('correo_enviado');
+        // Disparar el evento PedidoRealizado
+        event(new PedidoRealizado($producto, $request->Cantidad, $total, $cliente));
 
+        // Redirigir a la página de transacción con el ID de compra
         return redirect()->route('formulario.transaccion', ['idCompra' => $idCompra]);
     }
-
 
 }

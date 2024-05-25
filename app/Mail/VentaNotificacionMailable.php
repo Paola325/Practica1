@@ -5,8 +5,10 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Producto;
+use App\Models\Usuario;
 
-class CorreoMailable extends Mailable
+class VentaNotificacionMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -15,12 +17,7 @@ class CorreoMailable extends Mailable
     public $total;
     public $cliente;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($producto, $cantidad, $total, $cliente)
+    public function __construct(Producto $producto, $cantidad, $total, Usuario $cliente)
     {
         $this->producto = $producto;
         $this->cantidad = $cantidad;
@@ -28,14 +25,11 @@ class CorreoMailable extends Mailable
         $this->cliente = $cliente;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->subject('Nuevo Pedido Realizado')
-                    ->view('emails.correo');
+        return $this->view('emails.correo_venta_vendedor')
+                    ->subject('¡Has vendido un producto en nuestra tienda!');
     }
 }
+
+
