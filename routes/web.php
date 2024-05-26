@@ -168,11 +168,10 @@ Route::get('/vistasSupervisor/tablaProductos/{categoriaId}', [ProductoController
 
 Route::get('/vistasSupervisor/kardexProducto/{id}', [ProductoController::class, 'kardex'])->name('vistasSupervisor.kardexProducto');
 
-//Ruta para mostrar el tablero en supervisor
-Route::get('/vistasSupervisor/tablero', [TransaccionController::class, 'tablero'])->name('vistasSupervisor.tablero');
 
 
-//Rutas para el proceso de agregar Categorias
+
+//Rutas para el proceso de agregar Categorias 
 Route::get('/categorias/agregarCategoria', [CategoriaController::class, 'crearCategoria'])->name('categorias.agregarCategoria');
 Route::post('/categorias/agregarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria');
 
@@ -252,12 +251,28 @@ Route::get('/usuarios/editarUsuario/{id}', [RegistroController::class, 'editarCo
 Route::put('/vistasEncargado/tablaClientes', [RegistroController::class, 'actualizarContra'])->name('vistasEncargado.tablaClientes');
 
 
+//////////////////////  SUPERVISOR  ///////////////////////////////////////
+//Ruta para mostrar el tablero en supervisor
+Route::get('/vistasSupervisor/tablero', [TransaccionController::class, 'tablero'])->name('vistasSupervisor.tablero');
 
 
+
+//////////////////////  COMPRADOR  ///////////////////////////////////////
 //Rutas para los comentarios
 Route::post('/comentario', [ComentarioController::class, 'guardar'])->name('comentario');
 Route::get('/comentario/{id_producto}', [ComentarioController::class, 'mostrar'])->name('comentarios.show');
 
+//Compras 
+Route::get('/compra/crear/{id_producto}/{id_usuario}', [CompraController::class, 'crearCompra'])->name('compra.crear');
+Route::post('/compras', [CompraController::class, 'guardarCompra'])->name('compra.guardar');
+
+//Transaccion de un producto
+Route::get('/formulario/{idCompra}', [TransaccionController::class, 'crearFormulario'])->name('formulario.transaccion');
+Route::post('/procesar-transaccion', [TransaccionController::class, 'procesarTransaccion'])->name('procesar.transaccion');
+
+
+
+//////////////////////  VENDEDOR  ///////////////////////////////////////
 
 //Ruta paran el proceso de mostrar los productos perteneciente a su respectivo vendedor
 Route::get('/vistasVendedor/verProducto', [ProductoController::class, 'verProductosVendedor'])->name('vistasVendedor.verProducto');
@@ -270,10 +285,7 @@ Route::get('/vistasVendedor/comprarProducto', [ProductoController::class, 'produ
 // Ruta para ver productos filtrados por categoría
 Route::get('/vistasVendedor/comprarProducto/{categoria}', [ProductoController::class, 'productoPorCategoria'])->name('vistasVendedor.comprarProducto.categoria');
 
-
 //Route::get('/producto/vistaproducto', [ProductoController::class, 'productoComprar'])->name('producto.vistaproducto');
-
-
 Route::post('/vistasVendedor/registroProducto', [ProductoController::class, 'crearProducto'])->name('vistasVendedor.registroProducto');
 
 //Actualizar producto
@@ -301,31 +313,17 @@ Route::get('/verVentas', [ProductoController::class, 'ventasVendedor'])->name('v
 
 
 
-//Compras 
-Route::get('/compra/crear/{id_producto}/{id_usuario}', [CompraController::class, 'crearCompra'])->name('compra.crear');
-Route::post('/compras', [CompraController::class, 'guardarCompra'])->name('compra.guardar');
-
-//Transaccion de un producto
-Route::get('/formulario/{idCompra}', [TransaccionController::class, 'crearFormulario'])->name('formulario.transaccion');
-Route::post('/procesar-transaccion', [TransaccionController::class, 'procesarTransaccion'])->name('procesar.transaccion');
-
+//////////////////////  CONTADOR  ///////////////////////////////////////
 //Mostrar transaccion
 Route::get('/transacciones', [TransaccionController::class, 'mostrarTransaccion'])->name('transacciones.mostrar');
 Route::get('/transacciones/pago', [TransaccionController::class, 'mostrarTransaccionPago'])->name('transaccion.pago');
-
 //Valida transaccion
 Route::put('/transaccion/validar/{id}', [TransaccionController::class, 'validarTransaccion'])->name('transaccion.validar');
-
 //Pagos
 Route::post('/crear/pago', [TransaccionController::class, 'crearPago'])->name('crear_pago');
-
 //Mostrar lista de los pagos
 Route::get('/pago', [TransaccionController::class, 'ShowPagos'])->name('Show.pagos');
 //cambiar la entrega de pagos
 Route::get('/Entregado', [TransaccionController::class, 'Entregado'])->name('Entregado');
-
-
 // Entregar transacciones
 Route::put('/pago/entregar/{id}', [TransaccionController::class, 'EntregarPago'])->name('pago.entregar');
-
-
