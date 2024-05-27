@@ -15,6 +15,10 @@ class LoginController extends Controller
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    public function sesion(){
+        return view('login');
+    }
+
     public function valida(Request $request){
         // Obtiene las credenciales del formulario de inicio de sesión
         $credentials = $request->only('email', 'password');
@@ -82,3 +86,5 @@ class LoginController extends Controller
 
     
 }
+
+
