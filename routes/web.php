@@ -25,9 +25,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login',[LoginController::class, 'sesion']);
+Route::post('/login',[LoginController::class, 'valida']);
 
 // Rutas para las vistas de los distintos roles
 Route::get('/supervisor', [LoginController::class, 'restriccionSupervisor'])->middleware('auth')->name('supervisor');
